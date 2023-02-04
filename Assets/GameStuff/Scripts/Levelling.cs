@@ -6,6 +6,7 @@ using TMPro;
 public class Levelling : MonoBehaviour
 {
     public int maxLevel;
+    [Tooltip("The exp points required to levelup at different levels. If an element is 0, then the previous milestone times sqrt(2) is the milestone ")]
     public float[] milestones;
 
     [Header("UI that shows the current level of the object (length > 0)")]

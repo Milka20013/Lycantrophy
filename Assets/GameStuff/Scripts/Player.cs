@@ -8,7 +8,7 @@ using StarterAssets;
 //and the methods with the player
 //plus other things on the player
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory;
     public PlayerAttack playerAttack;
@@ -64,5 +64,15 @@ public class Player : MonoBehaviour
         isDead = false;
         respawnTimer = respawnCooldown;
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+    }
+
+    void ISaveable.Save(ref GameData data)
+    {
+        data.playerData = new GameData.PlayerData(transform.position);
+    }
+
+    void ISaveable.Load(GameData data)
+    {
+        transform.position = data.playerData.position;
     }
 }
