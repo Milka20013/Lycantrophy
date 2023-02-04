@@ -49,21 +49,7 @@ namespace StarterAssets
 		{
 			attacked = value.isPressed;
         }
-        public void OnUnlockCursor(InputValue value)
-        {
-            switch (Cursor.lockState)
-            {
-                case CursorLockMode.None:
-                    Cursor.lockState = CursorLockMode.Locked;
-                    break;
-                case CursorLockMode.Locked:
-                    Cursor.lockState = CursorLockMode.None;
-                    break;
-                default:
-                    Cursor.lockState = CursorLockMode.None;
-                    break;
-            }
-        }
+        
 #endif
 
 

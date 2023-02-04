@@ -1,9 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject exitMenu;
+    public void OnOpenExitMenu() //press esc
+    {
+        exitMenu.SetActive(true);
+    }
+    public void OnUnlockCursor() //press left ctrl
+    {
+        switch (Cursor.lockState)
+        {
+            case CursorLockMode.None:
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+            case CursorLockMode.Locked:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            default:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+        }
+    }
     public static T GetRandomElementFromFairTable<T>(T[] table)
     {
         int rndIndex = Random.Range(0, table.Length);
