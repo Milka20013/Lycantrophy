@@ -33,15 +33,6 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         itemStack.item.interactionType = interactionType;
     }
 
-    public void EquipItem()
-    {
-
-    }
-    public void UnequipItem()
-    {
-
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Middle)
@@ -85,6 +76,11 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        itemDescriptionPanel.ShowPanel(this);
+        itemDescriptionPanel.HidePanel();
+    }
+
+    private void OnDestroy()
+    {
+        itemDescriptionPanel.HidePanel();
     }
 }

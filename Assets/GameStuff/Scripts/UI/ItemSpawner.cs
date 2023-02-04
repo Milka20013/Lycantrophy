@@ -14,7 +14,7 @@ public class ItemSpawner : MonoBehaviour
     public GameObject[] itemPrefabs;
 
     public HashSet<ItemStack> itemsOnInventory = new HashSet<ItemStack>();
-    public List<ItemUI> spawnedItems = new List<ItemUI>();
+    [HideInInspector] public List<ItemUI> spawnedItems = new List<ItemUI>();
     public void SpawnItems()
     {
         RectTransform rectTransfrom;
@@ -37,7 +37,7 @@ public class ItemSpawner : MonoBehaviour
             rectTransfrom = itemSlot.gameObject.GetComponent<RectTransform>();
 
             //spawning
-            GameObject objectToSpawn = itemPrefabs[itemStacks[i].item.prefabId];
+            GameObject objectToSpawn = GetItemToSpawn(itemStacks[i]);
             GameObject item = Instantiate(objectToSpawn, rectTransfrom.anchoredPosition, rectTransfrom.rotation);
             item.transform.SetParent(gameObject.transform);
 
@@ -55,6 +55,18 @@ public class ItemSpawner : MonoBehaviour
             //assigning the item to the UI inventory, so we will not add it again
             itemsOnInventory.Add(itemStacks[i]);
         }
+    }
+    private GameObject GetItemToSpawn(ItemStack itemStack)
+    {
+        string name = itemStack.item.itemName.Replace(" ", "").ToLower();
+        for (int i = 0; i < itemPrefabs.Length; i++)
+        {
+            if (name == itemPrefabs[i].name.ToLower())
+            {
+                return itemPrefabs[i];
+            }
+        }
+        return itemPrefabs[itemStack.item.prefabId];
     }
     public ItemSlot GetFirstFreeItemSlot()
     {
@@ -78,7 +90,15 @@ public class ItemSpawner : MonoBehaviour
                 spawnedItems[i] = null;
             }
         }
+        for (int i = 0; i < itemStacks.Count; i++)
+        {
+            if (itemStacks[i].state == ItemStack.StackState.Dead)
+            {
+                itemStacks[i] = null;
+            }
+        }
         spawnedItems.RemoveAll(x => x == null);
+        itemStacks.RemoveAll(x => x == null);
         itemsOnInventory.RemoveWhere(x=>x.state == ItemStack.StackState.Dead);
     }
 }

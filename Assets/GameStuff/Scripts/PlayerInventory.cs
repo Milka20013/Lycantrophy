@@ -66,6 +66,7 @@ public class PlayerInventory : MonoBehaviour
     }
     public void RemoveDeadItems()
     {
+        stacksOnEquipmentPanel.RemoveAll(x => x.state == ItemStack.StackState.Dead);
         stacksInInventory.RemoveAll(x => x.state == ItemStack.StackState.Dead);
         ItemSpawner.RemoveDeadItems();
     }
@@ -74,6 +75,18 @@ public class PlayerInventory : MonoBehaviour
     {
         itemStack.state = ItemStack.StackState.Dead;
         RemoveDeadItems();
+    }
+    public void RemoveItemFromEquipmentPanel(ItemStack itemStack)
+    {
+        stacksOnEquipmentPanel.Remove(itemStack);
+        stacksInInventory.Add(itemStack);
+        ItemSpawner.itemStacks = stacksInInventory;
+    }
+    public void AddItemToEquipmentPanel(ItemStack itemStack)
+    {
+        stacksOnEquipmentPanel.Add(itemStack);
+        stacksInInventory.Remove(itemStack);
+        ItemSpawner.itemStacks = stacksInInventory;
     }
     public void SwapPanels(ItemStack itemStack)
     {
@@ -89,5 +102,21 @@ public class PlayerInventory : MonoBehaviour
         }
         ItemSpawner.itemStacks = stacksInInventory;
 
+    }
+
+    public bool ItemIsEquippedByName(ItemStack itemStack)
+    {
+        for (int i = 0; i < stacksOnEquipmentPanel.Count; i++)
+        {
+            if (itemStack.item.itemName == stacksOnEquipmentPanel[i].item.itemName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool ItemIsEquippedByRef(ItemStack itemStack)
+    {
+        return stacksOnEquipmentPanel.Contains(itemStack);
     }
 }

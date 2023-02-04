@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: -4381249005785235162}
   - component: {fileID: 7138859560527468503}
   m_Layer: 5
-  m_Name: TestSword
+  m_Name: TestOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   quantity: {fileID: 4892054737129188676}
   player: {fileID: 0}
   itemDescriptionPanel: {fileID: 0}
-  basicDescription: The almighty Sword Of Tests
+  basicDescription: The almighty Orb of Test
   effects: []
 --- !u!114 &7138859560527468503
 MonoBehaviour:

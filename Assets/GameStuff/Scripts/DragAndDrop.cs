@@ -15,7 +15,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
-    [HideInInspector] public ItemSlot objectThisAttachedTo; //the itemslot which this item is on
+    public ItemSlot objectThisAttachedTo; //the itemslot which this item is on
     private Vector2 previousPosition;
     private Transform previousParent;
 
@@ -104,6 +104,9 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     {
 
     }
-
+    private void OnDestroy()
+    {
+        objectThisAttachedTo.attachedObject = null;
+    }
 
 }

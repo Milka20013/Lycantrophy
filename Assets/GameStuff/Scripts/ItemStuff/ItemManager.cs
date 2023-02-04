@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    [Tooltip("Only needs to be set if a script references the items via name or id")]
     public ItemBlueprint[] itemBlueprints;
     private Item[] items;
 

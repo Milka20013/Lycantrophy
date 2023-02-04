@@ -6422,10 +6422,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936cd38ee0ae9e943b39cbf04ed6818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxHealth: 100
+  baseMaxHealth: 1000
   baseSpeed: 4
   baseSprintSpeed: 20
-  baseDamage: 10
+  baseDamage: 100
   baseAttackSpeed: 3
 --- !u!114 &1209869927
 MonoBehaviour:
@@ -9979,6 +9979,10 @@ PrefabInstance:
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: circleRadius
       value: 5.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: respawnTimer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b597f134643df654298c699031423881, type: 3}

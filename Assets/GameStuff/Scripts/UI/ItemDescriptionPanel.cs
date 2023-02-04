@@ -29,7 +29,12 @@ public class ItemDescriptionPanel : MonoBehaviour
         {
             UpdatePanel();
         }
-        gameObject.SetActive(!gameObject.activeSelf);
+        gameObject.SetActive(true);
+    }
+
+    public void HidePanel()
+    {
+        gameObject.SetActive(false);
     }
 
     public void UpdatePanel()

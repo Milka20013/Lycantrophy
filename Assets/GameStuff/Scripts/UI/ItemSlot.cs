@@ -14,7 +14,7 @@ public class ItemSlot : MonoBehaviour
     private RectTransform rectTransform;
     public Vector2 positionOffset;
 
-    [HideInInspector] public GameObject attachedObject;
+    public GameObject attachedObject;
 
 
 
