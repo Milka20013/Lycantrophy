@@ -67,6 +67,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UnlockCursor",
+                    "type": "Button",
+                    "id": "dc43a211-b0af-4d93-9489-abb57972512d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenExitMenu",
+                    "type": "Button",
+                    "id": "4229af68-dcfa-4e35-88e1-ffb0f4e0bbc9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -278,36 +296,10 @@
                     "action": "OpenStatMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Global",
-            "id": "062d71fe-d825-4bdb-81ec-3be6d2382a8f",
-            "actions": [
-                {
-                    "name": "UnlockCursor",
-                    "type": "Button",
-                    "id": "5387890f-9e3f-4857-904b-b34b414650d3",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
                 {
-                    "name": "OpenExitMenu",
-                    "type": "Button",
-                    "id": "b925c581-7e5d-444d-a36e-9a1b953a678c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
                     "name": "",
-                    "id": "18758aa6-b343-4757-9537-515785c18b54",
+                    "id": "e8e3453e-1932-4118-b29f-deef9d74d4c6",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
@@ -318,7 +310,7 @@
                 },
                 {
                     "name": "",
-                    "id": "6019909b-3ed2-44a2-849d-80983abaf89d",
+                    "id": "cada01ca-77db-4573-8c64-88aa71ab6300",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",

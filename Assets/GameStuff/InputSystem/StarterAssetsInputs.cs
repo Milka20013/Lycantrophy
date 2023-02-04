@@ -21,8 +21,12 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		[Header("Menu Objects")]
+		public GameObject statMenuUI;
+		public GameObject exitMenuUI;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -49,7 +53,33 @@ namespace StarterAssets
 		{
 			attacked = value.isPressed;
         }
-        
+        public void OnOpenStatMenu(InputValue value) //press c
+        {
+            statMenuUI.SetActive(!statMenuUI.activeSelf);
+            Cursor.lockState = CursorLockMode.None;
+        }
+        public void OnOpenExitMenu() //press esc
+        {
+            exitMenuUI.SetActive(!exitMenuUI.activeSelf);
+            Cursor.lockState = CursorLockMode.None;
+        }
+        public void OnUnlockCursor() //press left ctrl
+        {
+            switch (Cursor.lockState)
+            {
+                case CursorLockMode.None:
+                    Cursor.lockState = CursorLockMode.Locked;
+                    break;
+                case CursorLockMode.Locked:
+                    Cursor.lockState = CursorLockMode.None;
+                    break;
+                default:
+                    Cursor.lockState = CursorLockMode.None;
+                    break;
+            }
+        }
+
+
 #endif
 
 

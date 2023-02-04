@@ -1,19 +1,20 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public enum StatType
 {
-    vitality, strength, agility
+    Strength, Vitality, Agility
 }
 public class StatMenu : MonoBehaviour
 {
     public PlayerStats playerStats;
     public Levelling levelling;
-    public GameObject statMenuUI;
     private int statPoints;
+
+    public TextMeshProUGUI statPointsText;
+    public TextMeshProUGUI[] statLevelTexts;
 
     private Dictionary<StatType, int> stats = new Dictionary<StatType, int>();
     private Amplifier[] amplifiers;
@@ -42,13 +43,13 @@ public class StatMenu : MonoBehaviour
         {
             switch (stat.Key)
             {
-                case StatType.vitality:
+                case StatType.Vitality:
                     amps[i] = new Amplifier("stat",AmplifierType.plus, Attribute.MaxHealth, stat.Value * 5, AmplifierKey.overriding);
                     break;
-                case StatType.strength:
+                case StatType.Strength:
                     amps[i] = new Amplifier("stat", AmplifierType.plus, Attribute.Damage, stat.Value * 2, AmplifierKey.none);
                     break;
-                case StatType.agility:
+                case StatType.Agility:
                     amps[i] = new Amplifier("stat", AmplifierType.plus, Attribute.Speed, stat.Value, AmplifierKey.overriding);
                     break;
                 default:
@@ -61,11 +62,7 @@ public class StatMenu : MonoBehaviour
     public void OnLevelUp(int currentLevel) //method on levelling script
     {
         statPoints += 2;
-    }
-    public void OnOpenStatMenu() //press c
-    {
-        statMenuUI.SetActive(!statMenuUI.activeSelf);
-        Cursor.lockState = CursorLockMode.None;
+        UpdateStatPoints();
     }
     public void IncreaseStat(StatSelector statSelector)
     {
@@ -77,6 +74,13 @@ public class StatMenu : MonoBehaviour
         statPoints -= 1;
         UpdateAmplifiers();
         playerStats.RegisterAmplifiers(amplifiers);
+        statLevelTexts[(int)statSelector.statType].text = stats[statSelector.statType].ToString();
+        UpdateStatPoints();
+    }
+
+    public void UpdateStatPoints()
+    {
+        statPointsText.text = "Stat Points: " + statPoints;
     }
 
     
@@ -87,13 +91,13 @@ public class StatMenu : MonoBehaviour
         {
             switch (stat.Key)
             {
-                case StatType.vitality:
+                case StatType.Vitality:
                     amplifiers[i].value = stat.Value * 5;
                     break;
-                case StatType.strength:
+                case StatType.Strength:
                     amplifiers[i].value = stat.Value * 2;
                     break;
-                case StatType.agility:
+                case StatType.Agility:
                     amplifiers[i].value = stat.Value;
                     break;
                 default:
