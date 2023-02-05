@@ -38,14 +38,14 @@ public class Equipment : MonoBehaviour
     public void EquipItem()
     {
         equipped = true;
-        player.playerInventory.AddItemToEquipmentPanel(itemUI.itemStack);
+        player.playerInventory.EquipItem(itemUI.itemStack);
         player.playerStats.RegisterAmplifiers(amplifiers);
     }
 
     public void UnequipItem()
     {
         equipped = false;
-        player.playerInventory.RemoveItemFromEquipmentPanel(itemUI.itemStack);
+        player.playerInventory.UnequipItem(itemUI.itemStack);
         player.playerStats.RemoveAmplifiers(amplifiers);
     }
 

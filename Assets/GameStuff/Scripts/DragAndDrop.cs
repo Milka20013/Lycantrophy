@@ -70,6 +70,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
                 {
                     if (itemslot.attachedObject == null)
                     {
+                        itemUI.slotId = itemslot.id;
                         itemslot.OnItemDrop(this.gameObject);
                         objectThisAttachedTo.attachedObject = null;
                         objectThisAttachedTo = itemslot;

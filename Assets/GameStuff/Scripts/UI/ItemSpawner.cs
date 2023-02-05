@@ -8,16 +8,47 @@ using UnityEngine.UI;
 
 public class ItemSpawner : MonoBehaviour
 {
-    [HideInInspector] public Player player;
-    public List<ItemStack> itemStacks = new List<ItemStack>();
+    public Player player { get; set; }
+    public List<ItemStack> itemStacks { get; set; }
     public ItemSlot[] slots;
+    public ItemSlot[] equipmentSlots;
     public GameObject[] itemPrefabs;
 
     public HashSet<ItemStack> itemsOnInventory = new HashSet<ItemStack>();
     [HideInInspector] public List<ItemUI> spawnedItems = new List<ItemUI>();
+
+    
+
+    public void InstanstiateItem(ItemStack itemStack,int itemSlotId)
+    {
+        ItemSlot itemSlot = slots[itemSlotId];
+
+        RectTransform rectTransform = itemSlot.gameObject.GetComponent<RectTransform>();
+
+        //position of the itemstack
+        rectTransform = itemSlot.gameObject.GetComponent<RectTransform>();
+
+        //spawning
+        GameObject objectToSpawn = GetItemToSpawn(itemStack);
+        GameObject item = Instantiate(objectToSpawn, rectTransform.anchoredPosition, rectTransform.rotation);
+        item.transform.SetParent(gameObject.transform, false);
+
+        //setting the infos to itemUI, so it can dynamically change later
+        ItemUI itemUI = item.GetComponent<ItemUI>();
+        itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, player, itemSlotId);
+
+        //assigning the item to the slot, so it will drag and drop properly
+        item.GetComponent<DragAndDrop>().objectThisAttachedTo = itemSlot;
+        itemSlot.attachedObject = item;
+
+        //add to the list, so we can remove later
+        spawnedItems.Add(item.GetComponent<ItemUI>());
+
+        //assigning the item to the UI inventory, so we will not add it again
+        itemsOnInventory.Add(itemStack);
+    }
     public void SpawnItems()
     {
-        RectTransform rectTransfrom;
         for (int i = 0; i < itemStacks.Count; i++)
         {
             //if the item is on the inventory, we don't do anything
@@ -26,34 +57,20 @@ public class ItemSpawner : MonoBehaviour
                 continue;
             }
 
-            //get the first free  itemslot
-            ItemSlot itemSlot = GetFirstFreeItemSlot();
-            if (itemSlot == null)
+            int index = GetFirstFreeItemSlot();
+            if (index == -1)
             {
                 return;
             }
+            InstanstiateItem(itemStacks[i], index);
+        }
+    }
 
-            //position of the itemstack
-            rectTransfrom = itemSlot.gameObject.GetComponent<RectTransform>();
+    public void SpawnEquipment(List<ItemStack> items)
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
 
-            //spawning
-            GameObject objectToSpawn = GetItemToSpawn(itemStacks[i]);
-            GameObject item = Instantiate(objectToSpawn, rectTransfrom.anchoredPosition, rectTransfrom.rotation);
-            item.transform.SetParent(gameObject.transform);
-
-            //setting the infos to itemUI, so it can dynamically change later
-            ItemUI itemUI = item.GetComponent<ItemUI>();
-            itemUI.SetInfos(rectTransfrom.anchoredPosition, itemStacks[i], player);
-
-            //assigning the item to the slot, so it will drag and drop properly
-            item.GetComponent<DragAndDrop>().objectThisAttachedTo = itemSlot;
-            itemSlot.attachedObject = item;
-
-            //add to the list, so we can remove later
-            spawnedItems.Add(item.GetComponent<ItemUI>()); 
-
-            //assigning the item to the UI inventory, so we will not add it again
-            itemsOnInventory.Add(itemStacks[i]);
         }
     }
     private GameObject GetItemToSpawn(ItemStack itemStack)
@@ -68,17 +85,17 @@ public class ItemSpawner : MonoBehaviour
         }
         return itemPrefabs[itemStack.item.prefabId];
     }
-    public ItemSlot GetFirstFreeItemSlot()
+    public int GetFirstFreeItemSlot()
     {
-        ItemSlot itemSlot = null; 
+        int index = -1;
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].attachedObject == null)
             {
-                return slots[i];
+                return i;
             }
         }
-        return itemSlot;
+        return index;
     }
     public void RemoveDeadItems()
     {

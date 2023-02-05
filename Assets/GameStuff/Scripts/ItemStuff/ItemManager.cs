@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//replace this enum with the generated if itemsData changes
 
 public class ItemManager : MonoBehaviour
 {
-    [Tooltip("Only needs to be set if a script references the items via name or id")]
+    [Tooltip("It has to be set if the items are saved (doesn't need to be in order)")]
     public ItemBlueprint[] itemBlueprints;
     private Item[] items;
 

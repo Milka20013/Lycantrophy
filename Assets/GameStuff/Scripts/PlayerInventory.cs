@@ -4,15 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : MonoBehaviour, ISaveable
 {
     public GameObject inventoryUI;
-    public ItemSpawner ItemSpawner;
-    public ItemManager ItemManager;
+    public ItemSpawner itemSpawner;
+    public ItemManager itemManager;
 
     public List<ItemStack> stacksInInventory = new List<ItemStack>();
-    public List<ItemStack> stacksOnEquipmentPanel = new List<ItemStack>();
-    public void AddItem(Item item, int quantity = 1)
+
+    public EquipmentInventory equipmentInventory;
+
+    private void Awake()
+    {
+        if (equipmentInventory == null)
+        {
+            equipmentInventory = new EquipmentInventory(itemManager);
+        }
+    }
+    public void AddItem(Item item, int quantity = 1, bool spawn = true)
     {
         for (int i = 0; i < stacksInInventory.Count; i++)
         {
@@ -20,7 +29,7 @@ public class PlayerInventory : MonoBehaviour
         }
         if (quantity > 0)
         {
-            int freeSpace = ItemSpawner.slots.Length - stacksInInventory.Count;
+            int freeSpace = itemSpawner.slots.Length - stacksInInventory.Count;
             ItemStack[] createdStacks = ItemStack.CreateItemStacks(item, quantity);
             for (int i = 0; i < createdStacks.Length; i++)
             {
@@ -38,37 +47,39 @@ public class PlayerInventory : MonoBehaviour
                 }
                 //here should go the logic when items couldn't fit in the inv
             }
-            
+
         }
-        if (ItemSpawner.slots[0].isActiveAndEnabled)
+        if (itemSpawner.slots[0].isActiveAndEnabled && spawn)
         {
             SpawnItems();
         }
     }
     public void AddItem(ItemBlueprint item, int quantity = 1)
     {
-        AddItem(ItemManager.GetItem(item), quantity);
+        AddItem(itemManager.GetItem(item), quantity);
     }
-        public void OnOpenInventory(InputValue value)
+    public void OnOpenInventory(InputValue value)
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
-        Cursor.lockState = inventoryUI.activeSelf? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.lockState = inventoryUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
         SpawnItems();
     }
     private void SpawnItems()
     {
-        if (ItemSpawner.player == null)
+        if (itemSpawner.player == null)
         {
-            ItemSpawner.player = gameObject.GetComponent<Player>();
+            itemSpawner.player = gameObject.GetComponent<Player>();
         }
-        ItemSpawner.itemStacks = stacksInInventory;
-        ItemSpawner.SpawnItems();
+        itemSpawner.itemStacks = stacksInInventory;
+        itemSpawner.SpawnItems();
     }
+
+
     public void RemoveDeadItems()
     {
-        stacksOnEquipmentPanel.RemoveAll(x => x.state == ItemStack.StackState.Dead);
         stacksInInventory.RemoveAll(x => x.state == ItemStack.StackState.Dead);
-        ItemSpawner.RemoveDeadItems();
+        equipmentInventory.RemoveDeadItems();
+        itemSpawner.RemoveDeadItems();
     }
 
     public void RemoveItem(ItemStack itemStack)
@@ -76,47 +87,51 @@ public class PlayerInventory : MonoBehaviour
         itemStack.state = ItemStack.StackState.Dead;
         RemoveDeadItems();
     }
-    public void RemoveItemFromEquipmentPanel(ItemStack itemStack)
+    public void UnequipItem(ItemStack itemStack)
     {
-        stacksOnEquipmentPanel.Remove(itemStack);
+        equipmentInventory.UnequipItem(itemStack);
         stacksInInventory.Add(itemStack);
-        ItemSpawner.itemStacks = stacksInInventory;
+        itemSpawner.itemStacks = stacksInInventory;
     }
-    public void AddItemToEquipmentPanel(ItemStack itemStack)
+    public void EquipItem(ItemStack itemStack)
     {
-        stacksOnEquipmentPanel.Add(itemStack);
+        equipmentInventory.EquipItem(itemStack);
         stacksInInventory.Remove(itemStack);
-        ItemSpawner.itemStacks = stacksInInventory;
-    }
-    public void SwapPanels(ItemStack itemStack)
-    {
-        if (stacksInInventory.Contains(itemStack))
-        {
-            stacksInInventory.Remove(itemStack);
-            stacksOnEquipmentPanel.Add(itemStack);
-        }
-        else
-        {
-            stacksOnEquipmentPanel.Remove(itemStack);
-            stacksInInventory.Add(itemStack);
-        }
-        ItemSpawner.itemStacks = stacksInInventory;
-
+        itemSpawner.itemStacks = stacksInInventory;
     }
 
     public bool ItemIsEquippedByName(ItemStack itemStack)
     {
-        for (int i = 0; i < stacksOnEquipmentPanel.Count; i++)
-        {
-            if (itemStack.item.itemName == stacksOnEquipmentPanel[i].item.itemName)
-            {
-                return true;
-            }
-        }
-        return false;
+        return equipmentInventory.ItemIsEquippedByName(itemStack);
     }
     public bool ItemIsEquippedByRef(ItemStack itemStack)
     {
-        return stacksOnEquipmentPanel.Contains(itemStack);
+        return equipmentInventory.ItemIsEquippedByRef(itemStack);
+    }
+
+    public void Save(ref GameData data)
+    {
+        data.inventoryData.inventoryItems = GameData.InventoryData.CreateItemDatas(stacksInInventory);
+        equipmentInventory.Save(ref data);
+    }
+
+    public void Load(GameData data)
+    {
+        equipmentInventory = new EquipmentInventory(itemManager);
+        for (int i = 0; i < data.inventoryData.inventoryItems.Length; i++)
+        {
+            AddItem(itemManager.GetItem(data.inventoryData.inventoryItems[i].itemId), data.inventoryData.inventoryItems[i].quantity, false);
+        }
+        equipmentInventory.Load(data);
+        InstantiateItems(data);
+    }
+
+    private void InstantiateItems(GameData data)
+    {
+        itemSpawner.player = gameObject.GetComponent<Player>();
+        for (int i = 0; i < stacksInInventory.Count; i++)
+        {
+            itemSpawner.InstanstiateItem(stacksInInventory[i], data.inventoryData.inventoryItems[i].slotId);
+        }
     }
 }

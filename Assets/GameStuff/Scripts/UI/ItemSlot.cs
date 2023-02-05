@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.Controls;
 
 public class ItemSlot : MonoBehaviour
 {
+    public int id = -1;
     public enum ExpectedItemType { Any, Equippable, Consumable}
     public ExpectedItemType expectedItem = ExpectedItemType.Any;
 
