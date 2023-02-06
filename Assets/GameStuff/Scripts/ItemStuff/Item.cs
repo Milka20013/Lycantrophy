@@ -14,8 +14,8 @@ public class Item
     public int id;
     public string itemName;
     public int stackSize = 1;
-    public int prefabId;
     public InteractionType interactionType;
+    public int prefabId;
 
     public Item(string itemName,int stackSize)
     {

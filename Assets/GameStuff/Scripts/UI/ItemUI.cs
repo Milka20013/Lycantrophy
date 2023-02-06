@@ -13,16 +13,17 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
     [HideInInspector] public Player player;
 
-    public ItemDescriptionPanel itemDescriptionPanel;
+    private ItemDescriptionPanel itemDescriptionPanel;
 
     [HideInInspector] public ItemStack itemStack;
 
     [HideInInspector] public int slotId;
 
+    public ItemBlueprint itemBlueprint;
 
-    public string basicDescription;
     [HideInInspector] public List<string> effects;
-    public void SetInfos(Vector2 position, ItemStack itemStack, Inventory inventory, int itemSlotId)
+    public void SetInfos(Vector2 position, ItemStack itemStack, Inventory inventory, 
+        int itemSlotId, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP)
     {
         rectTransform.anchoredPosition = position;
         this.itemStack = itemStack;
@@ -30,6 +31,8 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         itemStack.ChangeQuantity(itemStack.quantity);
         this.inventory = inventory;
         slotId = itemSlotId;
+        this.itemDescriptionPanel = itemDescriptionPanel;
+        this.itemBlueprint = itemBP;
     }
 
     public void SetInteractionType(InteractionType interactionType)

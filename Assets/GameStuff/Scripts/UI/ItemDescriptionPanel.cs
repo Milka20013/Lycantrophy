@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ItemDescriptionPanel : MonoBehaviour
 {
+    public GameObject itemDescriptionPanel;
     public RectTransform canvasRectTransform;
     public TextMeshProUGUI basicDescription;
     public TextMeshProUGUI[] effectTexts;
@@ -25,21 +26,21 @@ public class ItemDescriptionPanel : MonoBehaviour
             rectTransform.pivot = new Vector2(0, 1);
         }
         rectTransform.position = itemUI.rectTransform.position;
-        if (!gameObject.activeSelf)
+        if (!itemDescriptionPanel.activeSelf)
         {
             UpdatePanel();
         }
-        gameObject.SetActive(true);
+        itemDescriptionPanel.SetActive(true);
     }
 
     public void HidePanel()
     {
-        gameObject.SetActive(false);
+        itemDescriptionPanel.SetActive(false);
     }
 
     public void UpdatePanel()
     {
-        basicDescription.text = currentItemUI.basicDescription;
+        basicDescription.text = currentItemUI.itemBlueprint.basicDescription;
         for (int i = 0; i < effectTexts.Length; i++)
         {
             effectTexts[i].gameObject.SetActive(false);

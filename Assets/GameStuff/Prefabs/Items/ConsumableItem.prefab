@@ -149,8 +149,9 @@ GameObject:
   - component: {fileID: 6547499539019982384}
   - component: {fileID: 8840541500878148103}
   - component: {fileID: -4381249005785235162}
+  - component: {fileID: 7688819947085523376}
   m_Layer: 5
-  m_Name: Item 0
+  m_Name: ConsumableItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 70632ddfe8e71b04b8f90ef7e29a9e98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac3d13123071f194a852cf54601e08da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -256,7 +257,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 4247773556558695787}
   quantity: {fileID: 4892054737129188676}
+  inventory: {fileID: 0}
   player: {fileID: 0}
-  itemDescriptionPanel: {fileID: 0}
-  basicDescription: You shouldn't have this
+  itemDescriptionPanel: {fileID: 8921832955777988459, guid: ba6edda5572a1ad46b0b4b099d636087, type: 3}
+  slotId: 0
+  itemBlueprint: {fileID: 0}
   effects: []
+--- !u!114 &7688819947085523376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146469132438167939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00442891675c2c4380551c124bb4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemUI: {fileID: -4381249005785235162}
+  consumableItem: {fileID: 0}

@@ -6,18 +6,19 @@ public class Equipment : MonoBehaviour
 {
     private Player player;
     public ItemUI itemUI;
-    public Amplifier[] amplifiers;
+    public EquipmentItem equipmentItem;
     private DragAndDrop dragAndDrop;
     private bool equipped = false;
     void Start()
     {
         player = itemUI.player;
+        equipmentItem = itemUI.inventory.itemManager.GetEquipmentItemBlueprint(itemUI.itemStack);
         itemUI.SetInteractionType(InteractionType.Equip);
         if (gameObject.TryGetComponent(out dragAndDrop))
         {
             dragAndDrop.OnItemDropped += OnDrop;
         }
-        itemUI.RegisterEffects(amplifiers);
+        itemUI.RegisterEffects(equipmentItem.amplifiers);
     }
     public void OnDrop(ItemUI itemUI, ItemSlot itemSlot)
     { 
@@ -39,14 +40,14 @@ public class Equipment : MonoBehaviour
     {
         equipped = true;
         player.playerInventory.EquipItem(itemUI.itemStack);
-        player.playerStats.RegisterAmplifiers(amplifiers);
+        player.playerStats.RegisterAmplifiers(equipmentItem.amplifiers);
     }
 
     public void UnequipItem()
     {
         equipped = false;
         player.playerInventory.UnequipItem(itemUI.itemStack);
-        player.playerStats.RemoveAmplifiers(amplifiers);
+        player.playerStats.RemoveAmplifiers(equipmentItem.amplifiers);
     }
 
     private void OnDestroy()

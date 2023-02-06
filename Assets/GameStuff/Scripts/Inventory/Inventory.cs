@@ -69,10 +69,6 @@ public class Inventory : MonoBehaviour, ISaveable
     }
     private void SpawnItems()
     {
-        if (itemSpawner.inventory == null)
-        {
-            itemSpawner.inventory = this;
-        }
         itemSpawner.itemStacks = stacksInInventory;
         itemSpawner.SpawnItems();
     }
@@ -109,7 +105,6 @@ public class Inventory : MonoBehaviour, ISaveable
 
     private void InstantiateItems(GameData.InventoryData.ItemData[] inventoryItems)
     {
-        itemSpawner.inventory = this;
         for (int i = 0; i < stacksInInventory.Count; i++)
         {
             itemSpawner.InstanstiateItem(stacksInInventory[i], inventoryItems[i].slotId);

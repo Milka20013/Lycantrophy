@@ -149,9 +149,9 @@ GameObject:
   - component: {fileID: 6547499539019982384}
   - component: {fileID: 8840541500878148103}
   - component: {fileID: -4381249005785235162}
-  - component: {fileID: 7688819947085523376}
+  - component: {fileID: 7138859560527468503}
   m_Layer: 5
-  m_Name: AttackPotion
+  m_Name: EquipmentItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,14 +199,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8241366, g: 0.31510323, b: 0.9150943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ac3d13123071f194a852cf54601e08da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 00d685cb405e53f4c99511b9a0430802, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -257,11 +257,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 4247773556558695787}
   quantity: {fileID: 4892054737129188676}
+  inventory: {fileID: 0}
   player: {fileID: 0}
-  itemDescriptionPanel: {fileID: 0}
-  basicDescription: Attack potion
+  itemDescriptionPanel: {fileID: 8921832955777988459, guid: ba6edda5572a1ad46b0b4b099d636087, type: 3}
+  slotId: 0
+  itemBlueprint: {fileID: 0}
   effects: []
---- !u!114 &7688819947085523376
+--- !u!114 &7138859560527468503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,8 +272,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5146469132438167939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00442891675c2c4380551c124bb4ce9, type: 3}
+  m_Script: {fileID: 11500000, guid: 612aa354ce1ed264f9a5577fb60c0a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemUI: {fileID: -4381249005785235162}
-  consumableItem: {fileID: 11400000, guid: 24d2b1dc4728e834da5afc30a5ff5e97, type: 2}
+  equipmentItem: {fileID: 0}

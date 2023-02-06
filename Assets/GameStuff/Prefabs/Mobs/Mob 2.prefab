@@ -177,9 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppableItems:
-  - item: {fileID: 11400000, guid: fcbeae3dde243ff46963221fae256cac, type: 2}
+  - item: {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
     percentage: 100
-    itemRange: 0100000003000000
-  - item: {fileID: 11400000, guid: cc3a4aee89664d045b4e7fa8bd6bde7d, type: 2}
-    percentage: 100
-    itemRange: 0100000003000000
+    itemRange: 0100000001000000

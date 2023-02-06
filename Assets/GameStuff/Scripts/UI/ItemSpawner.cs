@@ -8,16 +8,28 @@ using UnityEngine.UI;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public Inventory inventory { get; set; }
+    public GameObject itemDescriptionPanel;
+    private ItemDescriptionPanel itemDescriptionPanelScr;
+    public Inventory inventory;
     public List<ItemStack> itemStacks { get; set; }
     public ItemSlot[] slots;
     public ItemSlot[] equipmentSlots;
+
+
     public GameObject[] itemPrefabs;
 
     public HashSet<ItemStack> itemsOnInventory = new HashSet<ItemStack>();
     [HideInInspector] public List<ItemUI> spawnedItems = new List<ItemUI>();
 
-    
+    private void Awake()
+    {
+        GameObject descPanel = GameObject.FindGameObjectWithTag("DescriptionPanel");
+        if (descPanel == null)
+        {
+            descPanel = Instantiate(itemDescriptionPanel, Vector3.zero, Quaternion.identity);
+        }
+        itemDescriptionPanelScr = descPanel.GetComponent<ItemDescriptionPanel>();
+    }
 
     public void InstanstiateItem(ItemStack itemStack,int itemSlotId)
     {
@@ -35,7 +47,8 @@ public class ItemSpawner : MonoBehaviour
 
         //setting the infos to itemUI, so it can dynamically change later
         ItemUI itemUI = item.GetComponent<ItemUI>();
-        itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, inventory, itemSlotId);
+        itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, inventory, itemSlotId,
+            itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack));
 
         //assigning the item to the slot, so it will drag and drop properly
         item.GetComponent<DragAndDrop>().objectThisAttachedTo = itemSlot;
@@ -75,15 +88,8 @@ public class ItemSpawner : MonoBehaviour
     }
     private GameObject GetItemToSpawn(ItemStack itemStack)
     {
-        string name = itemStack.item.itemName.Replace(" ", "").ToLower();
-        for (int i = 0; i < itemPrefabs.Length; i++)
-        {
-            if (name == itemPrefabs[i].name.ToLower())
-            {
-                return itemPrefabs[i];
-            }
-        }
-        return itemPrefabs[itemStack.item.prefabId];
+        int id = itemStack.item.prefabId;
+        return itemPrefabs[id];
     }
     public int GetFirstFreeItemSlot()
     {
