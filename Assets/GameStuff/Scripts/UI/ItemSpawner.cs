@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public Player player { get; set; }
+    public Inventory inventory { get; set; }
     public List<ItemStack> itemStacks { get; set; }
     public ItemSlot[] slots;
     public ItemSlot[] equipmentSlots;
@@ -35,7 +35,7 @@ public class ItemSpawner : MonoBehaviour
 
         //setting the infos to itemUI, so it can dynamically change later
         ItemUI itemUI = item.GetComponent<ItemUI>();
-        itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, player, itemSlotId);
+        itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, inventory, itemSlotId);
 
         //assigning the item to the slot, so it will drag and drop properly
         item.GetComponent<DragAndDrop>().objectThisAttachedTo = itemSlot;

@@ -2,16 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentInventory : ISaveable
+public class EquipmentInventory : Inventory
 {
-    public ItemManager itemManager;
     public List<ItemStack> equippedItems;
-
-    public EquipmentInventory(ItemManager itemManager)
-    {
-        equippedItems = new List<ItemStack>();
-        this.itemManager = itemManager;
-    }
 
     private void AddItem(GameData.InventoryData.ItemData data)
     {
@@ -48,18 +41,4 @@ public class EquipmentInventory : ISaveable
         equippedItems.RemoveAll(x => x.state == ItemStack.StackState.Dead);
     }
 
-    //these methods won't be called by the manager, because it is not a monobehaviour
-    //called in the inventory instead
-    public void Save(ref GameData data)
-    {
-        data.inventoryData.equipmentItems = GameData.InventoryData.CreateItemDatas(equippedItems);
-    }
-
-    public void Load(GameData data)
-    {
-        for (int i = 0; i < data.inventoryData.equipmentItems.Length; i++)
-        {
-            AddItem(data.inventoryData.equipmentItems[i]);
-        }
-    }
 }

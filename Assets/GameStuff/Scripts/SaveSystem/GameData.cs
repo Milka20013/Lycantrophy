@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,8 +33,8 @@ public class GameData
                 this.slotId = slotId;
             }
         }
+        public string id;
         public ItemData[] inventoryItems;
-        public ItemData[] equipmentItems;
 
         public static ItemData[] CreateItemDatas(List<ItemStack> itemStacks)
         {
@@ -44,13 +45,32 @@ public class GameData
             }
             return itemDatas;
         }
+
+        public InventoryData(ItemData[] inventoryItems, string id)
+        {
+            this.id = id;
+            this.inventoryItems = inventoryItems;
+        }
     }
 
     public PlayerData playerData;
-    public InventoryData inventoryData;
+    public List<InventoryData> inventoryDatas;
+
     public GameData()
     {
         playerData = new PlayerData();
-        inventoryData = new InventoryData();
+        inventoryDatas = new List<InventoryData>();
+    }
+
+    public int GetIndex(string id)
+    {
+        for (int i = 0; i < inventoryDatas.Count; i++)
+        {
+            if (inventoryDatas[i].id == "" || inventoryDatas[i].id == id)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }

@@ -16,7 +16,6 @@ public class Player : MonoBehaviour, ISaveable
     public Levelling levelling;
     public StatMenu statMenu;
     public TextMeshProUGUI healthText;
-    public ItemDescriptionPanel itemDescriptionPanel;
 
     [HideInInspector] public HealthSystem healthSystem;
 

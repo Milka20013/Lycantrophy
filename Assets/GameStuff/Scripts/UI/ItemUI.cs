@@ -9,9 +9,11 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     public RectTransform rectTransform;
     public TextMeshProUGUI quantity;
 
+    [HideInInspector] public Inventory inventory;
+
     [HideInInspector] public Player player;
 
-    [HideInInspector] public ItemDescriptionPanel itemDescriptionPanel;
+    public ItemDescriptionPanel itemDescriptionPanel;
 
     [HideInInspector] public ItemStack itemStack;
 
@@ -20,15 +22,13 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
     public string basicDescription;
     [HideInInspector] public List<string> effects;
-
-    public void SetInfos(Vector2 position, ItemStack itemStack, Player player, int itemSlotId)
+    public void SetInfos(Vector2 position, ItemStack itemStack, Inventory inventory, int itemSlotId)
     {
         rectTransform.anchoredPosition = position;
         this.itemStack = itemStack;
         itemStack.itemUI = this;
         itemStack.ChangeQuantity(itemStack.quantity);
-        this.player = player;
-        itemDescriptionPanel = player.itemDescriptionPanel;
+        this.inventory = inventory;
         slotId = itemSlotId;
     }
 
@@ -41,7 +41,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         if (eventData.button == PointerEventData.InputButton.Middle)
         {
-            player.playerInventory.RemoveItem(itemStack);
+            inventory.RemoveItem(itemStack);
         }
     }
 
