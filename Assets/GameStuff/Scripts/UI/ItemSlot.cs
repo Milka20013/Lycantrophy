@@ -12,6 +12,8 @@ public class ItemSlot : MonoBehaviour
     public enum ExpectedItemType { Any, Equippable, Consumable}
     public ExpectedItemType expectedItem = ExpectedItemType.Any;
 
+    [HideInInspector] public Inventory inventory { get; set; }
+
     private RectTransform rectTransform;
     public Vector2 positionOffset;
 

@@ -5,8 +5,14 @@ using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour, ISaveable
 {
-    private string id;
 
+    public string id;
+
+    public enum InventoryTag
+    {
+        None, Player, Equipment
+    }
+    public InventoryTag inventoryTag;
     [ContextMenu("Generate unique id for the object")]
     private void GenerateGUI()
     {
@@ -56,28 +62,45 @@ public class Inventory : MonoBehaviour, ISaveable
     {
         AddItem(itemManager.GetItem(item), quantity);
     }
-    public void RemoveItem(ItemStack itemStack)
+
+    public void AddItem(ItemStack item)
+    {
+        AddItem(item.item, item.quantity);
+    }
+    public void DeleteItem(ItemStack itemStack)
     {
         itemStack.state = ItemStack.StackState.Dead;
-        RemoveDeadItems();
+        DeleteDeadItems();
     }
-    public void OnOpenInventory(InputValue value)
+    public void DeleteDeadItems()
+    {
+        stacksInInventory.RemoveAll(x => x.state == ItemStack.StackState.Dead);
+        itemSpawner.DeleteDeadItems();
+    }
+    private void RemoveItem(ItemStack item)
+    {
+        stacksInInventory.Remove(item);
+    }
+    public virtual void OnOpenInventory(InputValue value)
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
         Cursor.lockState = inventoryUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
         SpawnItems();
     }
-    private void SpawnItems()
+    protected void SpawnItems()
     {
         itemSpawner.itemStacks = stacksInInventory;
         itemSpawner.SpawnItems();
     }
 
-    public void RemoveDeadItems()
+
+
+    public void ChangeInventories(ItemStack item,Inventory targetInventory)
     {
-        stacksInInventory.RemoveAll(x => x.state == ItemStack.StackState.Dead);
-        itemSpawner.RemoveDeadItems();
+        RemoveItem(item);
+        targetInventory.AddItem(item);
     }
+
     public void Save(ref GameData data)
     {
         int index = data.GetIndex(id);

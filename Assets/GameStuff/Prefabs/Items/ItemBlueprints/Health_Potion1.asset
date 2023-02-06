@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Health_Potion1
   m_EditorClassIdentifier: 
   id: 0
-  itemName: 
-  stackSize: 0
-  basicDescription: 
-  prefabId: 0
+  itemName: Health Potion
+  stackSize: 30
+  basicDescription: Heals
+  prefabId: 1
   consumeEffect: 0
-  effectDescription: 
-  consumeValue: 0
+  effectDescription: Instantly heals
+  consumeValue: 5

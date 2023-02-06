@@ -1,30 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EquipmentInventory : Inventory
 {
-    public List<ItemStack> equippedItems;
+    public PlayerInventory playerInventory;
 
-    private void AddItem(GameData.InventoryData.ItemData data)
+    public override void OnOpenInventory(InputValue value)
     {
-        ItemStack[] items = ItemStack.CreateItemStacks(itemManager.GetItem(data.itemId),data.quantity);
-        equippedItems.AddRange(items);
+        base.SpawnItems();
     }
     public void UnequipItem(ItemStack itemStack)
     {
-        equippedItems.Remove(itemStack);
-    }
-    public void EquipItem(ItemStack itemStack)
-    {
-        equippedItems.Add(itemStack);
+        stacksInInventory.Remove(itemStack);
+        playerInventory.AddItem(itemStack);
+        itemSpawner.itemStacks = stacksInInventory;
     }
 
     public bool ItemIsEquippedByName(ItemStack itemStack)
     {
-        for (int i = 0; i < equippedItems.Count; i++)
+        for (int i = 0; i < stacksInInventory.Count; i++)
         {
-            if (itemStack.item.itemName == equippedItems[i].item.itemName)
+            if (itemStack.item.itemName == stacksInInventory[i].item.itemName)
             {
                 return true;
             }
@@ -33,12 +31,8 @@ public class EquipmentInventory : Inventory
     }
     public bool ItemIsEquippedByRef(ItemStack itemStack)
     {
-        return equippedItems.Contains(itemStack);
+        return stacksInInventory.Contains(itemStack);
     }
 
-    public void RemoveDeadItems()
-    {
-        equippedItems.RemoveAll(x => x.state == ItemStack.StackState.Dead);
-    }
 
 }

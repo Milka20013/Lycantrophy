@@ -6,26 +6,15 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventory : Inventory
 {
+    public Player player;
     public EquipmentInventory equipmentInventory;
-    public void UnequipItem(ItemStack itemStack)
-    {
-        equipmentInventory.UnequipItem(itemStack);
-        stacksInInventory.Add(itemStack);
-        itemSpawner.itemStacks = stacksInInventory;
-    }
+
     public void EquipItem(ItemStack itemStack)
     {
-        equipmentInventory.EquipItem(itemStack);
+        equipmentInventory.AddItem(itemStack);
         stacksInInventory.Remove(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
     }
 
-    public bool ItemIsEquippedByName(ItemStack itemStack)
-    {
-        return equipmentInventory.ItemIsEquippedByName(itemStack);
-    }
-    public bool ItemIsEquippedByRef(ItemStack itemStack)
-    {
-        return equipmentInventory.ItemIsEquippedByRef(itemStack);
-    }
+
 }

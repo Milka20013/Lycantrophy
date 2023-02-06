@@ -11,6 +11,7 @@ using StarterAssets;
 public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory;
+    public EquipmentInventory equipmentInventory;
     public PlayerAttack playerAttack;
     public PlayerStats playerStats;
     public Levelling levelling;

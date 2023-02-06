@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     [Tooltip("It has to be set if the items are saved (doesn't need to be in order)")]
-    public ItemBlueprint[] itemBlueprints;
+    [HideInInspector] public ItemBlueprint[] itemBlueprints;
     public EquipmentItem[] equipmentItems;
     public ConsumableItem[] consumableItems;
     private Item[] items;

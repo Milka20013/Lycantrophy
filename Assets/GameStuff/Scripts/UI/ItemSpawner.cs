@@ -8,12 +8,10 @@ using UnityEngine.UI;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject itemDescriptionPanel;
-    private ItemDescriptionPanel itemDescriptionPanelScr;
+    public ItemDescriptionPanel itemDescriptionPanelScr;
     public Inventory inventory;
     public List<ItemStack> itemStacks { get; set; }
     public ItemSlot[] slots;
-    public ItemSlot[] equipmentSlots;
 
 
     public GameObject[] itemPrefabs;
@@ -23,12 +21,10 @@ public class ItemSpawner : MonoBehaviour
 
     private void Awake()
     {
-        GameObject descPanel = GameObject.FindGameObjectWithTag("DescriptionPanel");
-        if (descPanel == null)
+        for (int i = 0; i < slots.Length; i++)
         {
-            descPanel = Instantiate(itemDescriptionPanel, Vector3.zero, Quaternion.identity);
+            slots[i].inventory = inventory;
         }
-        itemDescriptionPanelScr = descPanel.GetComponent<ItemDescriptionPanel>();
     }
 
     public void InstanstiateItem(ItemStack itemStack,int itemSlotId)
@@ -78,14 +74,6 @@ public class ItemSpawner : MonoBehaviour
             InstanstiateItem(itemStacks[i], index);
         }
     }
-
-    public void SpawnEquipment(List<ItemStack> items)
-    {
-        for (int i = 0; i < items.Count; i++)
-        {
-
-        }
-    }
     private GameObject GetItemToSpawn(ItemStack itemStack)
     {
         int id = itemStack.item.prefabId;
@@ -103,7 +91,7 @@ public class ItemSpawner : MonoBehaviour
         }
         return index;
     }
-    public void RemoveDeadItems()
+    public void DeleteDeadItems()
     {
         for (int i = 0; i < spawnedItems.Count; i++)
         {

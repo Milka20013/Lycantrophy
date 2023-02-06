@@ -94,7 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b78075f502f2488dac97c935f417e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDescriptionPanel: {fileID: 0}
+  itemDescriptionPanel: {fileID: 8921832955777988459, guid: ba6edda5572a1ad46b0b4b099d636087, type: 3}
+  itemDescriptionPanelScr: {fileID: 0}
   inventory: {fileID: 0}
   slots:
   - {fileID: 3749699544490590418}
@@ -133,7 +134,6 @@ MonoBehaviour:
   - {fileID: 3392977104539484561}
   - {fileID: 3392977106027584391}
   - {fileID: 3392977104037668532}
-  equipmentSlots: []
   itemPrefabs:
   - {fileID: 5146469132438167939, guid: f5d03b8c4e68d6d4a8ac1e3d44b6e1fd, type: 3}
   - {fileID: 5146469132438167939, guid: 44f980038e40e9e40960e202116bdb9f, type: 3}

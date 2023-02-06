@@ -44,7 +44,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         if (eventData.button == PointerEventData.InputButton.Middle)
         {
-            inventory.RemoveItem(itemStack);
+            inventory.DeleteItem(itemStack);
         }
     }
 
@@ -84,6 +84,12 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     public void OnPointerExit(PointerEventData eventData)
     {
         itemDescriptionPanel.HidePanel();
+    }
+
+    public void ChangeInventories(Inventory targetInventory)
+    {
+        inventory = targetInventory;
+        itemStack.inventory = targetInventory;
     }
 
     private void OnDestroy()

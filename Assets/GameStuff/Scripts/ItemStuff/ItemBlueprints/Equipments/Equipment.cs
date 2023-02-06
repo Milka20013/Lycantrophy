@@ -21,17 +21,25 @@ public class Equipment : MonoBehaviour
         itemUI.RegisterEffects(equipmentItem.amplifiers);
     }
     public void OnDrop(ItemUI itemUI, ItemSlot itemSlot)
-    { 
-        if (itemSlot.expectedItem == ItemSlot.ExpectedItemType.Equippable)
+    {
+        bool equip = itemSlot.inventory.inventoryTag == Inventory.InventoryTag.Equipment
+                   && dragAndDrop.objectThisAttachedTo.inventory.inventoryTag != Inventory.InventoryTag.Equipment;
+
+        bool unequip = itemSlot.inventory.inventoryTag != Inventory.InventoryTag.Equipment 
+                   && dragAndDrop.objectThisAttachedTo.inventory.inventoryTag == Inventory.InventoryTag.Equipment;
+
+        //bool nothing = itemSlot.inventory.inventoryTag != Inventory.InventoryTag.Equipment;
+
+        if (itemSlot.expectedItem == ItemSlot.ExpectedItemType.Equippable && equip)
         {
-            if (player.playerInventory.ItemIsEquippedByName(itemUI.itemStack))
+            if (player.equipmentInventory.ItemIsEquippedByName(itemUI.itemStack))
             {
                 dragAndDrop.DropBack();
                 return;
             }
             EquipItem();
         }
-        else
+        else if (unequip)
         {
             UnequipItem();
         }
@@ -46,7 +54,7 @@ public class Equipment : MonoBehaviour
     public void UnequipItem()
     {
         equipped = false;
-        player.playerInventory.UnequipItem(itemUI.itemStack);
+        player.equipmentInventory.UnequipItem(itemUI.itemStack);
         player.playerStats.RemoveAmplifiers(equipmentItem.amplifiers);
     }
 

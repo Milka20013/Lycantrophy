@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Mob
+  - DescriptionPanel
   layers:
   - Default
   - TransparentFX
