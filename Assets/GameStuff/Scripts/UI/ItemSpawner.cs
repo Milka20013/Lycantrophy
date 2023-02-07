@@ -44,7 +44,7 @@ public class ItemSpawner : MonoBehaviour
         //setting the infos to itemUI, so it can dynamically change later
         ItemUI itemUI = item.GetComponent<ItemUI>();
         itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, inventory, itemSlotId,
-            itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack));
+            itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack), inventory.GetPlayer());
 
         //assigning the item to the slot, so it will drag and drop properly
         item.GetComponent<DragAndDrop>().objectThisAttachedTo = itemSlot;

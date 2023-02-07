@@ -7,6 +7,7 @@ public class GameDataManager : MonoBehaviour
 {
     public string dataFileName;
     public bool encryptData = false;
+    public bool instanstiateNewGame = false;
 
     public static GameDataManager instance;
 
@@ -55,6 +56,10 @@ public class GameDataManager : MonoBehaviour
         gameData = fileHandler.Load();
 
         if (gameData == null)
+        {
+            NewGame();
+        }
+        if (instanstiateNewGame)
         {
             NewGame();
         }

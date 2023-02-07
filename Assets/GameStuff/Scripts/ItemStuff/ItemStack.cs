@@ -15,7 +15,6 @@ public class ItemStack
     public int quantity;
     public StackState state = StackState.Alive;
     [HideInInspector] public ItemUI itemUI;
-    [HideInInspector] public Inventory inventory { get; set; }
     private ItemStack(Item item, int quantity)
     {
         this.item = item;
@@ -28,7 +27,7 @@ public class ItemStack
         if (quantity <= 0)
         {
             state = StackState.Dead;
-            inventory.DeleteDeadItems();
+            itemUI.inventory.DeleteDeadItems();
         }
         else if (quantity >= item.stackSize)
         {

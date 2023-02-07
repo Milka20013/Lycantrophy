@@ -19,7 +19,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     private Vector2 previousPosition;
     private Transform previousParent;
 
-    public delegate void ItemDropManager(ItemUI itemUI, ItemSlot itemSlot);
+    public delegate bool ItemDropManager(ItemUI itemUI, ItemSlot itemSlot);
     public ItemDropManager OnItemDropped;
     private void OnEnable()
     {
@@ -70,15 +70,26 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
                 {
                     if (itemslot.attachedObject == null)
                     {
-                        itemUI.slotId = itemslot.id;
-                        itemslot.OnItemDrop(this.gameObject);
-                        objectThisAttachedTo.attachedObject = null;
-                        objectThisAttachedTo = itemslot;
-                        foundObject = objects[i];
                         if (OnItemDropped != null)
                         {
-                            OnItemDropped(itemUI, itemslot);
+                            if(!OnItemDropped(itemUI, itemslot))
+                            {
+                                break;
+                            }
                         }
+
+                        itemUI.OnDrop(itemslot);
+                        
+                        itemslot.OnItemDrop(this.gameObject);
+
+
+
+
+                        objectThisAttachedTo.attachedObject = null;
+                        objectThisAttachedTo = itemslot;
+
+
+                        foundObject = objects[i];
                         break;
                     }
                 }

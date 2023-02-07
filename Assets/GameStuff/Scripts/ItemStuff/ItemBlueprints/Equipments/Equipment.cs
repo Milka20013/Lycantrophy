@@ -7,7 +7,7 @@ public class Equipment : MonoBehaviour
     private Player player;
     public ItemUI itemUI;
     public EquipmentItem equipmentItem;
-    private DragAndDrop dragAndDrop;
+    public DragAndDrop dragAndDrop;
     private bool equipped = false;
     void Start()
     {
@@ -20,7 +20,7 @@ public class Equipment : MonoBehaviour
         }
         itemUI.RegisterEffects(equipmentItem.amplifiers);
     }
-    public void OnDrop(ItemUI itemUI, ItemSlot itemSlot)
+    public bool OnDrop(ItemUI itemUI, ItemSlot itemSlot)
     {
         bool equip = itemSlot.inventory.inventoryTag == Inventory.InventoryTag.Equipment
                    && dragAndDrop.objectThisAttachedTo.inventory.inventoryTag != Inventory.InventoryTag.Equipment;
@@ -29,13 +29,11 @@ public class Equipment : MonoBehaviour
                    && dragAndDrop.objectThisAttachedTo.inventory.inventoryTag == Inventory.InventoryTag.Equipment;
 
         //bool nothing = itemSlot.inventory.inventoryTag != Inventory.InventoryTag.Equipment;
-
         if (itemSlot.expectedItem == ItemSlot.ExpectedItemType.Equippable && equip)
         {
             if (player.equipmentInventory.ItemIsEquippedByName(itemUI.itemStack))
             {
-                dragAndDrop.DropBack();
-                return;
+                return false;
             }
             EquipItem();
         }
@@ -43,6 +41,7 @@ public class Equipment : MonoBehaviour
         {
             UnequipItem();
         }
+        return true;
     }
     public void EquipItem()
     {

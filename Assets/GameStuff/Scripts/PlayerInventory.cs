@@ -6,14 +6,18 @@ using UnityEngine.InputSystem;
 
 public class PlayerInventory : Inventory
 {
-    public Player player;
     public EquipmentInventory equipmentInventory;
 
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
     public void EquipItem(ItemStack itemStack)
     {
-        equipmentInventory.AddItem(itemStack);
+        equipmentInventory.EquipItem(itemStack);
         stacksInInventory.Remove(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
+
     }
 
 

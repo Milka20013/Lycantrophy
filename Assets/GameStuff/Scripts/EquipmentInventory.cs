@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 public class EquipmentInventory : Inventory
 {
     public PlayerInventory playerInventory;
-
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
     public override void OnOpenInventory(InputValue value)
     {
         base.SpawnItems();
@@ -14,8 +17,13 @@ public class EquipmentInventory : Inventory
     public void UnequipItem(ItemStack itemStack)
     {
         stacksInInventory.Remove(itemStack);
-        playerInventory.AddItem(itemStack);
+        playerInventory.AddItemStack(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
+    }
+
+    public void EquipItem(ItemStack itemStack)
+    {
+        
     }
 
     public bool ItemIsEquippedByName(ItemStack itemStack)

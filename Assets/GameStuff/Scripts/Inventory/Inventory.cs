@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,9 +24,11 @@ public class Inventory : MonoBehaviour, ISaveable
     public ItemSpawner itemSpawner;
     public ItemManager itemManager;
 
+    protected Player player;
+
     public List<ItemStack> stacksInInventory = new List<ItemStack>();
 
-    public void AddItem(Item item, int quantity = 1, bool spawn = true)
+    public void AddItem(Item item, int quantity = 1)
     {
         for (int i = 0; i < stacksInInventory.Count; i++)
         {
@@ -35,10 +38,6 @@ public class Inventory : MonoBehaviour, ISaveable
         {
             int freeSpace = itemSpawner.slots.Length - stacksInInventory.Count;
             ItemStack[] createdStacks = ItemStack.CreateItemStacks(item, quantity);
-            for (int i = 0; i < createdStacks.Length; i++)
-            {
-                createdStacks[i].inventory = this;
-            }
             if (freeSpace >= createdStacks.Length)
             {
                 stacksInInventory.AddRange(createdStacks);
@@ -53,7 +52,7 @@ public class Inventory : MonoBehaviour, ISaveable
             }
 
         }
-        if (itemSpawner.slots[0].isActiveAndEnabled && spawn)
+        if (itemSpawner.slots[0].isActiveAndEnabled)
         {
             SpawnItems();
         }
@@ -63,9 +62,10 @@ public class Inventory : MonoBehaviour, ISaveable
         AddItem(itemManager.GetItem(item), quantity);
     }
 
-    public void AddItem(ItemStack item)
+    public virtual bool AddItemStack(ItemStack itemStack)
     {
-        AddItem(item.item, item.quantity);
+        stacksInInventory.Add(itemStack);
+        return true;
     }
     public void DeleteItem(ItemStack itemStack)
     {
@@ -97,8 +97,10 @@ public class Inventory : MonoBehaviour, ISaveable
 
     public void ChangeInventories(ItemStack item,Inventory targetInventory)
     {
-        RemoveItem(item);
-        targetInventory.AddItem(item);
+        if (targetInventory.AddItemStack(item))
+        {
+            RemoveItem(item);
+        }
     }
 
     public void Save(ref GameData data)
@@ -121,7 +123,7 @@ public class Inventory : MonoBehaviour, ISaveable
         var invItems = data.inventoryDatas[index].inventoryItems;
         for (int i = 0; i < data.inventoryDatas[index].inventoryItems.Length; i++)
         {
-            AddItem(itemManager.GetItem(invItems[i].itemId), invItems[i].quantity, false);
+            AddItem(itemManager.GetItem(invItems[i].itemId), invItems[i].quantity);
         }
         InstantiateItems(invItems);
     }
@@ -132,6 +134,11 @@ public class Inventory : MonoBehaviour, ISaveable
         {
             itemSpawner.InstanstiateItem(stacksInInventory[i], inventoryItems[i].slotId);
         }
+    }
+
+    public virtual Player GetPlayer()
+    {
+        return player;
     }
 }
 

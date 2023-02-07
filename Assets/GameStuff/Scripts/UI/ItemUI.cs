@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Interactions;
 
 public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public RectTransform rectTransform;
     public TextMeshProUGUI quantity;
 
-    [HideInInspector] public Inventory inventory;
+    public Inventory inventory;
 
     [HideInInspector] public Player player;
 
@@ -23,7 +24,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
     [HideInInspector] public List<string> effects;
     public void SetInfos(Vector2 position, ItemStack itemStack, Inventory inventory, 
-        int itemSlotId, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP)
+        int itemSlotId, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP, Player player)
     {
         rectTransform.anchoredPosition = position;
         this.itemStack = itemStack;
@@ -33,6 +34,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         slotId = itemSlotId;
         this.itemDescriptionPanel = itemDescriptionPanel;
         this.itemBlueprint = itemBP;
+        this.player = player;
     }
 
     public void SetInteractionType(InteractionType interactionType)
@@ -86,10 +88,11 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         itemDescriptionPanel.HidePanel();
     }
 
-    public void ChangeInventories(Inventory targetInventory)
+    public void OnDrop(ItemSlot slot)
     {
-        inventory = targetInventory;
-        itemStack.inventory = targetInventory;
+        slotId = slot.id;
+        inventory.ChangeInventories(itemStack, slot.inventory);
+        inventory = slot.inventory;
     }
 
     private void OnDestroy()

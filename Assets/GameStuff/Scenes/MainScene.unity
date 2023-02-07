@@ -5114,7 +5114,6 @@ MonoBehaviour:
   inventoryUI: {fileID: 2109189944}
   itemSpawner: {fileID: 635794229}
   itemManager: {fileID: 2137452551}
-  player: {fileID: 7292828519977616673}
   equipmentInventory: {fileID: 1686146942}
 --- !u!4 &1756188380
 Transform:
@@ -5773,6 +5772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataFileName: game.gamec
   encryptData: 0
+  instanstiateNewGame: 0
 --- !u!1 &2146972287
 GameObject:
   m_ObjectHideFlags: 0
