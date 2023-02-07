@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class PlayerInventory : Inventory
 {
@@ -12,6 +11,14 @@ public class PlayerInventory : Inventory
     {
         player = GetComponentInParent<Player>();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log(stacksInInventory.Count);
+        }
+    }
     public void EquipItem(ItemStack itemStack)
     {
         equipmentInventory.EquipItem(itemStack);
@@ -19,6 +26,5 @@ public class PlayerInventory : Inventory
         itemSpawner.itemStacks = stacksInInventory;
 
     }
-
 
 }

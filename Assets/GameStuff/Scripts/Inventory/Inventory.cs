@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -30,6 +31,7 @@ public class Inventory : MonoBehaviour, ISaveable
 
     public void AddItem(Item item, int quantity = 1)
     {
+        Debug.Log("item added: " + stacksInInventory.Count);
         for (int i = 0; i < stacksInInventory.Count; i++)
         {
             quantity -= stacksInInventory[i].FillStack(item, quantity);
@@ -120,6 +122,10 @@ public class Inventory : MonoBehaviour, ISaveable
     public void Load(GameData data)
     {
         int index = data.GetIndex(id);
+        if (index == -1)
+        {
+            return;
+        }
         var invItems = data.inventoryDatas[index].inventoryItems;
         for (int i = 0; i < data.inventoryDatas[index].inventoryItems.Length; i++)
         {
@@ -136,7 +142,7 @@ public class Inventory : MonoBehaviour, ISaveable
         }
     }
 
-    public virtual Player GetPlayer()
+    public Player GetPlayer()
     {
         return player;
     }

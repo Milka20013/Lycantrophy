@@ -19,6 +19,10 @@ public class Equipment : MonoBehaviour
             dragAndDrop.OnItemDropped += OnDrop;
         }
         itemUI.RegisterEffects(equipmentItem.amplifiers);
+        if (dragAndDrop.objectThisAttachedTo.inventory.inventoryTag == Inventory.InventoryTag.Equipment)
+        {
+            player.playerStats.RegisterAmplifiers(equipmentItem.amplifiers);
+        }
     }
     public bool OnDrop(ItemUI itemUI, ItemSlot itemSlot)
     {

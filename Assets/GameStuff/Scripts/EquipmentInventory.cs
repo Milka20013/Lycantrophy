@@ -6,18 +6,24 @@ using UnityEngine.InputSystem;
 public class EquipmentInventory : Inventory
 {
     public PlayerInventory playerInventory;
-    private void Awake()
-    {
-        player = GetComponentInParent<Player>();
-    }
     public override void OnOpenInventory(InputValue value)
     {
         base.SpawnItems();
     }
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+        Invoke("InitializeAmplifiers",0.05f);
+        Invoke("InitializeAmplifiers", 0.1f);
+    }
+
+    private void InitializeAmplifiers()
+    {
+        base.OnOpenInventory(null);
+    }
     public void UnequipItem(ItemStack itemStack)
     {
         stacksInInventory.Remove(itemStack);
-        playerInventory.AddItemStack(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
     }
 
@@ -41,6 +47,4 @@ public class EquipmentInventory : Inventory
     {
         return stacksInInventory.Contains(itemStack);
     }
-
-
 }
