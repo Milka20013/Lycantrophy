@@ -146,9 +146,9 @@ GameObject:
   - component: {fileID: 4247773556558695787}
   - component: {fileID: 6663694890926743623}
   - component: {fileID: 3741218758709622880}
-  - component: {fileID: 6547499539019982384}
   - component: {fileID: 8840541500878148103}
   - component: {fileID: -4381249005785235162}
+  - component: {fileID: -4520214775190340802}
   m_Layer: 5
   m_Name: BasicItem
   m_TagString: Untagged
@@ -174,7 +174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 507.7, y: 24.2}
+  m_AnchoredPosition: {x: 707.7673, y: 43.561268}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6663694890926743623
@@ -215,21 +215,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6547499539019982384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146469132438167939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a71490a5e505f247986061b23ee609f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasName: InventoryCanvas
-  itemUI: {fileID: -4381249005785235162}
-  objectThisAttachedTo: {fileID: 0}
 --- !u!225 &8840541500878148103
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -256,9 +241,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 4247773556558695787}
   quantity: {fileID: 4892054737129188676}
-  inventory: {fileID: 0}
-  player: {fileID: 0}
-  itemDescriptionPanel: {fileID: 8921832955777988459, guid: ba6edda5572a1ad46b0b4b099d636087, type: 3}
-  slotId: 0
-  itemBlueprint: {fileID: 0}
-  effects: []
+--- !u!114 &-4520214775190340802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146469132438167939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d7b17ddde96cac4abdbd0aba581017e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  canvasGroup: {fileID: 8840541500878148103}
+  rectTransform: {fileID: 4247773556558695787}
+  itemUI: {fileID: -4381249005785235162}
+  slotThisAttachedTo: {fileID: 0}

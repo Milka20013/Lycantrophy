@@ -6,10 +6,10 @@ using System.IO;
 
 public class DataFileHandler
 {
-    private string dataDirectoryPath = "";
-    private string dataFileName = "";
-    private bool useEncryption = false;
+    private readonly string dataDirectoryPath = "";
+    private readonly string dataFileName = "";
 
+    private readonly bool useEncryption = false;
     private readonly string encryptionWord = "Miskolc";
 
     public DataFileHandler(string dataDirectoryPath, string dataFileName, bool useEncryption)

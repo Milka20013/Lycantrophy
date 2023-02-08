@@ -6,42 +6,19 @@ using UnityEngine.EventSystems;
 
 public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    [Tooltip("Name of the canvas on which the item is")]
-    [SerializeField] private string canvasName;
-    private Canvas canvas;
+    [Tooltip("Mandatory if it is not an item")]
+    [SerializeField] private Canvas canvas;
 
-    public ItemUI itemUI;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private RectTransform rectTransform;
 
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
-
-    public ItemSlot objectThisAttachedTo; //the itemslot which this item is on
+    
     private Vector2 previousPosition;
     private Transform previousParent;
 
-    public delegate bool ItemDropManager(ItemUI itemUI, ItemSlot itemSlot);
-    public ItemDropManager OnItemDropped;
-    private void OnEnable()
+    public void Init(Canvas canvas)
     {
-        FindCanvas();
-    }
-    private void Awake()
-    {
-        if (itemUI == null)
-        {
-            gameObject.TryGetComponent(out itemUI);
-        }
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
-    }
-
-    public void FindCanvas()
-    {
-        GameObject canv = GameObject.Find(canvasName);
-        if (canv != null)
-        {
-            canvas = GameObject.Find(canvasName).GetComponent<Canvas>();
-        }
+        this.canvas = canvas;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -52,57 +29,13 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         transform.SetParent(canvas.transform);
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public virtual void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    public virtual void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData.hovered.Any())
-        {
-            List<GameObject> objects = eventData.hovered;
-            GameObject foundObject = null;
-            //find a slot
-            for (int i = objects.Count - 1; i >= 0; i--)
-            {
-                if (objects[i].TryGetComponent(out ItemSlot itemslot) && itemslot.CanEquipItem(itemUI))
-                {
-                    if (itemslot.attachedObject == null)
-                    {
-                        if (OnItemDropped != null)
-                        {
-                            if(!OnItemDropped(itemUI, itemslot))
-                            {
-                                break;
-                            }
-                        }
-
-                        itemUI.OnDrop(itemslot);
-                        
-                        itemslot.OnItemDrop(this.gameObject);
-
-
-
-
-                        objectThisAttachedTo.attachedObject = null;
-                        objectThisAttachedTo = itemslot;
-
-
-                        foundObject = objects[i];
-                        break;
-                    }
-                }
-            }
-            if (foundObject == null)
-            {
-                DropBack();
-            }
-        }
-        else
-        {
-            DropBack();
-        }
         canvasGroup.blocksRaycasts = true;
     }
 
@@ -116,9 +49,6 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     {
 
     }
-    private void OnDestroy()
-    {
-        objectThisAttachedTo.attachedObject = null;
-    }
+
 
 }

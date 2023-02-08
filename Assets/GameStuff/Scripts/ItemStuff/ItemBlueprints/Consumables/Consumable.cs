@@ -6,14 +6,12 @@ using UnityEngine.EventSystems;
 
 public class Consumable : MonoBehaviour, IPointerClickHandler
 {
-    private Player player;
     public ItemUI itemUI;
 
     public ConsumableItem consumableItem;
 
     private void Start()
     {
-        player = itemUI.player;
         consumableItem = itemUI.inventory.itemManager.GetConsumableItemBlueprint(itemUI.itemStack);
         itemUI.SetInteractionType(InteractionType.Consume);
         itemUI.RegisterEffects(Description());
@@ -32,7 +30,7 @@ public class Consumable : MonoBehaviour, IPointerClickHandler
     }
     public void ExecuteEffect()
     {
-        consumableItem.ConsumeItem(player);
+        consumableItem.ConsumeItem(itemUI.player);
     }
 
     public string Description()

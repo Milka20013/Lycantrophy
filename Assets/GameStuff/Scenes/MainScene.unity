@@ -4270,6 +4270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9b78075f502f2488dac97c935f417e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 2109189947}
   itemDescriptionPanelScr: {fileID: 1797075640}
   inventory: {fileID: 1686146942}
   slots:
@@ -4846,7 +4847,6 @@ MonoBehaviour:
   inventoryUI: {fileID: 2109189944}
   itemSpawner: {fileID: 1503053215}
   itemManager: {fileID: 2137452551}
-  playerInventory: {fileID: 1756188379}
 --- !u!1 &1725186486
 GameObject:
   m_ObjectHideFlags: 0
@@ -6143,6 +6143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 686032932}
     m_Modifications:
+    - target: {fileID: 3749699543114238736, guid: 33d7fe272190a2f4e8ef20e1e1dd1a8c, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 2109189947}
     - target: {fileID: 3749699543114238736, guid: 33d7fe272190a2f4e8ef20e1e1dd1a8c, type: 3}
       propertyPath: inventory
       value: 

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class ItemSpawner : MonoBehaviour
 {
+    [SerializeField] private Canvas canvas;
     public ItemDescriptionPanel itemDescriptionPanelScr;
     public Inventory inventory;
     public List<ItemStack> itemStacks { get; set; }
@@ -43,11 +44,12 @@ public class ItemSpawner : MonoBehaviour
 
         //setting the infos to itemUI, so it can dynamically change later
         ItemUI itemUI = item.GetComponent<ItemUI>();
-        itemUI.SetInfos(rectTransform.anchoredPosition, itemStack, inventory, itemSlotId,
-            itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack), inventory.GetPlayer());
+        itemUI.SetItemInfos(rectTransform.anchoredPosition, itemStack, itemSlotId);
+
+        itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack),inventory.player);
 
         //assigning the item to the slot, so it will drag and drop properly
-        item.GetComponent<DragAndDrop>().objectThisAttachedTo = itemSlot;
+        item.GetComponent<DragAndDropItem>().Init(canvas,itemSlot);
         itemSlot.attachedObject = item;
 
         //add to the list, so we can remove later

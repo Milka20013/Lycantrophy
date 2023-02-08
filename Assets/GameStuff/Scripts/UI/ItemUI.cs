@@ -3,38 +3,41 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Interactions;
 
 public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public RectTransform rectTransform;
-    public TextMeshProUGUI quantity;
+    [SerializeField] private TextMeshProUGUI quantity;
 
-    public Inventory inventory;
+    [HideInInspector] public Inventory inventory { get; private set; }
 
-    [HideInInspector] public Player player;
+    [HideInInspector] public Player player { get; private set; }
+
+
+    [HideInInspector] public ItemStack itemStack { get; private set; }
+
+    [HideInInspector] public int slotId { get; private set; }
+
+    [HideInInspector] public ItemBlueprint itemBlueprint { get; private set; }
+
+
+    [HideInInspector] public List<string> effects { get; private set; } = new List<string>();
 
     private ItemDescriptionPanel itemDescriptionPanel;
-
-    [HideInInspector] public ItemStack itemStack;
-
-    [HideInInspector] public int slotId;
-
-    public ItemBlueprint itemBlueprint;
-
-    [HideInInspector] public List<string> effects;
-    public void SetInfos(Vector2 position, ItemStack itemStack, Inventory inventory, 
-        int itemSlotId, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP, Player player)
+    public void SetReferences(Inventory inventory, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP, Player player)
+    {
+        this.inventory = inventory;
+        this.itemDescriptionPanel = itemDescriptionPanel;
+        this.itemBlueprint = itemBP;
+        this.player = player;
+    }
+    public void SetItemInfos(Vector2 position, ItemStack itemStack, int itemSlotId)
     {
         rectTransform.anchoredPosition = position;
         this.itemStack = itemStack;
         itemStack.itemUI = this;
         itemStack.ChangeQuantity(itemStack.quantity);
-        this.inventory = inventory;
-        slotId = itemSlotId;
-        this.itemDescriptionPanel = itemDescriptionPanel;
-        this.itemBlueprint = itemBP;
-        this.player = player;
+        slotId = itemSlotId;        
     }
 
     public void SetInteractionType(InteractionType interactionType)
@@ -42,13 +45,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         itemStack.item.interactionType = interactionType;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Middle)
-        {
-            inventory.DeleteItem(itemStack);
-        }
-    }
+    
 
     public void ChangeQuantityText(float amount)
     {
@@ -76,6 +73,13 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     public void RegisterEffects(string[] desc)
     {
         effects.AddRange(desc);
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Middle)
+        {
+            inventory.DeleteItem(itemStack);
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

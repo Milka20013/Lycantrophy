@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,13 +23,12 @@ public class Inventory : MonoBehaviour, ISaveable
     public ItemSpawner itemSpawner;
     public ItemManager itemManager;
 
-    protected Player player;
+    public Player player { get; set; }
 
     public List<ItemStack> stacksInInventory = new List<ItemStack>();
 
     public void AddItem(Item item, int quantity = 1)
     {
-        Debug.Log("item added: " + stacksInInventory.Count);
         for (int i = 0; i < stacksInInventory.Count; i++)
         {
             quantity -= stacksInInventory[i].FillStack(item, quantity);
@@ -140,11 +137,6 @@ public class Inventory : MonoBehaviour, ISaveable
         {
             itemSpawner.InstanstiateItem(stacksInInventory[i], inventoryItems[i].slotId);
         }
-    }
-
-    public Player GetPlayer()
-    {
-        return player;
     }
 }
 

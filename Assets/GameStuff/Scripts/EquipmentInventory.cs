@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class EquipmentInventory : Inventory
 {
-    public PlayerInventory playerInventory;
     public override void OnOpenInventory(InputValue value)
     {
         base.SpawnItems();
