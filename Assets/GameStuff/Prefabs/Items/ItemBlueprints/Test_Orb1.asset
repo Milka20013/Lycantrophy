@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Test Orb
   stackSize: 1
   basicDescription: The almighty Orb of Tests
-  prefabId: 2
+  prefabType: 2
   amplifiers:
   - tag: Test Orb
     amplifierType: 0

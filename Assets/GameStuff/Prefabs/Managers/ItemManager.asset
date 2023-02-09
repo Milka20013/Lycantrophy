@@ -12,5 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2273fe5585f963846bc1974b0178faaa, type: 3}
   m_Name: ItemManager
   m_EditorClassIdentifier: 
-  equipmentItems: []
-  consumableItems: []
+  equipmentItems:
+  - {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
+  consumableItems:
+  - {fileID: 11400000, guid: 15cc51aa363b69a4389608af7c2c7f52, type: 2}
+  itemPrefabs:
+  - {fileID: 5146469132438167939, guid: f5d03b8c4e68d6d4a8ac1e3d44b6e1fd, type: 3}
+  - {fileID: 5146469132438167939, guid: 44f980038e40e9e40960e202116bdb9f, type: 3}
+  - {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}

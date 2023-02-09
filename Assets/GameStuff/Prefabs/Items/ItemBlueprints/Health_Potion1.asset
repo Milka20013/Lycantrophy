@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Health Potion
   stackSize: 30
   basicDescription: Heals
-  prefabId: 1
+  prefabType: 1
   consumeEffect: 0
   effectDescription: Instantly heals
   consumeValue: 5
