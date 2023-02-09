@@ -2688,6 +2688,8 @@ GameObject:
   - component: {fileID: 1006614364}
   - component: {fileID: 1006614363}
   - component: {fileID: 1006614365}
+  - component: {fileID: 1006614367}
+  - component: {fileID: 1006614366}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -2778,6 +2780,33 @@ MonoBehaviour:
   - {fileID: 156931364}
   - {fileID: 669624714}
   - {fileID: 1725186488}
+--- !u!114 &1006614366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006614361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a71490a5e505f247986061b23ee609f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 973976910}
+  canvasGroup: {fileID: 1006614367}
+  rectTransform: {fileID: 1006614362}
+--- !u!225 &1006614367
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006614361}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &1011776373 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1954524224752769328, guid: 3d5fb956fd54dfd439f022ad1252adc5, type: 3}
@@ -4154,6 +4183,8 @@ GameObject:
   - component: {fileID: 1441277560}
   - component: {fileID: 1441277562}
   - component: {fileID: 1441277561}
+  - component: {fileID: 1441277564}
+  - component: {fileID: 1441277563}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -4221,6 +4252,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441277559}
   m_CullTransparentMesh: 1
+--- !u!114 &1441277563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441277559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a71490a5e505f247986061b23ee609f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 2109189947}
+  canvasGroup: {fileID: 1441277564}
+  rectTransform: {fileID: 1441277560}
+--- !u!225 &1441277564
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441277559}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1503053213
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,10 +4338,6 @@ MonoBehaviour:
   - {fileID: 1758107578}
   - {fileID: 956601928}
   - {fileID: 1011776373}
-  itemPrefabs:
-  - {fileID: 5146469132438167939, guid: f5d03b8c4e68d6d4a8ac1e3d44b6e1fd, type: 3}
-  - {fileID: 5146469132438167939, guid: 44f980038e40e9e40960e202116bdb9f, type: 3}
-  - {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}
   spawnedItems: []
 --- !u!1 &1512789893
 GameObject:

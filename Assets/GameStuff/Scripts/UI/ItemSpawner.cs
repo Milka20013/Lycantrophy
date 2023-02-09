@@ -14,9 +14,6 @@ public class ItemSpawner : MonoBehaviour
     public List<ItemStack> itemStacks { get; set; }
     public ItemSlot[] slots;
 
-
-    public GameObject[] itemPrefabs;
-
     public HashSet<ItemStack> itemsOnInventory = new HashSet<ItemStack>();
     [HideInInspector] public List<ItemUI> spawnedItems = new List<ItemUI>();
 
