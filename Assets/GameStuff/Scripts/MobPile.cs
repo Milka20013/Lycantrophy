@@ -37,7 +37,7 @@ public class MobPile : MonoBehaviour
             mobScripts[i].OnDeath += OnMobDeath;
         }
     }
-    public void OnMobDeath()
+    public void OnMobDeath(GameObject killer)
     {
         mobCount--;
     }

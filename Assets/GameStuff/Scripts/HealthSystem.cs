@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
-public class HealthSystem
+[RequireComponent(typeof(Stats))]
+public class HealthSystem : MonoBehaviour
 {
-    public PlayerStats playerStats;
     public TextMeshProUGUI[] healthTexts;
-    private Player player;
-    
-    public float maxHealth;
-    public float currentHealth;
+    public Stats stats;
+    private float maxHealth;
+    private float currentHealth;
 
-    public HealthSystem(PlayerStats playerStats, Player player)
+    public delegate void DeathHandler(GameObject killer);
+    public DeathHandler onDeath;
+
+    private void Start()
     {
-        this.playerStats = playerStats;
-        this.playerStats.OnStatChange += OnStatChange;
-        maxHealth = playerStats.GetAttributeValue(Attribute.MaxHealth);
+        stats.OnStatChange += OnStatChange;
+        maxHealth = stats.GetAttributeValue(Attribute.MaxHealth);
         currentHealth = maxHealth;
-        healthTexts = new TextMeshProUGUI[] { playerStats.gameObject.GetComponent<Player>().healthText };
-        this.player = player;
     }
     public void InstantHeal(float amount)
     {
@@ -27,17 +27,21 @@ public class HealthSystem
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthTexts();
     }
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, GameObject attacker)
     {
         currentHealth -= amount;
         UpdateHealthTexts();
         if (currentHealth <= 0)
         {
-            Die();
+            onDeath?.Invoke(attacker);
         }
     }
     public void UpdateHealthTexts()
     {
+        if (healthTexts.Length == 0)
+        {
+            return;
+        }
         for (int i = 0; i < healthTexts.Length; i++)
         {
             if (healthTexts[i] != null)
@@ -46,13 +50,9 @@ public class HealthSystem
             }
         }
     }
-    public void Die()
-    {
-        player.Die();
-    }
 
     public void OnStatChange()
     {
-        maxHealth = playerStats.GetAttributeValue(Attribute.MaxHealth);
+        maxHealth = stats.GetAttributeValue(Attribute.MaxHealth);
     }
 }

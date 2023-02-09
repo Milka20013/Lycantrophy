@@ -9,7 +9,7 @@ public class PlayerInventory : Inventory
 
     private void Awake()
     {
-        player = GetComponentInParent<Player>();
+        player = GetComponent<Player>();
     }
 
     private void Update()

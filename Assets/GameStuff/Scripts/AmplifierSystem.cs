@@ -44,7 +44,7 @@ public class AmplifierSystem
             {
                 switch (e2)
                 {
-                    case AmplifierType.truePercentage:
+                    case AmplifierType.TruePercentage:
                         dict2.Add(e2, 1);
                         break;
                     default:
@@ -87,7 +87,7 @@ public class AmplifierSystem
         {
             if (AddThis(everyAmplifier[i].amplifierType, true))
             {
-                if (everyAmplifier[i].amplifierType == AmplifierType.percentage)
+                if (everyAmplifier[i].amplifierType == AmplifierType.Percentage)
                 {
                     value = 1 + everyAmplifier[i].value / 100;
                 }
@@ -110,17 +110,17 @@ public class AmplifierSystem
         {
             switch (ampType)
             {
-                case AmplifierType.plus:
+                case AmplifierType.Plus:
                     return true;
-                case AmplifierType.percentage:
+                case AmplifierType.Percentage:
                     return true;
-                case AmplifierType.truePercentage:
+                case AmplifierType.TruePercentage:
                     return false;
             }
         }
         switch (ampType)
         {
-            case AmplifierType.plus:
+            case AmplifierType.Plus:
                 return true;
             default:
                 return false;
@@ -137,7 +137,7 @@ public class AmplifierSystem
             }
             if (Amplifier.IsAmplifierInCollectionPartially(everyAmplifier, amplifiers[i], out int index)) //if the amplifier is already registered, decide what to do
             {
-                if (amplifiers[i].key == AmplifierKey.overriding)
+                if (amplifiers[i].key == AmplifierKey.Overriding)
                 {
                     everyAmplifier[index] = amplifiers[i];
                     changeHappened = true;

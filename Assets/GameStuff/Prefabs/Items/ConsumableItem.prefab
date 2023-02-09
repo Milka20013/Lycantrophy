@@ -271,5 +271,4 @@ MonoBehaviour:
   canvas: {fileID: 0}
   canvasGroup: {fileID: 8840541500878148103}
   rectTransform: {fileID: 4247773556558695787}
-  itemUI: {fileID: -4381249005785235162, guid: f5d03b8c4e68d6d4a8ac1e3d44b6e1fd, type: 3}
-  slotThisAttachedTo: {fileID: 0}
+  itemUI: {fileID: -4381249005785235162}

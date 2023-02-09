@@ -89,4 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5423555898f6c545978a51eeb909062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  expectedItem: 0
   positionOffset: {x: 0, y: 0}
+  attachedObject: {fileID: 0}

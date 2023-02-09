@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
+[RequireComponent(typeof(ItemUI))]
 public class Consumable : MonoBehaviour, IPointerClickHandler
 {
     public ItemUI itemUI;
@@ -30,7 +30,7 @@ public class Consumable : MonoBehaviour, IPointerClickHandler
     }
     public void ExecuteEffect()
     {
-        consumableItem.ConsumeItem(itemUI.player);
+        consumableItem.ConsumeItem(itemUI.player.GetComponent<HealthSystem>());
     }
 
     public string Description()

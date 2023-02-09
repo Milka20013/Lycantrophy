@@ -16,7 +16,7 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("The player stat controlls the movementspeed")]
-        public PlayerStats playerStats;
+        public Stats playerStats;
         [Header("Player")]
         [Tooltip("Height of the player")]
         public float playerHeight = 2.0f;

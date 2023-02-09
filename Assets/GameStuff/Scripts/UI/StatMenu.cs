@@ -9,7 +9,7 @@ public enum StatType
 }
 public class StatMenu : MonoBehaviour
 {
-    public PlayerStats playerStats;
+    public Stats playerStats;
     public Levelling levelling;
     private int statPoints;
 
@@ -44,13 +44,13 @@ public class StatMenu : MonoBehaviour
             switch (stat.Key)
             {
                 case StatType.Vitality:
-                    amps[i] = new Amplifier("stat",AmplifierType.plus, Attribute.MaxHealth, stat.Value * 5, AmplifierKey.overriding);
+                    amps[i] = new Amplifier("stat",AmplifierType.Plus, Attribute.MaxHealth, stat.Value * 5, AmplifierKey.Overriding);
                     break;
                 case StatType.Strength:
-                    amps[i] = new Amplifier("stat", AmplifierType.plus, Attribute.Damage, stat.Value * 2, AmplifierKey.none);
+                    amps[i] = new Amplifier("stat", AmplifierType.Plus, Attribute.Damage, stat.Value * 2, AmplifierKey.None);
                     break;
                 case StatType.Agility:
-                    amps[i] = new Amplifier("stat", AmplifierType.plus, Attribute.Speed, stat.Value, AmplifierKey.overriding);
+                    amps[i] = new Amplifier("stat", AmplifierType.Plus, Attribute.Speed, stat.Value, AmplifierKey.Overriding);
                     break;
                 default:
                     break;

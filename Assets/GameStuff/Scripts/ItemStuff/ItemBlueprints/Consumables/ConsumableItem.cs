@@ -16,5 +16,5 @@ public abstract class ConsumableItem : ItemBlueprint
     {
         return effectDescription + ": " + consumeValue.ToString();
     }
-    public abstract void ConsumeItem(Player player);
+    public abstract void ConsumeItem(HealthSystem healthSystem);
 }

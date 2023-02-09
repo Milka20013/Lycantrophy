@@ -17,7 +17,7 @@ public class ItemSlot : MonoBehaviour
     private RectTransform rectTransform;
     public Vector2 positionOffset;
 
-    public GameObject attachedObject;
+    public GameObject attachedObject { get; set; }
 
 
 

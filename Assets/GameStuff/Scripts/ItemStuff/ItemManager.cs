@@ -1,17 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-
-public class ItemManager : MonoBehaviour
+public enum PrefabType
 {
-    [Tooltip("It has to be set if the items are saved (doesn't need to be in order)")]
-    [HideInInspector] public ItemBlueprint[] itemBlueprints;
-    public EquipmentItem[] equipmentItems;
-    public ConsumableItem[] consumableItems;
+    None, Consumable, Equipment
+}
+
+[CreateAssetMenu(fileName ="ItemManager",menuName ="Manager/ItemManager")]
+public class ItemManager : ScriptableSingleton<ItemManager>
+{
+    private ItemBlueprint[] itemBlueprints;
+    [SerializeField] private EquipmentItem[] equipmentItems;
+    [SerializeField] private ConsumableItem[] consumableItems;
+    [SerializeField] private GameObject[] itemPrefabs;
     private Item[] items;
 
-    private void Awake()
+    private void OnEnable ()
     {
         itemBlueprints = new ItemBlueprint[equipmentItems.Length + consumableItems.Length];
         int j = 0;
@@ -57,6 +63,11 @@ public class ItemManager : MonoBehaviour
     public Item GetItem(ItemBlueprint item)
     {
         return new Item(item);
+    }
+
+    public GameObject GetItemPrefab(Item item)
+    {
+        return itemPrefabs[(int)item.prefabType];
     }
 
     public ItemBlueprint GetItemBlueprint(ItemStack item)

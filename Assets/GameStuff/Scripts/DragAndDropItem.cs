@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(ItemUI))]
 public class DragAndDropItem : DragAndDrop
 {
     public ItemUI itemUI;

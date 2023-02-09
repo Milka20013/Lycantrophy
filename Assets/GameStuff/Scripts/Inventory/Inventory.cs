@@ -13,11 +13,6 @@ public class Inventory : MonoBehaviour, ISaveable
         None, Player, Equipment
     }
     public InventoryTag inventoryTag;
-    [ContextMenu("Generate unique id for the object")]
-    private void GenerateGUI()
-    {
-        id = System.Guid.NewGuid().ToString();
-    }
 
     public GameObject inventoryUI;
     public ItemSpawner itemSpawner;
@@ -94,7 +89,7 @@ public class Inventory : MonoBehaviour, ISaveable
 
 
 
-    public void ChangeInventories(ItemStack item,Inventory targetInventory)
+    public void ChangeInventories(ItemStack item, Inventory targetInventory)
     {
         if (targetInventory.AddItemStack(item))
         {
@@ -127,6 +122,7 @@ public class Inventory : MonoBehaviour, ISaveable
         for (int i = 0; i < data.inventoryDatas[index].inventoryItems.Length; i++)
         {
             AddItem(itemManager.GetItem(invItems[i].itemId), invItems[i].quantity);
+            Debug.Log(itemManager.GetItem(invItems[i].itemId).prefabType);
         }
         InstantiateItems(invItems);
     }
@@ -138,5 +134,5 @@ public class Inventory : MonoBehaviour, ISaveable
             itemSpawner.InstanstiateItem(stacksInInventory[i], inventoryItems[i].slotId);
         }
     }
-}
 
+}

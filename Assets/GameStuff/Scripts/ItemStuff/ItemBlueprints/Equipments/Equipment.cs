@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ItemUI))]
+[RequireComponent(typeof(DragAndDropItem))]
 public class Equipment : MonoBehaviour
 {
     public ItemUI itemUI;

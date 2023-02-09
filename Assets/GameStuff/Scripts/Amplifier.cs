@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum AmplifierType { plus, percentage, truePercentage }
-public enum AmplifierKey { none, stacking, overriding, extending }
+public enum AmplifierType { Plus, Percentage, TruePercentage }
+public enum AmplifierKey { None, Stacking, Overriding, Extending }
 [Serializable]
 public class Amplifier
 {
@@ -27,7 +27,7 @@ public class Amplifier
         this.amplifierType = amplifierType;
         this.attribute = attribute;
         this.value = value;
-        key = AmplifierKey.none;
+        key = AmplifierKey.None;
     }
     public override string ToString()
     {
@@ -37,13 +37,13 @@ public class Amplifier
     {
         string desc = "";
         desc += attribute.ToString();
-        desc += amplifierType == AmplifierType.plus ? " + " + value.ToString() : " * " + value.ToString();
+        desc += amplifierType == AmplifierType.Plus ? " + " + value.ToString() : " * " + value.ToString();
         return desc;
     }
     public static bool IsAmplifierInCollectionPartially(List<Amplifier> amplifiers, Amplifier amplifier, out int index)
     {
         //it does pseude check, stacking objects return false although it is in the collection
-        if (amplifier.key == AmplifierKey.stacking)
+        if (amplifier.key == AmplifierKey.Stacking)
         {
             index = -1;
             return false;

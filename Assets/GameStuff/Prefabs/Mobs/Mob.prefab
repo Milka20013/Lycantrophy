@@ -16,6 +16,11 @@ GameObject:
   - component: {fileID: 3708231976846773359}
   - component: {fileID: -8148399646053120346}
   - component: {fileID: -5105145381482757181}
+  - component: {fileID: -3039920771457959011}
+  - component: {fileID: -5977684642181499244}
+  - component: {fileID: -651358475852442640}
+  - component: {fileID: -1769223317340754929}
+  - component: {fileID: -321228942608250542}
   m_Layer: 8
   m_Name: Mob
   m_TagString: Mob
@@ -152,18 +157,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 3708231976846773359}
-  dropTable: {fileID: -5105145381482757181}
-  layermask:
-    serializedVersion: 2
-    m_Bits: 512
+  healthSystem: {fileID: -5977684642181499244}
+  stats: {fileID: -3039920771457959011}
+  attacker: {fileID: -1769223317340754929}
+  detector: {fileID: -321228942608250542}
   startPosition: {x: 0, y: 0, z: 0}
-  health: 50
-  rawExperience: 2
-  detectionRange: 40
-  damage: 10
-  attackRange: 5
-  attackSpeed: 0.5
-  attackDelay: 0.5
 --- !u!114 &-5105145381482757181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +174,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae866224f0ff80418da32ded97d743c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthSystem: {fileID: -5977684642181499244}
+  rawExp: 1
   droppableItems:
-  - item: {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
+  - item: {fileID: 11400000, guid: 15cc51aa363b69a4389608af7c2c7f52, type: 2}
     percentage: 100
     itemRange: 0100000001000000
+--- !u!114 &-3039920771457959011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936cd38ee0ae9e943b39cbf04ed6818b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxHealth: 30
+  baseSpeed: 3.5
+  baseSprintSpeed: 0
+  baseDamage: 1
+  baseAttackSpeed: 0.5
+--- !u!114 &-5977684642181499244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d6b7154121eca4f882ff1c61baf0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthTexts: []
+  stats: {fileID: -3039920771457959011}
+--- !u!114 &-651358475852442640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc73a6bfa223eaf448c7ad14163ba78e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSystem: {fileID: -5977684642181499244}
+--- !u!114 &-1769223317340754929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a03343c66c1825468c5b9a80494d7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: {fileID: -3039920771457959011}
+  attackRange: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  attackIfAbleTo: 1
+  canAttack: 0
+--- !u!114 &-321228942608250542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c8ddccc2719ba4dacde4ea204af6d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 40
+  sleepInterval: 2
+  autoDetect: 1
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  targets: []
+  maxTargets: 1

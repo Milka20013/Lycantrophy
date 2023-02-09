@@ -12,8 +12,8 @@ public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory;
     public EquipmentInventory equipmentInventory;
-    public PlayerAttack playerAttack;
-    public PlayerStats playerStats;
+    public Attacker playerAttack;
+    public Stats playerStats;
     public Levelling levelling;
     public StatMenu statMenu;
     public TextMeshProUGUI healthText;
@@ -32,14 +32,9 @@ public class Player : MonoBehaviour, ISaveable
             respawnTimer -= Time.deltaTime;
         }
     }
-
-    private void Start()
+    public void TakeDamage(float amount, GameObject attacker)
     {
-        healthSystem = new HealthSystem(playerStats, this);
-    }
-    public void TakeDamage(float amount)
-    {
-        healthSystem.TakeDamage(amount);
+        healthSystem.TakeDamage(amount, attacker);
     }
     public void AddItem(ItemBlueprint item, int quantity = 1)
     {
@@ -59,7 +54,7 @@ public class Player : MonoBehaviour, ISaveable
 
     public void Respawn()
     {
-        healthSystem.InstantHeal(healthSystem.maxHealth * 0.25f);
+        healthSystem.InstantHeal(playerStats.GetAttributeValue(Attribute.MaxHealth) * 0.25f);
         moveController.enabled = true;
         isDead = false;
         respawnTimer = respawnCooldown;

@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthSystem))]
 public class DropTable : MonoBehaviour
 {
-
+    public HealthSystem healthSystem;
+    public float rawExp;
     public DroppableItem[] droppableItems;
     [Serializable]
     public class DroppableItem
@@ -19,27 +21,45 @@ public class DropTable : MonoBehaviour
         public ItemBlueprint item;
         public int quantity;
     }
-    public void DropItems(Player playerWhoKilled)
+
+    private void Start()
     {
-        DroppedItem[] droppedItems = new DroppedItem[droppableItems.Length];
-        int[] itemRange = new int[2];
-        for (int i = 0; i < droppableItems.Length; i++)
+        healthSystem.onDeath += DropExp;
+        healthSystem.onDeath += DropItems;
+    }
+    public void DropItems(GameObject killer)
+    {
+        if (killer.TryGetComponent(out Inventory killerInv))
         {
-            droppedItems[i] = new DroppedItem();
-            droppedItems[i].item = droppableItems[i].item;
-            if (droppableItems[i].itemRange.Length <= 1)
+            DroppedItem[] droppedItems = new DroppedItem[droppableItems.Length];
+            int[] itemRange = new int[2];
+            for (int i = 0; i < droppableItems.Length; i++)
             {
-                itemRange = new int[] {1,1};
+                droppedItems[i] = new DroppedItem();
+                droppedItems[i].item = droppableItems[i].item;
+                if (droppableItems[i].itemRange.Length <= 1)
+                {
+                    itemRange = new int[] { 1, 1 };
+                }
+                else
+                {
+                    itemRange = droppableItems[i].itemRange;
+                }
+                droppedItems[i].quantity = GameManager.GetRandomElementByPercentage(droppableItems[i].percentage, itemRange[0], itemRange[1]);
             }
-            else
+            for (int i = 0; i < droppedItems.Length; i++)
             {
-                itemRange = droppableItems[i].itemRange;
+                killerInv.AddItem(droppedItems[i].item, droppedItems[i].quantity);
             }
-            droppedItems[i].quantity = GameManager.GetRandomElementByPercentage(droppableItems[i].percentage, itemRange[0], itemRange[1]);
         }
-        for (int i = 0; i < droppedItems.Length; i++)
+        else
         {
-            playerWhoKilled.AddItem(droppedItems[i].item, droppedItems[i].quantity);
-        }
+            return;
+        } 
+    }
+
+    public void DropExp(GameObject killer)
+    {
+        killer.GetComponent<Levelling>()?.AddExp(rawExp);
     }
 }
