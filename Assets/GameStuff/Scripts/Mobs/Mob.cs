@@ -15,6 +15,7 @@ public class Mob : MonoBehaviour
     public HealthSystem healthSystem;
     public Stats stats;
     public TakeDamage takeDamage;
+    public DropTable dropTable;
 
     private Vector3 startPosition;
 
@@ -25,6 +26,12 @@ public class Mob : MonoBehaviour
     {
         startPosition = transform.position;
         healthSystem.onDeath += Die;
+    }
+
+    public void RegisterMobData(MobData mobdata)
+    {
+        stats.CreateAmplifierSystem(mobdata);
+        dropTable.mobData = mobdata;
     }
 
     public void SetDestination(float stoppingDistance, Vector3 position)

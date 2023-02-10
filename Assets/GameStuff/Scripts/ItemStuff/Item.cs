@@ -15,34 +15,34 @@ public class Item
     public string itemName;
     public int stackSize = 1;
     public InteractionType interactionType;
-    public PrefabType prefabType;
+    public ItemType itemType;
 
     public Item(string itemName,int stackSize)
     {
         this.itemName = itemName;
         this.id = 0;
         this.stackSize = stackSize;
-        this.prefabType = PrefabType.None;
+        this.itemType = ItemType.None;
     }
-    public Item(string itemName, int stackSize, PrefabType prefabType)
+    public Item(string itemName, int stackSize, ItemType itemType)
     {
         this.itemName = itemName;
         this.id = 0;
         this.stackSize = stackSize;
-        this.prefabType = prefabType;
+        this.itemType = itemType;
     }
     public Item(Item item)
     {
         this.itemName = item.itemName;
         this.id = item.id;
         this.stackSize = item.stackSize;
-        this.prefabType = item.prefabType;
+        this.itemType = item.itemType;
     }
     public Item(ItemBlueprint itemBlueprint)
     {
         this.itemName = itemBlueprint.itemName;
         this.id = itemBlueprint.id;
         this.stackSize = itemBlueprint.stackSize;
-        this.prefabType = itemBlueprint.prefabType;
+        this.itemType = itemBlueprint.itemType;
     }
 }

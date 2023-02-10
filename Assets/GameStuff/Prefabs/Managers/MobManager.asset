@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5a7fa8ffcf7f64fb0aa3e359625bc2, type: 3}
-  m_Name: Health_Potion1
+  m_Script: {fileID: 11500000, guid: 55dd28ffd39f413408ad5faa441ee65c, type: 3}
+  m_Name: MobManager
   m_EditorClassIdentifier: 
-  id: 0
-  itemName: Health Potion
-  stackSize: 30
-  basicDescription: Heals
-  itemType: 1
-  consumeEffect: 0
-  effectDescription: Instantly heals
-  consumeValue: 5
+  prefabs:
+  - {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}

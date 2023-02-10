@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 3218986931409213856}
   - component: {fileID: 1681796945360049764}
   m_Layer: 8
-  m_Name: Mob
+  m_Name: AggressiveMob
   m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &-8927149698702574817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   healthSystem: {fileID: 7592710114300449778}
   stats: {fileID: 3660390260460412025}
   takeDamage: {fileID: 1681796945360049764}
+  dropTable: {fileID: 3218986931409213856}
   attacker: {fileID: -7746679684123153918}
   detector: {fileID: -3505750321385175244}
 --- !u!114 &3660390260460412025
@@ -174,13 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936cd38ee0ae9e943b39cbf04ed6818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributeDatas:
-  - attribute: 1
-    value: 30
-  - attribute: 0
-    value: 1
-  - attribute: 3
-    value: 0.6
+  entityData: {fileID: 11400000, guid: f546b17a02335b046a7c5f519beb290d, type: 2}
 --- !u!114 &-7746679684123153918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,11 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7592710114300449778}
-  rawExp: 1
-  droppableItems:
-  - item: {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
-    percentage: 100
-    itemRange: 0100000001000000
+  mobData: {fileID: 0}
 --- !u!114 &1681796945360049764
 MonoBehaviour:
   m_ObjectHideFlags: 0

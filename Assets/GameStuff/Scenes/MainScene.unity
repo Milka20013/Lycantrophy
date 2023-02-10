@@ -3675,15 +3675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936cd38ee0ae9e943b39cbf04ed6818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attributeDatas:
-  - attribute: 1
-    value: 100
-  - attribute: 0
-    value: 10
-  - attribute: 2
-    value: 4
-  - attribute: 3
-    value: 1
+  entityData: {fileID: 11400000, guid: c894bc3cfed88f9458c8454a8d4fa364, type: 2}
 --- !u!114 &1209869927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5681,6 +5673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrain: {fileID: 640931584}
+  mobManager: {fileID: 11400000, guid: 4652ec89a73f3f647af46bae60f5f8fd, type: 2}
   mobPrefab: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
   player: {fileID: 1293029875071086074}
   spawnMinDistanceFromPlayer: 32
@@ -5873,9 +5866,25 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e23eafa75ad6d124f8431cc754c2da63, type: 2}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobDatas.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobDatas.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e23eafa75ad6d124f8431cc754c2da63, type: 2}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobPrefabs.Array.data[0]
       value: 
@@ -6281,14 +6290,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 7292828519977616676}
   equipmentInventory: {fileID: 2085742243}
-  playerAttack: {fileID: 1209869927}
   playerStats: {fileID: 1209869926}
-  levelling: {fileID: 1209869939}
   statMenu: {fileID: 1006614365}
   healthText: {fileID: 41720523}
-  healthSystem: {fileID: 0}
+  healthSystem: {fileID: 7292828519977616675}
   moveController: {fileID: 1925873224841967435}
-  isDead: 0
   respawnCooldown: 10
   respawnTimer: 10
 --- !u!114 &7292828519977616674

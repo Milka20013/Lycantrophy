@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-public enum PrefabType
+public enum ItemType
 {
     None, Consumable, Equipment
 }
@@ -14,7 +14,7 @@ public class ItemManager : ScriptableSingleton<ItemManager>
     private ItemBlueprint[] itemBlueprints;
     [SerializeField] private EquipmentItem[] equipmentItems;
     [SerializeField] private ConsumableItem[] consumableItems;
-    [SerializeField] private GameObject[] itemPrefabs;
+    [SerializeField] private GameObject[] itemPrefabs; //has to be in PrefabType order
     private Item[] items;
 
     private void OnEnable ()
@@ -67,7 +67,7 @@ public class ItemManager : ScriptableSingleton<ItemManager>
 
     public GameObject GetItemPrefab(Item item)
     {
-        return itemPrefabs[(int)item.prefabType];
+        return itemPrefabs[(int)item.itemType];
     }
 
     public ItemBlueprint GetItemBlueprint(ItemStack item)

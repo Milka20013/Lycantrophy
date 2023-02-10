@@ -12,19 +12,21 @@ public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory;
     public EquipmentInventory equipmentInventory;
-    public Attacker playerAttack;
     public Stats playerStats;
-    public Levelling levelling;
     public StatMenu statMenu;
     public TextMeshProUGUI healthText;
 
-    [HideInInspector] public HealthSystem healthSystem;
+    public HealthSystem healthSystem;
 
     [SerializeField] private ThirdPersonController moveController;
 
-    [HideInInspector] public bool isDead = false;
+    public bool isDead {  get; private set; }
     public float respawnCooldown = 10f;
     [HideInInspector] public float respawnTimer = 10f;
+    private void Awake()
+    {
+        healthSystem.onDeath += Die;
+    }
     private void Update()
     {
         if (isDead && respawnTimer > 0f)
@@ -32,20 +34,8 @@ public class Player : MonoBehaviour, ISaveable
             respawnTimer -= Time.deltaTime;
         }
     }
-    public void TakeDamage(float amount, GameObject attacker)
-    {
-        healthSystem.TakeDamage(amount, attacker);
-    }
-    public void AddItem(ItemBlueprint item, int quantity = 1)
-    {
-        playerInventory.AddItem(item, quantity);
-    }
-    public void AddExp(float amount)
-    {
-        levelling.AddExp(amount);
-    }
 
-    public void Die()
+    public void Die(GameObject killer)
     {
         moveController.enabled = false;
         isDead = true;
@@ -61,12 +51,12 @@ public class Player : MonoBehaviour, ISaveable
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
     }
 
-    void ISaveable.Save(ref GameData data)
+    public void Save(ref GameData data)
     {
         data.playerData = new GameData.PlayerData(transform.position);
     }
 
-    void ISaveable.Load(GameData data)
+    public void Load(GameData data)
     {
         transform.position = data.playerData.position;
     }

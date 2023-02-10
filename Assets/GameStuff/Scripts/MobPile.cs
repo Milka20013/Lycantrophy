@@ -5,7 +5,7 @@ using UnityEngine;
 public class MobPile : MonoBehaviour
 {
 
-    public GameObject[] mobPrefabs;
+    public MobData[] mobs;
     public int maxMobCount = 5;
     public float circleRadius = 3;
     public int maxSpawnBatchSize = 5;

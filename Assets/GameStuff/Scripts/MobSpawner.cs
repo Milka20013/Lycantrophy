@@ -8,6 +8,7 @@ using static UnityEngine.AudioSettings;
 public class MobSpawner : MonoBehaviour
 {
     public Terrain terrain;
+    public MobManager mobManager;
     public GameObject mobPrefab;
     public Transform player;
 
@@ -81,18 +82,23 @@ public class MobSpawner : MonoBehaviour
     public void SpawnMobsInPile(MobPile mobPile)
     {
         //to-do : courutine
-        GameObject prefab;
         float yOffset;
         int count;
         GameObject[] spawnedMobs;
-        prefab = GameManager.GetRandomElementFromFairTable(mobPile.mobPrefabs); //which mob to spawn
-        count = Random.Range(1, mobPile.maxSpawnBatchSize + 1); //how much
+
+        //which mob to spawn
+        MobData mobData = GameManager.GetRandomElementFromFairTable(mobPile.mobs);
+        GameObject prefab = mobManager.GetMobPrefab(mobData);
+
+        //how much
+        count = Random.Range(1, mobPile.maxSpawnBatchSize + 1);
         count = Mathf.Clamp(count, 0, mobPile.maxMobCount - mobPile.mobCount); //stay inside the boundaries of the pile
         spawnedMobs = new GameObject[count];
         for (int j = 0; j < count; j++)
         {
             yOffset = prefab.GetComponent<NavMeshAgent>().baseOffset;
             spawnedMobs[j] = Instantiate(prefab, GetRandomPositionInPile(mobPile,yOffset), Quaternion.identity);
+            spawnedMobs[j].GetComponent<Mob>().RegisterMobData(mobData);
         }
         mobPile.RegisterMobs(spawnedMobs); //give information to the the pile that mobs were spawned
         mobPile.respawnDelay = mobPile.respawnTimer;

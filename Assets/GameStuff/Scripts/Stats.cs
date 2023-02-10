@@ -20,7 +20,7 @@ public struct AttributeData
 }
 public class Stats : MonoBehaviour
 {
-    public AttributeData[] attributeDatas;
+    public EntityData entityData;
 
     private AmplifierSystem amplifierSystem;
 
@@ -31,10 +31,17 @@ public class Stats : MonoBehaviour
 
     private void Awake()
     {
-        amplifierSystem = new AmplifierSystem(attributeDatas);
+        CreateAmplifierSystem(entityData);
     }
 
-
+    public void CreateAmplifierSystem(EntityData entityData)
+    {
+        if (entityData == null)
+        {
+            return;
+        }
+        amplifierSystem = new AmplifierSystem(entityData.attributeDatas);
+    }
     public void RegisterAmplifiers(Amplifier[] amplifiers)
     {
         if (amplifierSystem.RegisterAmplifiers(amplifiers)) //if change happened to the amps, this returns true

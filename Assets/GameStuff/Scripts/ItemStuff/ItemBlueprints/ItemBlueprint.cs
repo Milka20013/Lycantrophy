@@ -10,5 +10,5 @@ public class ItemBlueprint : ScriptableObject
     public string itemName;
     public int stackSize;
     public string basicDescription;
-    public PrefabType prefabType;
+    public ItemType itemType;
 }

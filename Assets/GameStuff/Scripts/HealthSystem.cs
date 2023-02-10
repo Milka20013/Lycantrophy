@@ -9,7 +9,7 @@ public class HealthSystem : MonoBehaviour
 {
     public TextMeshProUGUI[] healthTexts;
     public Stats stats;
-    private float maxHealth;
+    public float maxHealth { get; set; }
     private float currentHealth;
 
     public delegate void DeathHandler(GameObject killer);
