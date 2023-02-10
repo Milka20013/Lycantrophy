@@ -50,7 +50,7 @@ public class StatMenu : MonoBehaviour
                     amps[i] = new Amplifier("stat", AmplifierType.Plus, Attribute.Damage, stat.Value * 2, AmplifierKey.None);
                     break;
                 case StatType.Agility:
-                    amps[i] = new Amplifier("stat", AmplifierType.Plus, Attribute.Speed, stat.Value, AmplifierKey.Overriding);
+                    amps[i] = new Amplifier("stat", AmplifierType.Plus, Attribute.MoveSpeed, stat.Value, AmplifierKey.Overriding);
                     break;
                 default:
                     break;

@@ -174,11 +174,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936cd38ee0ae9e943b39cbf04ed6818b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxHealth: 20
-  baseSpeed: 4
-  baseSprintSpeed: 0
-  baseDamage: 1
-  baseAttackSpeed: 0.6
+  attributeDatas:
+  - attribute: 1
+    value: 30
+  - attribute: 0
+    value: 1
+  - attribute: 3
+    value: 0.6
 --- !u!114 &-7746679684123153918
 MonoBehaviour:
   m_ObjectHideFlags: 0

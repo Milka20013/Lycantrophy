@@ -8,32 +8,19 @@ using TMPro;
 public enum Attribute { 
     Damage, 
     MaxHealth, 
-    Speed, 
+    MoveSpeed, 
     AttackSpeed 
 }
 
-[CreateAssetMenu(fileName ="Attribute",menuName ="Attribute")]
-public class AttributeSO : ScriptableObject
+[Serializable]
+public struct AttributeData
 {
-
+    public Attribute attribute;
+    public float value;
 }
 public class Stats : MonoBehaviour
 {
-    public float baseMaxHealth = 100f;
-    public float baseSpeed = 4f;
-    public float baseSprintSpeed = 20f;
-    public float baseDamage = 10f;
-    public float baseAttackSpeed = 1;
-
-    private float[] baseValues;
-    private void FillBaseValues()
-    {
-        baseValues = new float[Enum.GetNames(typeof(Attribute)).Length];
-        baseValues[0] = baseDamage;
-        baseValues[1] = baseMaxHealth;
-        baseValues[2] = baseSpeed;
-        baseValues[3] = baseAttackSpeed;
-    }
+    public AttributeData[] attributeDatas;
 
     private AmplifierSystem amplifierSystem;
 
@@ -44,19 +31,9 @@ public class Stats : MonoBehaviour
 
     private void Awake()
     {
-        FillBaseValues();
-        amplifierSystem = new AmplifierSystem(baseValues);
+        amplifierSystem = new AmplifierSystem(attributeDatas);
     }
 
-    public void CreateAmplifierSystem(float[] baseValues)
-    {
-        if (baseValues.Length != this.baseValues.Length)
-        {
-            Debug.LogWarning("Attribute length didn't match during amp system creation");
-            return;
-        }
-        amplifierSystem = new AmplifierSystem(baseValues);
-    }
 
     public void RegisterAmplifiers(Amplifier[] amplifiers)
     {

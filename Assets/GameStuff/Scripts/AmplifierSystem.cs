@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class AmplifierSystem
 {
-    public float[] baseValues;
+    public AttributeData[] attributeDatas;
     public Dictionary<Attribute, float> attributesDict = new Dictionary<Attribute, float>();
 
     public Dictionary<Attribute, Dictionary<AmplifierType, float>> amplifiersDict = new Dictionary<Attribute, Dictionary<AmplifierType, float>>();
 
-    public AmplifierSystem(float[] baseValues)
+    public AmplifierSystem(AttributeData[] attributeDatas)
     {
-        this.baseValues = baseValues;
+        this.attributeDatas = attributeDatas;
         InstantiateSystem();
     }
 
@@ -27,9 +27,9 @@ public class AmplifierSystem
     public Dictionary<Attribute, float> FillAttributeDict() //fill attributes dict with base values
     {
         Dictionary<Attribute, float> dict = new Dictionary<Attribute, float>();
-        foreach (Attribute item in Enum.GetValues(typeof(Attribute)))
+        for (int i = 0; i < attributeDatas.Length; i++)
         {
-            dict.Add(item, baseValues[(int)item]);
+            dict.Add(attributeDatas[i].attribute, attributeDatas[i].value);
         }
         return dict;
     }
@@ -37,7 +37,7 @@ public class AmplifierSystem
     private Dictionary<Attribute, Dictionary<AmplifierType, float>> FillAmplifiersDict() //fill amps dict with base values (0(6) 1(3))
     {
         Dictionary<Attribute, Dictionary<AmplifierType, float>> dict1 = new Dictionary<Attribute, Dictionary<AmplifierType, float>>();
-        foreach (Attribute e1 in Enum.GetValues(typeof(Attribute)))
+        for (int i = 0; i < attributeDatas.Length; i++)
         {
             Dictionary<AmplifierType, float> dict2 = new Dictionary<AmplifierType, float>();
             foreach (AmplifierType e2 in Enum.GetValues(typeof(AmplifierType)))
@@ -52,7 +52,7 @@ public class AmplifierSystem
                         break;
                 }
             }
-            dict1.Add(e1, dict2);
+            dict1.Add(attributeDatas[i].attribute, dict2);
         }
         return dict1;
     }
