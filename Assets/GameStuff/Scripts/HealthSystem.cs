@@ -12,6 +12,8 @@ public class HealthSystem : MonoBehaviour
     public float maxHealth { get; set; }
     private float currentHealth;
 
+    public bool isDead { get; private set; }
+
     public delegate void DeathHandler(GameObject killer);
     public DeathHandler onDeath;
 
@@ -33,6 +35,7 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthTexts();
         if (currentHealth <= 0)
         {
+            isDead = true;
             onDeath?.Invoke(attacker);
         }
     }

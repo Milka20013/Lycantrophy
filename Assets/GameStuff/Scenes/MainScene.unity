@@ -5872,7 +5872,7 @@ PrefabInstance:
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobs.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: e23eafa75ad6d124f8431cc754c2da63, type: 2}
+      objectReference: {fileID: 11400000, guid: e9cd306c80e2d5746ac93185e6ea992f, type: 2}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobDatas.Array.size
       value: 1
