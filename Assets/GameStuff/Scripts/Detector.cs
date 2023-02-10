@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Detector : MonoBehaviour
 {
-    public float detectionRange;
+    public float detectionRange = 20f;
 
-    public float sleepInterval;
+    public float sleepInterval = 2f;
     private double previousTime;
     public bool autoDetect = false;
 
@@ -28,7 +28,7 @@ public class Detector : MonoBehaviour
         if (autoDetect && Time.timeAsDouble - previousTime >= sleepInterval)
         {
             previousTime = Time.timeAsDouble;
-            TryDetectTargets();
+            DetectTargets();
         }
     }
 
@@ -51,7 +51,7 @@ public class Detector : MonoBehaviour
         }
         return false;
     }
-    public void TryDetectTargets()
+    public void DetectTargets()
     {
         targets = new GameObject[maxTargets];
         int j = 0;

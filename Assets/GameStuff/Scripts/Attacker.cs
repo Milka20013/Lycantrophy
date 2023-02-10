@@ -9,7 +9,7 @@ public class Attacker : MonoBehaviour
     public Stats stats;
 
     private float _damage;
-    public float attackRange;
+    public float attackRange = 4;
 
     private float _attackSpeed;
     private float attackDelay = 0f;

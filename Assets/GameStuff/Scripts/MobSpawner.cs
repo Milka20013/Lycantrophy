@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UIElements;
+using static UnityEngine.AudioSettings;
 
 public class MobSpawner : MonoBehaviour
 {
+    public Terrain terrain;
     public GameObject mobPrefab;
     public Transform player;
 
@@ -78,8 +82,8 @@ public class MobSpawner : MonoBehaviour
     {
         //to-do : courutine
         GameObject prefab;
+        float yOffset;
         int count;
-        Vector3 position;
         GameObject[] spawnedMobs;
         prefab = GameManager.GetRandomElementFromFairTable(mobPile.mobPrefabs); //which mob to spawn
         count = Random.Range(1, mobPile.maxSpawnBatchSize + 1); //how much
@@ -87,11 +91,20 @@ public class MobSpawner : MonoBehaviour
         spawnedMobs = new GameObject[count];
         for (int j = 0; j < count; j++)
         {
-            Vector2 circlePos = Random.insideUnitCircle * mobPile.circleRadius;
-            position = mobPile.transform.position + new Vector3(circlePos.x, 0, circlePos.y); //spawning the mob count times in random position
-            spawnedMobs[j] = Instantiate(prefab, position, Quaternion.identity);
+            yOffset = prefab.GetComponent<NavMeshAgent>().baseOffset;
+            spawnedMobs[j] = Instantiate(prefab, GetRandomPositionInPile(mobPile,yOffset), Quaternion.identity);
         }
         mobPile.RegisterMobs(spawnedMobs); //give information to the the pile that mobs were spawned
         mobPile.respawnDelay = mobPile.respawnTimer;
+    }
+
+    public Vector3 GetRandomPositionInPile(MobPile mobPile, float yOffset)
+    {
+        Vector2 circlePos = Random.insideUnitCircle * mobPile.circleRadius;
+        float xPos = circlePos.x + mobPile.transform.position.x;
+        float zPos = circlePos.y + mobPile.transform.position.z; //bit of changing the coordinate names
+        float yPos = terrain.SampleHeight(new Vector3(xPos,0,zPos)); 
+        Vector3 position = new Vector3(xPos,yPos + yOffset,zPos);
+        return position;
     }
 }

@@ -108,8 +108,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 1
-    agentSlope: 33.3
-    agentClimb: 0.33
+    agentSlope: 37
+    agentClimb: 0.54
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -5676,6 +5676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83615c9f62f79ae4b8d34bfa9a7661e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrain: {fileID: 640931584}
   mobPrefab: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
   player: {fileID: 1293029875071086074}
   spawnMinDistanceFromPlayer: 32
@@ -5693,7 +5694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137452547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 120.43105, y: 6.9865685, z: 42.77484}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5726,7 +5727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataFileName: game.gamec
   encryptData: 0
-  instanstiateNewGame: 0
+  instanstiateNewGame: 1
 --- !u!1 &2146972287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5817,15 +5818,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.51
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.74
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5871,6 +5872,10 @@ PrefabInstance:
       propertyPath: mobPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b597f134643df654298c699031423881, type: 3}
 --- !u!4 &1293029875071086074

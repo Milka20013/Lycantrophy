@@ -58,7 +58,7 @@ public class Equipment : MonoBehaviour
     {
         equipped = false;
         itemUI.player.equipmentInventory.UnequipItem(itemUI.itemStack);
-        itemUI.player.playerStats.RemoveAmplifiers(equipmentItem.amplifiers);
+        itemUI.player.playerStats.UnRegisterAmplifiers(equipmentItem.amplifiers);
     }
 
     private void OnDestroy()

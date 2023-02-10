@@ -12,6 +12,11 @@ public enum Attribute {
     AttackSpeed 
 }
 
+[CreateAssetMenu(fileName ="Attribute",menuName ="Attribute")]
+public class AttributeSO : ScriptableObject
+{
+
+}
 public class Stats : MonoBehaviour
 {
     public float baseMaxHealth = 100f;
@@ -43,6 +48,16 @@ public class Stats : MonoBehaviour
         amplifierSystem = new AmplifierSystem(baseValues);
     }
 
+    public void CreateAmplifierSystem(float[] baseValues)
+    {
+        if (baseValues.Length != this.baseValues.Length)
+        {
+            Debug.LogWarning("Attribute length didn't match during amp system creation");
+            return;
+        }
+        amplifierSystem = new AmplifierSystem(baseValues);
+    }
+
     public void RegisterAmplifiers(Amplifier[] amplifiers)
     {
         if (amplifierSystem.RegisterAmplifiers(amplifiers)) //if change happened to the amps, this returns true
@@ -52,7 +67,7 @@ public class Stats : MonoBehaviour
         }
     }
 
-    public void RemoveAmplifiers(Amplifier[] amplifiers)
+    public void UnRegisterAmplifiers(Amplifier[] amplifiers)
     {
         if (amplifierSystem.RemoveAmplifiers(amplifiers)) //if change happened to the amps, this returns true
         {
