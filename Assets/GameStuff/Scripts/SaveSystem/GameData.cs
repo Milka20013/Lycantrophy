@@ -41,7 +41,7 @@ public class GameData
             ItemData[] itemDatas = new ItemData[itemStacks.Count];
             for (int i = 0; i < itemDatas.Length; i++)
             {
-                itemDatas[i] = new ItemData(itemStacks[i].item.id, itemStacks[i].quantity, itemStacks[i].itemUI.slotId);
+                itemDatas[i] = new ItemData(itemStacks[i].item.id, itemStacks[i].quantity, itemStacks[i].itemUI == null? -1 : itemStacks[i].itemUI.slotId);
             }
             return itemDatas;
         }

@@ -9,17 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f538130b267414b97741f62898bb41, type: 3}
-  m_Name: FleeMob
+  m_Script: {fileID: 11500000, guid: 1139fc9366dc1fb498f69dde883d21d0, type: 3}
+  m_Name: Player 1
   m_EditorClassIdentifier: 
   attributeDatas:
   - attribute: 1
-    value: 40
-  - attribute: 2
+    value: 100
+  - attribute: 0
     value: 5
-  mobType: 2
-  rawExp: 1
-  droppableItems:
-  - item: {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
-    percentage: 100
-    itemRange: 0100000001000000
+  - attribute: 2
+    value: 4
+  - attribute: 3
+    value: 3

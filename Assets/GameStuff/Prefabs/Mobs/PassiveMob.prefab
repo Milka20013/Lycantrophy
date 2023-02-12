@@ -160,10 +160,10 @@ MonoBehaviour:
   takeDamage: {fileID: 1681796945360049764}
   dropTable: {fileID: 3218986931409213856}
   wanderDistance: 10
-  wanderCooldown: 7
+  wanderCooldown: 8
   occupied: 0
   fleeDistance: 15
-  wanderBackCooldown: 15
+  wanderBackCooldown: 2
 --- !u!114 &3660390260460412025
 MonoBehaviour:
   m_ObjectHideFlags: 0

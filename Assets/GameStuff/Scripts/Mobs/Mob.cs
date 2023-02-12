@@ -31,16 +31,17 @@ public class Mob : MonoBehaviour
     public event DeathHandler OnDeath;
 
     private double previousTime;
-    private void Update()
+    protected virtual void Update()
     {
         if (!occupied && Time.timeAsDouble - previousTime > wanderCooldown)
         {
-            previousTime = Time.timeAsDouble;
+            previousTime = Time.timeAsDouble + Random.Range(0,wanderCooldown);
             Wander();
         }
     }
-    private void Awake()
+    protected virtual void Awake()
     {
+        previousTime = Random.Range(0, wanderCooldown);
         startPosition = transform.position;
         healthSystem.onDeath += Die;
     }

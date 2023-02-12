@@ -36,6 +36,7 @@ public class Stats : MonoBehaviour
 
     public void CreateAmplifierSystem(EntityData entityData)
     {
+        this.entityData = entityData;
         if (entityData == null)
         {
             return;

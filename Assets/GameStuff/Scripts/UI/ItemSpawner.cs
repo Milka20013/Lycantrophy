@@ -27,6 +27,14 @@ public class ItemSpawner : MonoBehaviour
 
     public void InstanstiateItem(ItemStack itemStack,int itemSlotId)
     {
+        if (itemSlotId == -1)
+        {
+            itemSlotId = GetFirstFreeItemSlotId();
+        }
+        if (itemSlotId == -1)
+        {
+            return;
+        }
         ItemSlot itemSlot = slots[itemSlotId];
 
         RectTransform rectTransform = itemSlot.gameObject.GetComponent<RectTransform>();
@@ -65,7 +73,7 @@ public class ItemSpawner : MonoBehaviour
                 continue;
             }
 
-            int index = GetFirstFreeItemSlot();
+            int index = GetFirstFreeItemSlotId();
             if (index == -1)
             {
                 return;
@@ -77,7 +85,7 @@ public class ItemSpawner : MonoBehaviour
     {
         return inventory.itemManager.GetItemPrefab(itemStack.item);
     }
-    public int GetFirstFreeItemSlot()
+    public int GetFirstFreeItemSlotId()
     {
         int index = -1;
         for (int i = 0; i < slots.Length; i++)
