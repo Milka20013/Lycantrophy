@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, ISaveable
     public Stats playerStats;
     public StatMenu statMenu;
     public TextMeshProUGUI healthText;
+    public GameObject deathCanvas;
 
     public HealthSystem healthSystem;
 
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour, ISaveable
 
     public void Die(GameObject killer)
     {
+        deathCanvas.SetActive(true);
         moveController.enabled = false;
         isDead = true;
         transform.rotation = Quaternion.Euler(0,transform.rotation.y, 80);
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour, ISaveable
         isDead = false;
         respawnTimer = respawnCooldown;
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
+        deathCanvas.SetActive(false);
     }
 
     public void Save(ref GameData data)

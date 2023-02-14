@@ -12,7 +12,7 @@ public class MobPile : MonoBehaviour
 
     [HideInInspector] public int mobCount;
 
-    public float respawnTimer = 10f;
+    public float spawnTimer = 10f;
     [HideInInspector] public float respawnDelay = 0f;
 
 

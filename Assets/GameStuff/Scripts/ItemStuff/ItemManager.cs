@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 public enum ItemType
 {
-    None, Consumable, Equipment
+    None, Consumable, Equipment, Type1, Type2, Type3, Type4, Type5, Type6
 }
 
 [CreateAssetMenu(fileName ="ItemManager",menuName ="Manager/ItemManager")]

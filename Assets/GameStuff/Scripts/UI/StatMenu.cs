@@ -5,7 +5,7 @@ using TMPro;
 
 public enum StatType
 {
-    Strength, Vitality, Agility
+    None, Strength, Vitality, Agility, Type1, Type2, Type3, Type4, Type5, Type6
 }
 public class StatMenu : MonoBehaviour
 {

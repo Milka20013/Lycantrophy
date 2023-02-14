@@ -9,30 +9,19 @@ public class PassiveMob : Mob
     [Tooltip("When should the mob wander back after a hit")]
     [SerializeField] private float wanderBackCooldown;
 
-    private double previousHitTime;
-    private void Start()
-    {
-        takeDamage.OnHit += OnHit;
-    }
-
     protected override void Update()
     {
         base.Update();
-        if (occupied && Time.timeAsDouble - previousHitTime > wanderBackCooldown)
+        if (occupied && Time.timeAsDouble - takeDamage.previousHitTime > wanderBackCooldown)
         {
-            occupied = false;
+            CalmDown();
         }
     }
 
-    public void OnHit(float amount, GameObject attacker)
+    public override void OnHit(float amount, GameObject attacker)
     {
-        if (healthSystem.isDead)
-        {
-            return;
-        }
-        previousHitTime = Time.timeAsDouble;
-        occupied = true;
-        Flee(attacker, 0 , 0);
+        base.OnHit(amount, attacker);
+        Flee(attacker, 0, 0);
     }
 
     public void Flee(GameObject attacker, float angle , int tries)
@@ -44,8 +33,7 @@ public class PassiveMob : Mob
         NavMeshHit hit;
         if (NavMesh.SamplePosition(point, out hit, agent.height * 2, NavMesh.AllAreas))
         {
-            agent.SetDestination(hit.position);
-            Debug.Log("flee");
+            SetDestination(hit.position, 0);
         }
         else if (tries <= 12)
         {

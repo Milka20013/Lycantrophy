@@ -20,6 +20,6 @@ MonoBehaviour:
   amplifiers:
   - tag: Test Orb
     amplifierType: 0
-    attribute: 0
+    attribute: 1
     value: 5
     key: 2

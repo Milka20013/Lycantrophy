@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 public enum MobType
 {
-    Aggressive, Neutral, Passive
+    None, Aggressive, Neutral, Passive, Type1, Type2, Type3 , Type4 ,Type5, Type6
 }
 
 [CreateAssetMenu(fileName ="MobManager",menuName ="Manager/Mob")]

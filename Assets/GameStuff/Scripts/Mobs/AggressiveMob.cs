@@ -19,7 +19,7 @@ public class AggressiveMob : Mob
         if (hasTarget)
         {
             occupied = true;
-            SetDestination(attacker.attackRange - 0.1f, detector.targets[0].transform.position);
+            SetDestination(detector.targets[0].transform.position, attacker.attackRange - 0.1f);
             if (detector.TryDetectTargets(out GameObject[] targets, attacker.attackRange))
             {
                 attacker.canAttack = true;

@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8416174917b8ae94f99dd0627b3cd312, type: 2}
+  - {fileID: 2100000, guid: b129721e89a6e0246a05a2420d5af821, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   wanderCooldown: 8
   occupied: 0
   fleeDistance: 15
-  wanderBackCooldown: 2
+  wanderBackCooldown: 10
 --- !u!114 &3660390260460412025
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -52,6 +52,10 @@ public class Attacker : MonoBehaviour
         {
             if (enemies[i].TryGetComponent(out TakeDamage takeDamage))
             {
+                if (takeDamage.isDead)
+                {
+                    return;
+                }
                 takeDamage.RegisterDamage(_damage, gameObject);
             }
         }

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Player 1
   m_EditorClassIdentifier: 
   attributeDatas:
-  - attribute: 1
-    value: 100
-  - attribute: 0
-    value: 5
   - attribute: 2
-    value: 4
+    value: 100
+  - attribute: 1
+    value: 5
   - attribute: 3
+    value: 4
+  - attribute: 4
     value: 3

@@ -26,6 +26,8 @@ public class Mob : MonoBehaviour
 
     private Vector3 startPosition;
 
+    public bool isDead { get; private set; }
+
 
     public delegate void DeathHandler(GameObject killer);
     public event DeathHandler OnDeath;
@@ -44,6 +46,7 @@ public class Mob : MonoBehaviour
         previousTime = Random.Range(0, wanderCooldown);
         startPosition = transform.position;
         healthSystem.onDeath += Die;
+        takeDamage.OnHit += OnHit;
     }
 
     public void RegisterMobData(MobData mobdata)
@@ -52,8 +55,12 @@ public class Mob : MonoBehaviour
         dropTable.mobData = mobdata;
     }
 
-    public void SetDestination(float stoppingDistance, Vector3 position)
+    public void SetDestination(Vector3 position, float stoppingDistance)
     {
+        if (isDead)
+        {
+            return;
+        }
         agent.stoppingDistance = stoppingDistance;
         agent.SetDestination(position);
     }
@@ -62,6 +69,22 @@ public class Mob : MonoBehaviour
     {
         agent.stoppingDistance = 0f;
         agent.SetDestination(startPosition);
+    }
+
+    public virtual void OnHit(float amount, GameObject attacker)
+    {
+        if (healthSystem.isDead)
+        {
+            return;
+        }
+        takeDamage.previousHitTime = Time.timeAsDouble;
+        occupied = true;
+    }
+
+    public virtual void CalmDown()
+    {
+        occupied = false;
+        ReturnToStartPosition();
     }
 
     public void Wander()
@@ -79,7 +102,9 @@ public class Mob : MonoBehaviour
 
     public void Die(GameObject killer)
     {
+        isDead = true;
         OnDeath?.Invoke(killer);
-        takeDamage.Die();
+        takeDamage.Die(killer);
+        Destroy(gameObject);
     }
 }

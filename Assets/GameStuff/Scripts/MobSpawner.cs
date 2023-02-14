@@ -101,7 +101,7 @@ public class MobSpawner : MonoBehaviour
             spawnedMobs[j].GetComponent<Mob>().RegisterMobData(mobData);
         }
         mobPile.RegisterMobs(spawnedMobs); //give information to the the pile that mobs were spawned
-        mobPile.respawnDelay = mobPile.respawnTimer;
+        mobPile.respawnDelay = mobPile.spawnTimer;
     }
 
     public Vector3 GetRandomPositionInPile(MobPile mobPile, float yOffset)

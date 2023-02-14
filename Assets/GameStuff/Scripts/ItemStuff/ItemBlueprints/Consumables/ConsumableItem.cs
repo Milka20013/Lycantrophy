@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ConsumeEffect
 {
-    InstantHeal
+    InstantHeal, Type1, Type2, Type3, Type4, Type5, Type6
 }
 public abstract class ConsumableItem : ItemBlueprint
 {

@@ -14,15 +14,13 @@ GameObject:
   - component: {fileID: 7104190183084790779}
   - component: {fileID: 2308846143087392660}
   - component: {fileID: -3369435888458805450}
-  - component: {fileID: -8927149698702574817}
   - component: {fileID: 3660390260460412025}
-  - component: {fileID: -7746679684123153918}
-  - component: {fileID: -3505750321385175244}
   - component: {fileID: 7592710114300449778}
   - component: {fileID: 3218986931409213856}
   - component: {fileID: 1681796945360049764}
+  - component: {fileID: -5823931193584934343}
   m_Layer: 8
-  m_Name: AggressiveMob
+  m_Name: BasicMob
   m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8416174917b8ae94f99dd0627b3cd312, type: 2}
+  - {fileID: 2100000, guid: b97450bb0c38d8a42817956c44795bd5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,28 +142,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
---- !u!114 &-8927149698702574817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5407015723440895298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c35ee6eec8746e4ab73faf94e2d501b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: -3369435888458805450}
-  healthSystem: {fileID: 7592710114300449778}
-  stats: {fileID: 3660390260460412025}
-  takeDamage: {fileID: 1681796945360049764}
-  dropTable: {fileID: 3218986931409213856}
-  wanderDistance: 10
-  wanderCooldown: 7
-  occupied: 0
-  attacker: {fileID: -7746679684123153918}
-  detector: {fileID: -3505750321385175244}
 --- !u!114 &3660390260460412025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,45 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityData: {fileID: 11400000, guid: f546b17a02335b046a7c5f519beb290d, type: 2}
---- !u!114 &-7746679684123153918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5407015723440895298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a03343c66c1825468c5b9a80494d7be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 3660390260460412025}
-  attackRange: 4
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  attackIfAbleTo: 1
-  canAttack: 0
---- !u!114 &-3505750321385175244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5407015723440895298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c8ddccc2719ba4dacde4ea204af6d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 20
-  sleepInterval: 0.5
-  autoDetect: 1
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  targets: []
-  maxTargets: 10
 --- !u!114 &7592710114300449778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,3 +196,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7592710114300449778}
+--- !u!114 &-5823931193584934343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8c36e9e6ae63244eb741dd23c495ed9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: -3369435888458805450}
+  healthSystem: {fileID: 7592710114300449778}
+  stats: {fileID: 3660390260460412025}
+  takeDamage: {fileID: 1681796945360049764}
+  dropTable: {fileID: 3218986931409213856}
+  wanderDistance: 0
+  wanderCooldown: 100
+  occupied: 0

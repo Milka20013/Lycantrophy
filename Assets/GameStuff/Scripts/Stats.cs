@@ -4,12 +4,18 @@ using UnityEngine;
 using System;
 using TMPro;
 
-//if changed, change FillBaseValues as well
 public enum Attribute { 
+    None,
     Damage, 
     MaxHealth, 
     MoveSpeed, 
-    AttackSpeed 
+    AttackSpeed,
+    Type1,
+    Type2,
+    Type3,
+    Type4,
+    Type5,
+    Type6
 }
 
 [Serializable]
