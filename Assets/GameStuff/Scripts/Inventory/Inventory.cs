@@ -123,7 +123,6 @@ public class Inventory : MonoBehaviour, ISaveable
         for (int i = 0; i < data.inventoryDatas[index].inventoryItems.Length; i++)
         {
             AddItem(itemManager.GetItem(invItems[i].itemId), invItems[i].quantity);
-            Debug.Log(itemManager.GetItem(invItems[i].itemId).itemType);
         }
         InstantiateItems(invItems);
     }

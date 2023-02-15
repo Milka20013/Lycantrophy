@@ -166,7 +166,7 @@ public class AmplifierSystem
         {
             for (int j = 0; j < everyAmplifier.Count; j++)
             {
-                if (amplifiers[i] != null && amplifiers[i].EqualsTo(everyAmplifier[j]))
+                if (amplifiers[i] != null && everyAmplifier[j] != null && amplifiers[i].EqualsTo(everyAmplifier[j]))
                 {
                     everyAmplifier[j] = null;
                     changeHappened = true;

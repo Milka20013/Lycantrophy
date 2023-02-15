@@ -83,7 +83,7 @@ public class ItemSpawner : MonoBehaviour
     }
     private GameObject GetItemToSpawn(ItemStack itemStack)
     {
-        return inventory.itemManager.GetItemPrefab(itemStack.item);
+        return itemStack.item.prefab;
     }
     public int GetFirstFreeItemSlotId()
     {

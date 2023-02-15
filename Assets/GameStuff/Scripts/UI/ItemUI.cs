@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public RectTransform rectTransform;
+
+    [SerializeField] Image image;
+
     [SerializeField] private TextMeshProUGUI quantity;
 
     [HideInInspector] public Inventory inventory { get; private set; }
@@ -30,6 +34,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         this.itemDescriptionPanel = itemDescriptionPanel;
         this.itemBlueprint = itemBP;
         this.player = player;
+        this.image.sprite = itemBP.sprite;
     }
     public void SetItemInfos(Vector2 position, ItemStack itemStack, int itemSlotId)
     {

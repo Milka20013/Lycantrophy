@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 4247773556558695787}
+  image: {fileID: 3741218758709622880}
   quantity: {fileID: 4892054737129188676}
 --- !u!114 &-4520214775190340802
 MonoBehaviour:
@@ -257,4 +258,3 @@ MonoBehaviour:
   canvasGroup: {fileID: 8840541500878148103}
   rectTransform: {fileID: 4247773556558695787}
   itemUI: {fileID: -4381249005785235162}
-  slotThisAttachedTo: {fileID: 0}

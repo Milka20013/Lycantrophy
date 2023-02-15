@@ -8,7 +8,6 @@ using static UnityEngine.AudioSettings;
 public class MobSpawner : MonoBehaviour
 {
     public Terrain terrain;
-    public MobManager mobManager;
     public GameObject mobPrefab;
     public Transform player;
 
@@ -88,7 +87,7 @@ public class MobSpawner : MonoBehaviour
 
         //which mob to spawn
         MobData mobData = GameManager.GetRandomElementFromFairTable(mobPile.mobs);
-        GameObject prefab = mobManager.GetMobPrefab(mobData);
+        GameObject prefab = mobData.prefab;
 
         //how much
         count = Random.Range(1, mobPile.maxSpawnBatchSize + 1);

@@ -37,7 +37,8 @@ public class Amplifier
     {
         string desc = "";
         desc += attribute.ToString();
-        desc += amplifierType == AmplifierType.Plus ? " + " + value.ToString() : " * " + value.ToString();
+        desc += amplifierType == AmplifierType.TruePercentage ? " * " + value.ToString() : " + " + value.ToString();
+        desc += amplifierType == AmplifierType.Plus ? "" : "%";
         return desc;
     }
     public static bool IsAmplifierInCollectionPartially(List<Amplifier> amplifiers, Amplifier amplifier, out int index)

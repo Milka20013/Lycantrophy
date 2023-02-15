@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-public enum ItemType
-{
-    None, Consumable, Equipment, Type1, Type2, Type3, Type4, Type5, Type6
-}
 
 [CreateAssetMenu(fileName ="ItemManager",menuName ="Manager/ItemManager")]
 public class ItemManager : ScriptableSingleton<ItemManager>
@@ -14,7 +10,6 @@ public class ItemManager : ScriptableSingleton<ItemManager>
     private ItemBlueprint[] itemBlueprints;
     [SerializeField] private EquipmentItem[] equipmentItems;
     [SerializeField] private ConsumableItem[] consumableItems;
-    [SerializeField] private GameObject[] itemPrefabs; //has to be in PrefabType order
     private Item[] items;
 
     private void OnEnable ()
@@ -63,11 +58,6 @@ public class ItemManager : ScriptableSingleton<ItemManager>
     public Item GetItem(ItemBlueprint item)
     {
         return new Item(item);
-    }
-
-    public GameObject GetItemPrefab(Item item)
-    {
-        return itemPrefabs[(int)item.itemType];
     }
 
     public ItemBlueprint GetItemBlueprint(ItemStack item)
