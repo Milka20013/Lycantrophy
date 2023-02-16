@@ -31,21 +31,23 @@ public class DropTable : MonoBehaviour
     {
         if (killer.TryGetComponent(out Inventory killerInv))
         {
-            DroppedItem[] droppedItems = new DroppedItem[mobData.droppableItems.Length];
+            List<DroppableItem> droppableItems = mobData.droppableItems;
+            droppableItems.AddRange(mobData.generalDrops);
+            DroppedItem[] droppedItems = new DroppedItem[droppableItems.Count];
             int[] itemRange = new int[2];
-            for (int i = 0; i < mobData.droppableItems.Length; i++)
+            for (int i = 0; i < droppableItems.Count; i++)
             {
                 droppedItems[i] = new DroppedItem();
-                droppedItems[i].item = mobData.droppableItems[i].item;
-                if (mobData.droppableItems[i].itemRange.Length <= 1)
+                droppedItems[i].item = droppableItems[i].item;
+                if (droppableItems[i].itemRange.Length <= 1)
                 {
                     itemRange = new int[] { 1, 1 };
                 }
                 else
                 {
-                    itemRange = mobData.droppableItems[i].itemRange;
+                    itemRange = droppableItems[i].itemRange;
                 }
-                droppedItems[i].quantity = GameManager.GetRandomElementByPercentage(mobData.droppableItems[i].percentage, itemRange[0], itemRange[1]);
+                droppedItems[i].quantity = GameManager.GetRandomElementByPercentage(droppableItems[i].percentage, itemRange[0], itemRange[1]);
             }
             for (int i = 0; i < droppedItems.Length; i++)
             {

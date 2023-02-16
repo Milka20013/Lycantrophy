@@ -22,4 +22,7 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
     percentage: 100
     itemRange: 0100000001000000
+  generalDrops: []
   prefab: {fileID: 5407015723440895298, guid: 395173bbd24a8034e806f7599c507b09, type: 3}
+  mesh: {fileID: 0}
+  size: {x: 0, y: 0, z: 0}

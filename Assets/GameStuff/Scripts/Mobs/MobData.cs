@@ -6,7 +6,8 @@ using UnityEngine;
 public class MobData : EntityData
 {
     public float rawExp;
-    public DroppableItem[] droppableItems;
+    public List<DroppableItem> droppableItems;
+    public List<DroppableItem> generalDrops;
     public GameObject prefab;
     public Mesh mesh;
     public Vector3 size;
