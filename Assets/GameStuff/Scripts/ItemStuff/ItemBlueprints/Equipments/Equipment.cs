@@ -18,7 +18,25 @@ public class Equipment : MonoBehaviour
         {
             dragAndDrop.OnItemDropped += OnDrop;
         }
-        itemUI.RegisterEffects(equipmentItem.amplifiers);
+        RegisterEffects();
+    }
+
+    public void RegisterEffects()
+    {
+        if (equipmentItem.hideDescription)
+        {
+            string[] desc = new string[equipmentItem.amplifiers.Length];
+            for (int i = 0; i < desc.Length; i++)
+            {
+                desc[i] = "??? ? ?";
+            }
+            itemUI.RegisterEffects(desc);
+        }
+        else
+        {
+            itemUI.RegisterEffects(equipmentItem.amplifiers);
+        }
+
         if (dragAndDrop.slotThisAttachedTo.inventory.inventoryTag == Inventory.InventoryTag.Equipment)
         {
             itemUI.player.playerStats.RegisterAmplifiers(equipmentItem.amplifiers);

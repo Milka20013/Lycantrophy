@@ -6,4 +6,5 @@ using UnityEngine;
 public class EquipmentItem : ItemBlueprint
 {
     public Amplifier[] amplifiers;
+    public bool hideDescription;
 }

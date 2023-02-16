@@ -12,8 +12,10 @@ public class ItemManager : ScriptableSingleton<ItemManager>
     [SerializeField] private ConsumableItem[] consumableItems;
     private Item[] items;
 
-    private void OnEnable ()
+    public void RefreshData()
     {
+        FindItems();
+
         itemBlueprints = new ItemBlueprint[equipmentItems.Length + consumableItems.Length];
         int j = 0;
         for (int i = 0; i < equipmentItems.Length; i++)
@@ -31,6 +33,13 @@ public class ItemManager : ScriptableSingleton<ItemManager>
             items[i] = new Item(itemBlueprints[i]);
         }
     }
+    private void FindItems()
+    {
+        equipmentItems = Resources.LoadAll<EquipmentItem>("ItemBlueprints/Equipment");
+        consumableItems = Resources.LoadAll<ConsumableItem>("ItemBlueprints/Consumable");
+    }
+
+    
     public Item GetItem(string name)
     {
         Item item = null;

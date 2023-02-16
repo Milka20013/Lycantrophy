@@ -17,5 +17,9 @@ public class DropManagerEditor : Editor
         {
             dropManager.AddGeneralDrops();
         }
+        if (GUILayout.Button("Refresh MobDatas"))
+        {
+            dropManager.FindMobDatas();
+        }
     }
 }

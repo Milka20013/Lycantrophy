@@ -24,3 +24,4 @@ MonoBehaviour:
     attribute: 1
     value: 5
     key: 2
+  hideDescription: 0

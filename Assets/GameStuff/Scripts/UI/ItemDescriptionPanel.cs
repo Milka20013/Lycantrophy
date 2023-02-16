@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemDescriptionPanel : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ItemDescriptionPanel : MonoBehaviour
     public RectTransform canvasRectTransform;
     public TextMeshProUGUI basicDescription;
     public TextMeshProUGUI[] effectTexts;
+    private int activeTexts;
     public RectTransform rectTransform;
 
     [HideInInspector] public ItemUI currentItemUI;
@@ -17,20 +19,23 @@ public class ItemDescriptionPanel : MonoBehaviour
     public void ShowPanel(ItemUI itemUI)
     {
         currentItemUI = itemUI;
-        if (itemUI.rectTransform.position.x >= canvasRectTransform.rect.width * 0.85f)
-        {
-            rectTransform.pivot = new Vector2(1,1);
-        }
-        else
-        {
-            rectTransform.pivot = new Vector2(0, 1);
-        }
-        rectTransform.position = itemUI.rectTransform.position;
         if (!itemDescriptionPanel.activeSelf)
         {
             UpdatePanel();
         }
+        CalculatePivot(itemUI);
+        rectTransform.position = itemUI.rectTransform.position;
         itemDescriptionPanel.SetActive(true);
+    }
+
+    private void CalculatePivot(ItemUI itemUI)
+    {
+        float x = 1;
+        float y = 1;
+        //the pivot changes based on the active effect texts. This ratio is a bit off
+        y = itemUI.rectTransform.position.y <= canvasRectTransform.rect.width * 0.3f ?  (1 - (0.375f + (float)0.625f/effectTexts.Length * activeTexts)) : 1;
+        x = itemUI.rectTransform.position.x <= canvasRectTransform.rect.width * 0.85f ? 0 : 1;
+        rectTransform.pivot = new Vector2(x, y);
     }
 
     public void HidePanel()
@@ -50,5 +55,6 @@ public class ItemDescriptionPanel : MonoBehaviour
             effectTexts[i].text = currentItemUI.effects[i];
             effectTexts[i].gameObject.SetActive(true);
         }
+        activeTexts = currentItemUI.effects.Count;
     }
 }
