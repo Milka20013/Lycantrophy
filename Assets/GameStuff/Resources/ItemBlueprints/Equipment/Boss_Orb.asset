@@ -34,3 +34,24 @@ MonoBehaviour:
     attribute: 4
     value: 15
     key: 2
+  - tag: Boss Orb
+    amplifierType: 2
+    attribute: 4
+    value: 15
+    key: 2
+  - tag: Boss Orb
+    amplifierType: 2
+    attribute: 4
+    value: 15
+    key: 2
+  - tag: Boss Orb
+    amplifierType: 2
+    attribute: 4
+    value: 15
+    key: 2
+  - tag: Boss Orb
+    amplifierType: 2
+    attribute: 4
+    value: 15
+    key: 2
+  hideDescription: 0
