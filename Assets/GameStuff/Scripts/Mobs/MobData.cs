@@ -8,4 +8,6 @@ public class MobData : EntityData
     public float rawExp;
     public DroppableItem[] droppableItems;
     public GameObject prefab;
+    public Mesh mesh;
+    public Vector3 size;
 }

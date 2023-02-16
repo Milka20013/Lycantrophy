@@ -53,6 +53,14 @@ public class Mob : MonoBehaviour
     {
         stats.CreateAmplifierSystem(mobdata);
         dropTable.mobData = mobdata;
+        if (mobdata.mesh != null)
+        {
+            GetComponent<MeshFilter>().mesh = mobdata.mesh;
+        }
+        if (mobdata.size != Vector3.zero)
+        {
+            transform.localScale = mobdata.size;
+        }
     }
 
     public void SetDestination(Vector3 position, float stoppingDistance)

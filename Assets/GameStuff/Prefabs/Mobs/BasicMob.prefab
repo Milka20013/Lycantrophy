@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3218986931409213856}
   - component: {fileID: 1681796945360049764}
   - component: {fileID: -5823931193584934343}
+  - component: {fileID: -747470147176449980}
   m_Layer: 8
   m_Name: BasicMob
   m_TagString: Mob
@@ -216,3 +217,15 @@ MonoBehaviour:
   wanderDistance: 0
   wanderCooldown: 100
   occupied: 0
+--- !u!114 &-747470147176449980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5407015723440895298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d83523fba85cb4aa71b1682f9e5055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
