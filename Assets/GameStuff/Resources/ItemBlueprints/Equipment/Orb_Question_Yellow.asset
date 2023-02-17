@@ -10,18 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92274eb9a04e5a5429a3f2b61345687b, type: 3}
-  m_Name: Test_Orb1
+  m_Name: Orb_Question_Yellow
   m_EditorClassIdentifier: 
-  id: 2
-  itemName: Test Orb
+  id: 19095d71-fa6e-49de-a691-09dfc38abb5b
+  itemName: Question Orb
   stackSize: 1
-  basicDescription: The almighty Orb of Tests
+  basicDescription: ???? ?? ????
   prefab: {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}
-  sprite: {fileID: 21300000, guid: 00d685cb405e53f4c99511b9a0430802, type: 3}
+  sprite: {fileID: 21300000, guid: 5ec95e37f511b784eb4277a9a4d7cbb9, type: 3}
   amplifiers:
-  - tag: Test Orb
+  - tag: Question_Orb_Yellow
     amplifierType: 0
     attribute: 1
-    value: 5
-    key: 2
-  hideDescription: 0
+    value: 15
+    key: 0
+  - tag: Question_Orb_Yellow
+    amplifierType: 1
+    attribute: 1
+    value: 15
+    key: 0
+  - tag: Question_Orb_Yellow
+    amplifierType: 2
+    attribute: 1
+    value: 15
+    key: 0
+  hideDescription: 1

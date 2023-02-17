@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5a7fa8ffcf7f64fb0aa3e359625bc2, type: 3}
   m_Name: Yellow_Potion
   m_EditorClassIdentifier: 
-  id: 4
+  id: a35a568d-c7d6-489d-bed3-0ed52b642f92
   itemName: Yellow Potion
   stackSize: 10
   basicDescription: This is something magical

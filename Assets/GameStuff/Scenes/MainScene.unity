@@ -4096,11 +4096,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306933735}
   m_CullTransparentMesh: 1
---- !u!4 &1360193506 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-  m_PrefabInstance: {fileID: 1889648172}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1371490384
 GameObject:
   m_ObjectHideFlags: 0
@@ -5520,7 +5515,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 765317578}
-  - {fileID: 1360193506}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5659,103 +5653,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863817196}
   m_CullTransparentMesh: 1
---- !u!1001 &1889648172
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1814268793}
-    m_Modifications:
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 22.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420452, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420454, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: m_Name
-      value: NeutralMobPile (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: maxMobCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: circleRadius
-      value: 5.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: respawnTimer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: mobs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: maxSpawnBatchSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: mobs.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f200a1437f37c24aa2b2e40a712d06d, type: 2}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: mobDatas.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: mobPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: mobDatas.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: e23eafa75ad6d124f8431cc754c2da63, type: 2}
-    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
-      propertyPath: mobPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b597f134643df654298c699031423881, type: 3}
 --- !u!1 &1965055432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
@@ -6336,7 +6233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataFileName: game.gamec
   encryptData: 0
-  instanstiateNewGame: 0
+  instanstiateNewGame: 1
 --- !u!1 &2146972287
 GameObject:
   m_ObjectHideFlags: 0
@@ -6467,7 +6364,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420454, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: m_Name
-      value: NeutralMobPile
+      value: MobPile
+      objectReference: {fileID: 0}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: spawnTimer
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: maxMobCount
@@ -6475,7 +6376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: circleRadius
-      value: 5.45
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: respawnTimer
@@ -6483,16 +6384,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobs.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: maxSpawnBatchSize
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobs.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: e23eafa75ad6d124f8431cc754c2da63, type: 2}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobs.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f200a1437f37c24aa2b2e40a712d06d, type: 2}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobs.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: dc2e100d110051d4491aebec3091a3e9, type: 2}
+    - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
+      propertyPath: mobs.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: e9cd306c80e2d5746ac93185e6ea992f, type: 2}
     - target: {fileID: 225649198422420455, guid: b597f134643df654298c699031423881, type: 3}
       propertyPath: mobDatas.Array.size
       value: 1

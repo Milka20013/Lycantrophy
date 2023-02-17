@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92274eb9a04e5a5429a3f2b61345687b, type: 3}
+  m_Name: Orb_Question_Blue
+  m_EditorClassIdentifier: 
+  id: 8225aa4d-7d17-4655-8675-bdfb81e1cc79
+  itemName: Question Orb
+  stackSize: 1
+  basicDescription: ???? ?? ????
+  prefab: {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}
+  sprite: {fileID: 21300000, guid: 3c2501086f493724abb56c723be8d1d1, type: 3}
+  amplifiers:
+  - tag: Question_Orb_Blue
+    amplifierType: 0
+    attribute: 1
+    value: 15
+    key: 0
+  - tag: Question_Orb_Blue
+    amplifierType: 1
+    attribute: 1
+    value: 15
+    key: 0
+  - tag: Question_Orb_Blue
+    amplifierType: 2
+    attribute: 1
+    value: 15
+    key: 0
+  hideDescription: 1

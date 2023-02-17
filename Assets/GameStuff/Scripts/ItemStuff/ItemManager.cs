@@ -12,6 +12,10 @@ public class ItemManager : ScriptableSingleton<ItemManager>
     [SerializeField] private ConsumableItem[] consumableItems;
     private Item[] items;
 
+    private void Awake()
+    {
+        RefreshData();
+    }
     public void RefreshData()
     {
         FindItems();
@@ -40,19 +44,7 @@ public class ItemManager : ScriptableSingleton<ItemManager>
     }
 
     
-    public Item GetItem(string name)
-    {
-        Item item = null;
-        for (int i = 0; i < items.Length; i++)
-        {
-            if (items[i].itemName == name)
-            {
-                item = new Item(items[i]);
-            }
-        }
-        return item;
-    }
-    public Item GetItem(int id)
+    public Item GetItem(string id)
     {
         Item item = null;
         for (int i = 0; i < items.Length; i++)

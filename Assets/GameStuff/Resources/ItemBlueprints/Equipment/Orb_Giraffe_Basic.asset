@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92274eb9a04e5a5429a3f2b61345687b, type: 3}
+  m_Name: Orb_Giraffe_Basic
+  m_EditorClassIdentifier: 
+  id: d810967e-ba01-4286-8f73-73e7f7763003
+  itemName: Giraffe Orb
+  stackSize: 1
+  basicDescription: The soul of a giraffe
+  prefab: {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}
+  sprite: {fileID: 21300000, guid: 87da6b16e9ff53b42a7bf49d288386bc, type: 3}
+  amplifiers:
+  - tag: Giraffe_Orb
+    amplifierType: 0
+    attribute: 1
+    value: 5
+    key: 0
+  hideDescription: 0

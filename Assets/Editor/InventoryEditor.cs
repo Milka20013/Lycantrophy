@@ -14,7 +14,7 @@ public class InventoryEditor : Editor
     {
         base.OnInspectorGUI();
         Inventory inventroy = (Inventory)target;
-        if (GUILayout.Button("Generate ID"))
+        if (inventroy.id == null || inventroy.id == "")
         {
             GenerateGUID(ref inventroy);
         }

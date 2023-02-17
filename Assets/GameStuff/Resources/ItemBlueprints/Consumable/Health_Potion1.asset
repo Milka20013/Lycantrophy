@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5a7fa8ffcf7f64fb0aa3e359625bc2, type: 3}
   m_Name: Health_Potion1
   m_EditorClassIdentifier: 
-  id: 0
+  id: da939413-4692-4abb-865e-477d460476ee
   itemName: Health Potion
   stackSize: 30
   basicDescription: Heals

@@ -19,7 +19,7 @@ MonoBehaviour:
     value: 5
   rawExp: 1
   droppableItems:
-  - item: {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
+  - item: {fileID: 11400000, guid: febcbe3748d6679499f4a885146bf83d, type: 2}
     percentage: 100
     itemRange: 0100000001000000
   generalDrops: []

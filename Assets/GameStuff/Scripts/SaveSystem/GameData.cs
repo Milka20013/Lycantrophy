@@ -23,10 +23,10 @@ public class GameData
         [Serializable]
         public struct ItemData
         {
-            public int itemId;
+            public string itemId;
             public int quantity;
             public int slotId;
-            public ItemData(int itemId, int quantity, int slotId)
+            public ItemData(string itemId, int quantity, int slotId)
             {
                 this.itemId = itemId;
                 this.quantity = quantity;

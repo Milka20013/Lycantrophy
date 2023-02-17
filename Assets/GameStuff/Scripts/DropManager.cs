@@ -9,6 +9,11 @@ public class DropManager : ScriptableSingleton<DropManager>
     public MobData[] mobDatas;
     public DroppableItem[] generalDrops;
 
+    private void Awake()
+    {
+        FindMobDatas();
+    }
+
     public void FindMobDatas()
     {
         mobDatas = Resources.LoadAll<MobData>("MobDatas");

@@ -17,7 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f200a1437f37c24aa2b2e40a712d06d, type: 2}
   - {fileID: 11400000, guid: dc2e100d110051d4491aebec3091a3e9, type: 2}
   - {fileID: 11400000, guid: e9cd306c80e2d5746ac93185e6ea992f, type: 2}
-  generalDrops:
-  - item: {fileID: 11400000, guid: a51e8a01396aa154888a240ce6760c2d, type: 2}
-    percentage: 100
-    itemRange: 0100000002000000
+  generalDrops: []
