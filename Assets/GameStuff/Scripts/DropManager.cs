@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName ="Manager/DropManager")]
-public class DropManager : ScriptableSingleton<DropManager>
+public class DropManager : ScriptableObject
 {
     public MobData[] mobDatas;
     public DroppableItem[] generalDrops;

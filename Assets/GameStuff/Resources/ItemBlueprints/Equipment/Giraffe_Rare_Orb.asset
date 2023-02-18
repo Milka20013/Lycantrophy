@@ -25,5 +25,10 @@ MonoBehaviour:
     amplifierType: 0
     attribute: 1
     value: 20
-    key: 0
+    key: 2
+  - tag: Giraffe_Orb
+    amplifierType: 1
+    attribute: 2
+    value: 20
+    key: 2
   hideDescription: 0

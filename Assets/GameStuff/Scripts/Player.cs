@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using StarterAssets;
+using System;
 
 //this class has all the references to the other classes attached to the player
 //and the methods with the player
 //plus other things on the player
 
+//What to save
+[Serializable]
+public struct PlayerData
+{
+    public PlayerData(Vector3 position)
+    {
+        this.position = position;
+    }
+    public Vector3 position;
+}
 public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory;
@@ -56,7 +67,7 @@ public class Player : MonoBehaviour, ISaveable
 
     public void Save(ref GameData data)
     {
-        data.playerData = new GameData.PlayerData(transform.position);
+        data.playerData = new PlayerData(transform.position);
     }
 
     public void Load(GameData data)

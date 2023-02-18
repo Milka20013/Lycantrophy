@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="ItemManager",menuName ="Manager/ItemManager")]
-public class ItemManager : ScriptableSingleton<ItemManager>
+public class ItemManager : ScriptableObject
 {
     private ItemBlueprint[] itemBlueprints;
     [SerializeField] private EquipmentItem[] equipmentItems;

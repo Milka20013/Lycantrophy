@@ -8,7 +8,7 @@ public class Equipment : MonoBehaviour
 {
     public ItemUI itemUI;
     public DragAndDropItem dragAndDrop;
-    private EquipmentItem equipmentItem;
+    public EquipmentItem equipmentItem { get; private set; }
     private bool equipped = false;
     void Start()
     {
@@ -36,14 +36,11 @@ public class Equipment : MonoBehaviour
         {
             itemUI.RegisterEffects(equipmentItem.amplifiers);
         }
-
-        if (dragAndDrop.slotThisAttachedTo.inventory.inventoryTag == Inventory.InventoryTag.Equipment)
-        {
-            itemUI.player.playerStats.RegisterAmplifiers(equipmentItem.amplifiers);
-        }
     }
     public bool OnDrop(ItemUI itemUI, ItemSlot itemSlot)
     {
+        //return false if the drop can't happen
+        //the itemslot was empty, so this is a condition on top of emptyness
         bool equip = itemSlot.inventory.inventoryTag == Inventory.InventoryTag.Equipment
                    && dragAndDrop.slotThisAttachedTo.inventory.inventoryTag != Inventory.InventoryTag.Equipment;
 
@@ -53,10 +50,7 @@ public class Equipment : MonoBehaviour
         //bool nothing = itemSlot.inventory.inventoryTag != Inventory.InventoryTag.Equipment;
         if (itemSlot.expectedItem == ItemSlot.ExpectedItemType.Equippable && equip)
         {
-            if (itemUI.player.equipmentInventory.ItemIsEquippedByName(itemUI.itemStack))
-            {
-                return false;
-            }
+            bool wasEquipped = itemUI.player.equipmentInventory.ItemIsEquippedByName(itemUI.itemStack);
             EquipItem();
         }
         else if (unequip)
@@ -69,14 +63,13 @@ public class Equipment : MonoBehaviour
     {
         equipped = true;
         itemUI.player.playerInventory.EquipItem(itemUI.itemStack);
-        itemUI.player.playerStats.RegisterAmplifiers(equipmentItem.amplifiers);
+        
     }
 
     public void UnequipItem()
     {
         equipped = false;
         itemUI.player.equipmentInventory.UnequipItem(itemUI.itemStack);
-        itemUI.player.playerStats.UnRegisterAmplifiers(equipmentItem.amplifiers);
     }
 
     private void OnDestroy()

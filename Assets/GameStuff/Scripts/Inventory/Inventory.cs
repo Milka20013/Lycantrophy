@@ -1,8 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[Serializable]
+public struct InventoryData
+{
+    public string id;
+    public ItemData[] inventoryItems;
+
+    public static ItemData[] CreateItemDatas(List<ItemStack> itemStacks)
+    {
+        ItemData[] itemDatas = new ItemData[itemStacks.Count];
+        for (int i = 0; i < itemDatas.Length; i++)
+        {
+            itemDatas[i] = new ItemData(itemStacks[i].item.id, itemStacks[i].quantity, itemStacks[i].itemUI == null ? -1 : itemStacks[i].itemUI.slotId);
+        }
+        return itemDatas;
+    }
+
+    public InventoryData(ItemData[] inventoryItems, string id)
+    {
+        this.id = id;
+        this.inventoryItems = inventoryItems;
+    }
+}
 
 public class Inventory : MonoBehaviour, ISaveable
 {
@@ -76,7 +100,7 @@ public class Inventory : MonoBehaviour, ISaveable
     {
         stacksInInventory.Remove(item);
     }
-    public virtual void OnOpenInventory(InputValue value)
+    public void OnOpenInventory(InputValue value)
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
         Cursor.lockState = inventoryUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
@@ -101,7 +125,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public void Save(ref GameData data)
     {
         int index = data.GetIndex(id);
-        var invData = new GameData.InventoryData(GameData.InventoryData.CreateItemDatas(stacksInInventory), id);
+        var invData = new InventoryData(InventoryData.CreateItemDatas(stacksInInventory), id);
         if (index == -1)
         {
             data.inventoryDatas.Add(invData);
@@ -112,7 +136,7 @@ public class Inventory : MonoBehaviour, ISaveable
         }
     }
 
-    public void Load(GameData data)
+    public virtual void Load(GameData data)
     {
         int index = data.GetIndex(id);
         if (index == -1)
@@ -127,7 +151,7 @@ public class Inventory : MonoBehaviour, ISaveable
         InstantiateItems(invItems);
     }
 
-    private void InstantiateItems(GameData.InventoryData.ItemData[] inventoryItems)
+    private void InstantiateItems(ItemData[] inventoryItems)
     {
         for (int i = 0; i < stacksInInventory.Count; i++)
         {

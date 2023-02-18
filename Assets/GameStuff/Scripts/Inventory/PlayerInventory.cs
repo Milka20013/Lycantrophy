@@ -24,7 +24,6 @@ public class PlayerInventory : Inventory
         equipmentInventory.EquipItem(itemStack);
         stacksInInventory.Remove(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
-
     }
 
 }

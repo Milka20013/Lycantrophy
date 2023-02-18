@@ -1,8 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 //this class stores data related to one specific item
+[Serializable]
+public struct ItemData
+{
+    public string itemId;
+    public int quantity;
+    public int slotId;
+    public ItemData(string itemId, int quantity, int slotId)
+    {
+        this.itemId = itemId;
+        this.quantity = quantity;
+        this.slotId = slotId;
+    }
+}
 
 public enum InteractionType
 {

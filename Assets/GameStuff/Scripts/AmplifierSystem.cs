@@ -4,6 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[Serializable]
+public struct AmplifierSystemData
+{
+    public Amplifier[] amplifiers;
+
+    public AmplifierSystemData(Amplifier[] amplifiers)
+    {
+        this.amplifiers = amplifiers;
+    }
+}
+
 public class AmplifierSystem
 {
     public AttributeData[] attributeDatas;
@@ -11,13 +22,13 @@ public class AmplifierSystem
 
     public Dictionary<Attribute, Dictionary<AmplifierType, float>> amplifiersDict = new Dictionary<Attribute, Dictionary<AmplifierType, float>>();
 
+    public List<Amplifier> everyAmplifier = new List<Amplifier>();
     public AmplifierSystem(AttributeData[] attributeDatas)
     {
         this.attributeDatas = attributeDatas;
         InstantiateSystem();
     }
 
-    public List<Amplifier> everyAmplifier = new List<Amplifier>();
 
     public void InstantiateSystem()
     {
@@ -137,7 +148,7 @@ public class AmplifierSystem
             }
             if (Amplifier.IsAmplifierInCollectionPartially(everyAmplifier, amplifiers[i], out int index)) //if the amplifier is already registered, decide what to do
             {
-                if (amplifiers[i].key == AmplifierKey.Overriding)
+                if (amplifiers[i].key == AmplifierKey.Overriding && amplifiers[i].value > everyAmplifier[index].value)
                 {
                     everyAmplifier[index] = amplifiers[i];
                     changeHappened = true;
@@ -155,7 +166,7 @@ public class AmplifierSystem
         }
         return changeHappened;
     }
-    public bool RemoveAmplifiers(Amplifier[] amplifiers)
+    public bool UnregisterAmplifiers(Amplifier[] amplifiers)
     {
         bool changeHappened = false;
         if (amplifiers == null)
