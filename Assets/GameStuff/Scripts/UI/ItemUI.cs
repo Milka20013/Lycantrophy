@@ -9,7 +9,9 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 {
     public RectTransform rectTransform;
 
-    [SerializeField] Image image;
+    [SerializeField] private GameObject emptyImagePrefab;
+
+    [SerializeField] private Image image;
 
     [SerializeField] private TextMeshProUGUI quantity;
 
@@ -34,7 +36,8 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         this.itemDescriptionPanel = itemDescriptionPanel;
         this.itemBlueprint = itemBP;
         this.player = player;
-        this.image.sprite = itemBP.sprite;
+        this.image.sprite = itemBP.sprites[0];
+        PlaceRemainingSprites(itemBP);
     }
     public void SetItemInfos(Vector2 position, ItemStack itemStack, int itemSlotId)
     {
@@ -43,6 +46,23 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         itemStack.itemUI = this;
         itemStack.ChangeQuantity(itemStack.quantity);
         slotId = itemSlotId;        
+    }
+
+    private void PlaceRemainingSprites(ItemBlueprint itemBP)
+    {
+        Sprite[] sprites = itemBP.sprites;
+        if (sprites.Length <= 1)
+        {
+            return;
+        }
+        for (int i = 1; i < sprites.Length; i++)
+        {
+            GameObject image = Instantiate(emptyImagePrefab);
+            image.GetComponent<Image>().sprite = sprites[i];
+            image.transform.SetParent(gameObject.transform);
+            image.transform.localPosition = Vector3.zero;
+            image.transform.localScale = Vector3.one;
+        }
     }
 
     public void SetInteractionType(InteractionType interactionType)

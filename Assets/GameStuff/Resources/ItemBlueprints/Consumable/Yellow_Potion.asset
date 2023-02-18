@@ -17,7 +17,8 @@ MonoBehaviour:
   stackSize: 10
   basicDescription: This is something magical
   prefab: {fileID: 5146469132438167939, guid: 44f980038e40e9e40960e202116bdb9f, type: 3}
-  sprite: {fileID: 21300000, guid: 66d44ba2bab73f64ebe70c776669b852, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 66d44ba2bab73f64ebe70c776669b852, type: 3}
   consumeEffect: 0
   effectDescription: Instantly heals
   consumeValue: 9999

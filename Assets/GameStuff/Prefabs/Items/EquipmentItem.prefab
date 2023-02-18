@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 4247773556558695787}
+  emptyImagePrefab: {fileID: 575272019450689603, guid: 195e5881005fe3547867d71b797a5cc5, type: 3}
   image: {fileID: 3741218758709622880}
   quantity: {fileID: 4892054737129188676}
 --- !u!114 &7138859560527468503

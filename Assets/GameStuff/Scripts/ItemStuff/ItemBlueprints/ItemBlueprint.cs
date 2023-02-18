@@ -12,5 +12,5 @@ public class ItemBlueprint : ScriptableObject
     public int stackSize;
     public string basicDescription;
     public GameObject prefab;
-    public Sprite sprite;
+    public Sprite[] sprites;
 }
