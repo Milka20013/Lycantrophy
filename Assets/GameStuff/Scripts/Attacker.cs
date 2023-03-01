@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Stats))]
 public class Attacker : MonoBehaviour
 {
-    public Stats stats;
+    private Stats stats;
 
     private float _damage;
     public float attackRange = 4;
@@ -19,6 +19,11 @@ public class Attacker : MonoBehaviour
     [Tooltip("Automatically attacks if its attackDelay is <= 0, and if canAttack is true")]
     public bool attackIfAbleTo = false;
     [HideInInspector] public bool canAttack = false;
+
+    private void Awake()
+    {
+        stats = GetComponent<Stats>();
+    }
     private void Start()
     {
         stats.OnStatChange += UpdateStats;

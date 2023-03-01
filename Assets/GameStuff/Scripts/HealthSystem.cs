@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class HealthSystem : MonoBehaviour
 {
     public TextMeshProUGUI[] healthTexts;
-    public Stats stats;
+    private Stats stats;
     public float maxHealth { get; set; }
     private float currentHealth;
 
@@ -16,6 +16,11 @@ public class HealthSystem : MonoBehaviour
 
     public delegate void DeathHandler(GameObject killer);
     public DeathHandler onDeath;
+
+    private void Awake()
+    {
+        stats = GetComponent<Stats>();
+    }
 
     private void Start()
     {

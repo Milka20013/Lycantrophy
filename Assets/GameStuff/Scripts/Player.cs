@@ -9,6 +9,7 @@ using System;
 //and the methods with the player
 //plus other things on the player
 
+
 //What to save
 [Serializable]
 public struct PlayerData
@@ -19,24 +20,34 @@ public struct PlayerData
     }
     public Vector3 position;
 }
+
+[RequireComponent(typeof(PlayerInventory))]
+[RequireComponent(typeof(HealthSystem))]
+[RequireComponent(typeof(Stats))]
+[RequireComponent(typeof(ThirdPersonController))]
 public class Player : MonoBehaviour, ISaveable
 {
-    public PlayerInventory playerInventory;
+    public PlayerInventory playerInventory { get; private set; }
     public EquipmentInventory equipmentInventory;
-    public Stats playerStats;
+    public Stats playerStats { get; private set; }
     public StatMenu statMenu;
     public TextMeshProUGUI healthText;
     public GameObject deathCanvas;
 
-    public HealthSystem healthSystem;
+    public HealthSystem healthSystem { get; private set; }
 
-    [SerializeField] private ThirdPersonController moveController;
+    private ThirdPersonController moveController;
 
     public bool isDead {  get; private set; }
     public float respawnCooldown = 10f;
     [HideInInspector] public float respawnTimer = 10f;
     private void Awake()
     {
+        playerInventory = GetComponent<PlayerInventory>();
+        healthSystem = GetComponent<HealthSystem>();
+        playerStats = GetComponent<Stats>();
+        moveController = GetComponent<ThirdPersonController>();
+
         healthSystem.onDeath += Die;
     }
     private void Update()

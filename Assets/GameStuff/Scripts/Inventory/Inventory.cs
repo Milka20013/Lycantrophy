@@ -112,6 +112,10 @@ public class Inventory : MonoBehaviour, ISaveable
         itemSpawner.SpawnItems();
     }
 
+    public virtual T GetOwner<T>()
+    {
+        return default;
+    }
 
 
     public void ChangeInventories(ItemStack item, Inventory targetInventory)
