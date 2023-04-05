@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ItemManager
   m_EditorClassIdentifier: 
   equipmentItems:
-  - {fileID: 11400000, guid: a81d97694e48a50489bcc6d953dddc4f, type: 2}
-  - {fileID: 11400000, guid: f779604da880e4d4588f505cf8a1e65f, type: 2}
-  - {fileID: 11400000, guid: b21068f3df0288b45aa3270398279c9e, type: 2}
+  - {fileID: 11400000, guid: 766ec2fa170a95f4ba36404241fdd17c, type: 2}
+  - {fileID: 11400000, guid: 94267fde32afb064b910f761e2426ff2, type: 2}
+  - {fileID: 11400000, guid: 407734da7a84cea4fb8e75fb9a2e3dfb, type: 2}
+  - {fileID: 11400000, guid: 8a09c06f0b7ac9342b1709096f48eba4, type: 2}
   consumableItems:
   - {fileID: 11400000, guid: 15cc51aa363b69a4389608af7c2c7f52, type: 2}
   - {fileID: 11400000, guid: a51e8a01396aa154888a240ce6760c2d, type: 2}

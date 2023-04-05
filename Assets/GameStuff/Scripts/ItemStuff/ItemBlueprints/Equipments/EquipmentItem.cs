@@ -6,5 +6,7 @@ using UnityEngine;
 public class EquipmentItem : ItemBlueprint
 {
     public Amplifier[] amplifiers;
+    public SetTag tag;
+    public int tier;
     public bool hideDescription;
 }

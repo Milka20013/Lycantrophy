@@ -62,38 +62,38 @@ public class ItemManager : ScriptableObject
 
     public ItemBlueprint GetItemBlueprint(ItemStack item)
     {
-        ItemBlueprint itemBp = null;
         for (int i = 0; i < itemBlueprints.Length; i++)
         {
             if (item.item.id == itemBlueprints[i].id)
             {
-                itemBp = itemBlueprints[i];
+                return itemBlueprints[i];
             }
         }
-        return itemBp;
+        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
+        return null;
     }
     public EquipmentItem GetEquipmentItemBlueprint(ItemStack item)
     {
-        EquipmentItem itemBp = null;
         for (int i = 0; i < equipmentItems.Length; i++)
         {
             if (item.item.id == equipmentItems[i].id)
             {
-                itemBp = equipmentItems[i];
+                return equipmentItems[i];
             }
         }
-        return itemBp;
+        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
+        return null;
     }
     public ConsumableItem GetConsumableItemBlueprint(ItemStack item)
     {
-        ConsumableItem itemBp = null;
         for (int i = 0; i < consumableItems.Length; i++)
         {
             if (item.item.id == consumableItems[i].id)
             {
-                itemBp = consumableItems[i];
+                return consumableItems[i];
             }
         }
-        return itemBp;
+        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
+        return null;
     }
 }

@@ -139,6 +139,10 @@ public class AmplifierSystem
     }
     public bool RegisterAmplifiers(Amplifier[] amplifiers)
     {
+        if (amplifiers == null)
+        {
+            return false;
+        }
         bool changeHappened = false;
         for (int i = 0; i < amplifiers.Length; i++)
         {
@@ -175,6 +179,10 @@ public class AmplifierSystem
         }
         for (int i = 0; i < amplifiers.Length; i++)
         {
+            if (amplifiers[i] == null)
+            {
+                continue;
+            }
             for (int j = 0; j < everyAmplifier.Count; j++)
             {
                 if (amplifiers[i] != null && everyAmplifier[j] != null && amplifiers[i].EqualsTo(everyAmplifier[j]))

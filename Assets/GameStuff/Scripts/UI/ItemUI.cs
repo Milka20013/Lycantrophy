@@ -45,7 +45,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         this.itemStack = itemStack;
         itemStack.itemUI = this;
         itemStack.ChangeQuantity(itemStack.quantity);
-        slotId = itemSlotId;        
+        slotId = itemSlotId;
     }
 
     private void PlaceRemainingSprites(ItemBlueprint itemBP)
@@ -70,7 +70,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         itemStack.item.interactionType = interactionType;
     }
 
-    
+
 
     public void ChangeQuantityText(float amount)
     {

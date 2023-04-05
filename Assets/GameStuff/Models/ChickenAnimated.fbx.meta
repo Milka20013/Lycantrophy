@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 58e7856adc4b4ef4e85f7cc1858e7827
+guid: 1621e53543d163d4183eb510f2795a6a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: 4781951162920444690
-    second: Armature|ArmatureAction
+      74: 3789750784014294312
+    second: Chicken|Idle
   - first:
-      74: -8945691123924629249
-    second: Armature|Idle
+      74: 1299601503091223960
+    second: Chicken|Pinching.001
   externalObjects: {}
   materials:
     materialImportMode: 2
