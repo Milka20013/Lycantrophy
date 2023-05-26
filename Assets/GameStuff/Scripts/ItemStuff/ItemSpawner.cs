@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 //this class spawns the items onto the inventoryUI
 
@@ -26,7 +23,7 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    public void InstanstiateItem(ItemStack itemStack,int itemSlotId)
+    public void InstanstiateItem(ItemStack itemStack, int itemSlotId)
     {
         if (itemSlotId == -1)
         {
@@ -52,10 +49,10 @@ public class ItemSpawner : MonoBehaviour
         ItemUI itemUI = item.GetComponent<ItemUI>();
         itemUI.SetItemInfos(rectTransform.anchoredPosition, itemStack, itemSlotId);
 
-        itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack),inventory.player);
+        itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack), inventory.player);
 
         //assigning the item to the slot, so it will drag and drop properly
-        item.GetComponent<DragAndDropItem>().Init(canvas,itemSlot);
+        item.GetComponent<DragAndDropItem>().Init(canvas, itemSlot);
         itemSlot.attachedObject = item;
 
         //add to the list, so we can remove later
@@ -85,6 +82,11 @@ public class ItemSpawner : MonoBehaviour
     private GameObject GetItemToSpawn(ItemStack itemStack)
     {
         return itemStack.item.prefab;
+    }
+
+    public void RegisterItem(ItemStack itemStack)
+    {
+        itemsOnInventory.Add(itemStack);
     }
     public int GetFirstFreeItemSlotId()
     {
@@ -117,6 +119,6 @@ public class ItemSpawner : MonoBehaviour
         }
         spawnedItems.RemoveAll(x => x == null);
         itemStacks.RemoveAll(x => x == null);
-        itemsOnInventory.RemoveWhere(x=>x.state == ItemStack.StackState.Dead);
+        itemsOnInventory.RemoveWhere(x => x.state == ItemStack.StackState.Dead);
     }
 }

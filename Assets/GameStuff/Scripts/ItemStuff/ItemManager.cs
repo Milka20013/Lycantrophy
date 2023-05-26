@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="ItemManager",menuName ="Manager/ItemManager")]
+[CreateAssetMenu(fileName = "ItemManager", menuName = "Manager/ItemManager")]
 public class ItemManager : ScriptableObject
 {
-    private ItemBlueprint[] itemBlueprints;
+    private List<ItemBlueprint> itemBlueprints = new();
     [SerializeField] private OrbBlueprint[] orbBlueprints;
     [SerializeField] private ConsumableBlueprint[] consumableItems;
+    [SerializeField] private ItemBlueprint[] miscItems;
     private Item[] items;
 
     private void Awake()
@@ -18,19 +17,10 @@ public class ItemManager : ScriptableObject
     public void RefreshData()
     {
         FindItems();
-
-        itemBlueprints = new ItemBlueprint[orbBlueprints.Length + consumableItems.Length];
-        int j = 0;
-        for (int i = 0; i < orbBlueprints.Length; i++)
-        {
-            itemBlueprints[i] = orbBlueprints[i];
-            j++;
-        }
-        for (int i = 0; i < consumableItems.Length; i++)
-        {
-            itemBlueprints[j + i] = consumableItems[i];
-        }
-        items = new Item[itemBlueprints.Length];
+        itemBlueprints.AddRange(orbBlueprints);
+        itemBlueprints.AddRange(consumableItems);
+        itemBlueprints.AddRange(miscItems);
+        items = new Item[itemBlueprints.Count];
         for (int i = 0; i < items.Length; i++)
         {
             items[i] = new Item(itemBlueprints[i]);
@@ -40,9 +30,10 @@ public class ItemManager : ScriptableObject
     {
         orbBlueprints = Resources.LoadAll<OrbBlueprint>("ItemBlueprints/Equipment");
         consumableItems = Resources.LoadAll<ConsumableBlueprint>("ItemBlueprints/Consumable");
+        miscItems = Resources.LoadAll<ItemBlueprint>("ItemBlueprints/Misc");
     }
 
-    
+
     public Item GetItem(string id)
     {
         Item item = null;
@@ -62,7 +53,7 @@ public class ItemManager : ScriptableObject
 
     public ItemBlueprint GetItemBlueprint(ItemStack item)
     {
-        for (int i = 0; i < itemBlueprints.Length; i++)
+        for (int i = 0; i < itemBlueprints.Count; i++)
         {
             if (item.item.id == itemBlueprints[i].id)
             {

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,17 +6,19 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 {
     [Tooltip("Mandatory if it is not an item")]
     [SerializeField] private Canvas canvas;
+    private int initialSortingOrder;
 
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private RectTransform rectTransform;
 
-    
+
     private Vector2 previousPosition;
     private Transform previousParent;
 
     public void Init(Canvas canvas)
     {
         this.canvas = canvas;
+        initialSortingOrder = canvas.sortingOrder;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -28,6 +27,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         previousPosition = rectTransform.anchoredPosition;
         previousParent = transform.parent;
         transform.SetParent(canvas.transform);
+        canvas.sortingOrder = 10;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
@@ -38,6 +38,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public virtual void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+        canvas.sortingOrder = initialSortingOrder;
     }
 
     public void DropBack()

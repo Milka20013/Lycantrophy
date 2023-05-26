@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 
 public class ItemDescriptionPanel : MonoBehaviour
 {
@@ -32,7 +29,7 @@ public class ItemDescriptionPanel : MonoBehaviour
         float x = 1;
         float y = 1;
         //the pivot changes based on the active effect texts. This ratio is a bit off
-        y = itemUI.rectTransform.position.y <= canvasRectTransform.rect.width * 0.3f ?  (1 - (0.375f + (float)0.625f/effectTexts.Length * activeTexts)) : 1;
+        y = itemUI.rectTransform.position.y <= canvasRectTransform.rect.width * 0.3f ? (1 - (0.375f + (float)0.625f / effectTexts.Length * activeTexts)) : 1;
         x = itemUI.rectTransform.position.x <= canvasRectTransform.rect.width * 0.85f ? 0 : 1;
         rectTransform.pivot = new Vector2(x, y);
     }
@@ -44,7 +41,8 @@ public class ItemDescriptionPanel : MonoBehaviour
 
     public void UpdatePanel()
     {
-        basicDescription.text = currentItemUI.itemBlueprint.basicDescription;
+        string output = currentItemUI.itemBlueprint.basicDescription.Replace("<br>", "\n");
+        basicDescription.text = output;
         for (int i = 0; i < effectTexts.Length; i++)
         {
             effectTexts[i].gameObject.SetActive(false);

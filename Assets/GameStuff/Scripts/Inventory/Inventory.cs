@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [Serializable]
 public struct InventoryData
@@ -80,7 +77,7 @@ public class Inventory : MonoBehaviour, ISaveable
         AddItem(itemManager.GetItem(item), quantity);
     }
 
-    
+
 
     //Deleting affects the actual gameObject not just the reference to the item
     public void DeleteItem(ItemStack itemStack)
@@ -90,11 +87,21 @@ public class Inventory : MonoBehaviour, ISaveable
 
     }
 
-    public void OnOpenInventory(InputValue value)
+    public void OnOpenInventory()
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
+        if (!inventoryUI.activeSelf)
+        {
+            itemSpawner.itemDescriptionPanelScr.HidePanel();
+        }
         Cursor.lockState = inventoryUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
         SpawnItems();
+    }
+
+    public void CloseInventory()
+    {
+        inventoryUI.SetActive(false);
+        itemSpawner.itemDescriptionPanelScr.HidePanel();
     }
     protected void SpawnItems()
     {
@@ -110,6 +117,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public virtual void RegisterItemStack(ItemStack itemStack)
     {
         stacksInInventory.Add(itemStack);
+        itemSpawner.RegisterItem(itemStack);
     }
     public virtual void UnRegisterItemStack(ItemStack item)
     {

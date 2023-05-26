@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName ="ItemBlueprint",menuName ="ItemBlueprint")]
+[CreateAssetMenu(fileName = "ItemBlueprint", menuName = "ItemBlueprint/BasicItem")]
 public class ItemBlueprint : ScriptableObject
 {
     public string id;
