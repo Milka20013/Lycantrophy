@@ -18,9 +18,9 @@ public struct ItemData
     }
 }
 
-public enum InteractionType
+public enum ItemType
 {
-    None, Consume, Use, Equip
+    General, Consumable, Useable, Orb, Essence
 }
 [System.Serializable]
 public class Item
@@ -28,7 +28,7 @@ public class Item
     public string id;
     public string itemName;
     public int stackSize = 1;
-    public InteractionType interactionType;
+    public ItemType itemType;
     public GameObject prefab;
     public Item(Item item)
     {

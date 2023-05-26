@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
-using static UnityEngine.AudioSettings;
 
 public class MobSpawner : MonoBehaviour
 {
@@ -49,7 +45,7 @@ public class MobSpawner : MonoBehaviour
     {
         //not working properly
         //spwans mob in the range of player
-        int parity1 = Random.value < 0.5f? 1 : -1;
+        int parity1 = Random.value < 0.5f ? 1 : -1;
         float randomDistance1 = Random.Range(spawnMinDistanceFromPlayer, spawnMaxDistanceFromPlayer) * parity1; //Calculating random distances
         int parity2 = Random.value < 0.5f ? 1 : -1;                                                             //Which is between spawnmin and spawn max away
         float randomDistance2 = Random.Range(spawnMinDistanceFromPlayer, spawnMaxDistanceFromPlayer) * parity2; //From the projected player position
@@ -65,7 +61,7 @@ public class MobSpawner : MonoBehaviour
         }
         else
         {
-            
+
 
         }
     }
@@ -81,7 +77,6 @@ public class MobSpawner : MonoBehaviour
     public void SpawnMobsInPile(MobPile mobPile)
     {
         //to-do : courutine
-        float yOffset;
         int count;
         GameObject[] spawnedMobs;
 
@@ -93,23 +88,36 @@ public class MobSpawner : MonoBehaviour
         count = Random.Range(1, mobPile.maxSpawnBatchSize + 1);
         count = Mathf.Clamp(count, 0, mobPile.maxMobCount - mobPile.mobCount); //stay inside the boundaries of the pile
         spawnedMobs = new GameObject[count];
+
+        Mob mobScr;
         for (int j = 0; j < count; j++)
         {
-            yOffset = prefab.GetComponent<NavMeshAgent>().baseOffset;
-            spawnedMobs[j] = Instantiate(prefab, GetRandomPositionInPile(mobPile,yOffset), Quaternion.identity);
-            spawnedMobs[j].GetComponent<Mob>().RegisterMobData(mobData);
+            spawnedMobs[j] = Instantiate(prefab, GetRandomPositionInPile(mobPile), Quaternion.identity);
+            mobScr = spawnedMobs[j].GetComponent<Mob>();
+            mobScr.RegisterMobData(mobData);
+            var mesh = Instantiate(mobData.meshPrefab, spawnedMobs[j].transform.position, Quaternion.identity);
+            mesh.transform.SetParent(spawnedMobs[j].transform);
         }
         mobPile.RegisterMobs(spawnedMobs); //give information to the the pile that mobs were spawned
         mobPile.respawnDelay = mobPile.spawnTimer;
     }
 
-    public Vector3 GetRandomPositionInPile(MobPile mobPile, float yOffset)
+    public Vector3 GetRandomPositionInPile(MobPile mobPile)
     {
         Vector2 circlePos = Random.insideUnitCircle * mobPile.circleRadius;
         float xPos = circlePos.x + mobPile.transform.position.x;
         float zPos = circlePos.y + mobPile.transform.position.z; //bit of changing the coordinate names
-        float yPos = terrain.SampleHeight(new Vector3(xPos,0,zPos)); 
-        Vector3 position = new Vector3(xPos,yPos + yOffset,zPos);
+        float yPos = terrain.SampleHeight(new Vector3(xPos, 0, zPos));
+        Vector3 position = new Vector3(xPos, yPos, zPos);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(position, out hit, 2f, NavMesh.AllAreas))
+        {
+            position = hit.position;
+        }
+        else
+        {
+            Debug.Log("Couldn't find a position on the navmesh");
+        }
         return position;
     }
 }

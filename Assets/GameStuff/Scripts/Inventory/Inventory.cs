@@ -39,14 +39,13 @@ public class Inventory : MonoBehaviour, ISaveable
     }
     public InventoryTag inventoryTag;
 
-    public GameObject inventoryUI;
+    [SerializeField] private GameObject inventoryUI;
     public ItemSpawner itemSpawner;
     public ItemManager itemManager;
 
     public Player player { get; set; }
 
     public List<ItemStack> stacksInInventory = new List<ItemStack>();
-
     public void AddItem(Item item, int quantity = 1)
     {
         for (int i = 0; i < stacksInInventory.Count; i++)
@@ -81,25 +80,16 @@ public class Inventory : MonoBehaviour, ISaveable
         AddItem(itemManager.GetItem(item), quantity);
     }
 
-    public virtual bool AddItemStack(ItemStack itemStack)
-    {
-        stacksInInventory.Add(itemStack);
-        return true;
-    }
+    
+
+    //Deleting affects the actual gameObject not just the reference to the item
     public void DeleteItem(ItemStack itemStack)
     {
         itemStack.state = ItemStack.StackState.Dead;
-        DeleteDeadItems();
-    }
-    public void DeleteDeadItems()
-    {
-        stacksInInventory.RemoveAll(x => x.state == ItemStack.StackState.Dead);
         itemSpawner.DeleteDeadItems();
+
     }
-    private void RemoveItem(ItemStack item)
-    {
-        stacksInInventory.Remove(item);
-    }
+
     public void OnOpenInventory(InputValue value)
     {
         inventoryUI.SetActive(!inventoryUI.activeSelf);
@@ -108,22 +98,22 @@ public class Inventory : MonoBehaviour, ISaveable
     }
     protected void SpawnItems()
     {
-        itemSpawner.itemStacks = stacksInInventory;
         itemSpawner.SpawnItems();
     }
 
-    public virtual T GetOwner<T>()
-    {
-        return default;
-    }
-
-
     public void ChangeInventories(ItemStack item, Inventory targetInventory)
     {
-        if (targetInventory.AddItemStack(item))
-        {
-            RemoveItem(item);
-        }
+        targetInventory.RegisterItemStack(item);
+        UnRegisterItemStack(item);
+    }
+
+    public virtual void RegisterItemStack(ItemStack itemStack)
+    {
+        stacksInInventory.Add(itemStack);
+    }
+    public virtual void UnRegisterItemStack(ItemStack item)
+    {
+        stacksInInventory.Remove(item);
     }
 
     public void Save(ref GameData data)

@@ -13,16 +13,16 @@ public class SetBonusProvider
         this.setBonusManager = setBonusManager;
     }
 
-    public static EquipmentItem[] GetEquipmentItems(List<ItemStack> itemStacks)
+    public static OrbBlueprint[] GetEquipmentItems(List<ItemStack> itemStacks)
     {
-        EquipmentItem[] equipmentItems = new EquipmentItem[itemStacks.Count];
+        OrbBlueprint[] equipmentItems = new OrbBlueprint[itemStacks.Count];
         for (int i = 0; i < equipmentItems.Length; i++)
         {
-            equipmentItems[i] = itemStacks[i].itemUI.GetComponent<Equipment>().equipmentItem;
+            equipmentItems[i] = itemStacks[i].itemUI.GetComponent<Orb>().orbBlueprint;
         }
         return equipmentItems;
     }
-    public Amplifier[] GetAllSetBonus(EquipmentItem[] items)
+    public Amplifier[] GetAllSetBonus(OrbBlueprint[] items)
     {
         if (items.Length != 3)
         {
@@ -35,7 +35,7 @@ public class SetBonusProvider
         }
         return amps.ToArray();
     }
-    public Amplifier[] GetSetBonus(EquipmentItem[] items)
+    public Amplifier[] GetSetBonus(OrbBlueprint[] items)
     {
 
         if (items.Length != 3)
@@ -53,13 +53,13 @@ public class SetBonusProvider
         return CalculateBonuses(setBonusManager.GetBlueprint(tag), level);
     }
 
-    public Amplifier[] GetSetBonus(EquipmentItem[] items, int level)
+    public Amplifier[] GetSetBonus(OrbBlueprint[] items, int level)
     {
         SetTag setTag = items[0].tag;
         return CalculateBonuses(setBonusManager.GetBlueprint(setTag), level);
     }
 
-    public bool TagCheck(EquipmentItem[] items, out SetTag tag)
+    public bool TagCheck(OrbBlueprint[] items, out SetTag tag)
     {
         SetTag[] setTags = items.Select(x => x.tag).ToArray();
         tag = null;

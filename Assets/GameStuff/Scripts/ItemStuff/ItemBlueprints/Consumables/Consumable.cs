@@ -8,12 +8,12 @@ public class Consumable : MonoBehaviour, IPointerClickHandler
 {
     public ItemUI itemUI;
 
-    public ConsumableItem consumableItem;
+    public ConsumableBlueprint consumableItem;
 
     private void Start()
     {
         consumableItem = itemUI.inventory.itemManager.GetConsumableItemBlueprint(itemUI.itemStack);
-        itemUI.SetInteractionType(InteractionType.Consume);
+        itemUI.SetItemType(ItemType.Consumable);
         itemUI.RegisterEffects(Description());
     }
     public void OnPointerClick(PointerEventData eventData)

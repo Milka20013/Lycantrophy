@@ -148,8 +148,8 @@ GameObject:
   - component: {fileID: 3741218758709622880}
   - component: {fileID: 8840541500878148103}
   - component: {fileID: -4381249005785235162}
-  - component: {fileID: 7688819947085523376}
   - component: {fileID: -7331181208802801367}
+  - component: {fileID: 7688819947085523376}
   m_Layer: 5
   m_Name: ConsumableItem
   m_TagString: Untagged
@@ -243,21 +243,7 @@ MonoBehaviour:
   rectTransform: {fileID: 4247773556558695787}
   emptyImagePrefab: {fileID: 575272019450689603, guid: 195e5881005fe3547867d71b797a5cc5, type: 3}
   image: {fileID: 3741218758709622880}
-  quantity: {fileID: 4892054737129188676}
---- !u!114 &7688819947085523376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5146469132438167939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e00442891675c2c4380551c124bb4ce9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemUI: {fileID: -4381249005785235162}
-  consumableItem: {fileID: 0}
+  quantityText: {fileID: 4892054737129188676}
 --- !u!114 &-7331181208802801367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,3 +260,17 @@ MonoBehaviour:
   canvasGroup: {fileID: 8840541500878148103}
   rectTransform: {fileID: 4247773556558695787}
   itemUI: {fileID: -4381249005785235162}
+--- !u!114 &7688819947085523376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5146469132438167939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00442891675c2c4380551c124bb4ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemUI: {fileID: -4381249005785235162}
+  consumableItem: {fileID: 0}

@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(DropTable))]
 [RequireComponent(typeof(TakeDamage))]
@@ -36,7 +33,7 @@ public class Mob : MonoBehaviour
     {
         if (!occupied && Time.timeAsDouble - previousTime > wanderCooldown)
         {
-            previousTime = Time.timeAsDouble + Random.Range(0,wanderCooldown);
+            previousTime = Time.timeAsDouble + Random.Range(0, wanderCooldown);
             Wander();
         }
     }
@@ -52,15 +49,8 @@ public class Mob : MonoBehaviour
     {
         stats.CreateAmplifierSystem(mobdata);
         dropTable.mobData = mobdata;
-        if (mobdata.mesh != null)
-        {
-            GetComponent<MeshFilter>().mesh = mobdata.mesh;
-        }
-        if (mobdata.size != Vector3.zero)
-        {
-            transform.localScale = mobdata.size;
-        }
     }
+
 
     public void SetDestination(Vector3 position, float stoppingDistance)
     {

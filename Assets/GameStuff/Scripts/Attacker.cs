@@ -1,6 +1,3 @@
-using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Stats))]
@@ -14,15 +11,20 @@ public class Attacker : MonoBehaviour
     private float _attackSpeed;
     private float attackDelay = 0f;
 
+
     public LayerMask enemyLayer = 1 << 8;
 
     [Tooltip("Automatically attacks if its attackDelay is <= 0, and if canAttack is true")]
     public bool attackIfAbleTo = false;
     [HideInInspector] public bool canAttack = false;
 
+    EntityAnimator animator;
+    private bool hasAnimator;
+
     private void Awake()
     {
         stats = GetComponent<Stats>();
+        hasAnimator = TryGetComponent(out animator);
     }
     private void Start()
     {
@@ -36,7 +38,7 @@ public class Attacker : MonoBehaviour
             attackDelay -= Time.deltaTime;
         }
 
-        if (attackIfAbleTo && canAttack  && attackDelay <= 0f)
+        if (attackIfAbleTo && canAttack && attackDelay <= 0f)
         {
             OnAttack();
         }
@@ -45,14 +47,19 @@ public class Attacker : MonoBehaviour
     {
         if (attackDelay <= 0f)
         {
+            if (hasAnimator)
+            {
+                animator.ChangeAnimationState(animator.attack);
+            }
             Attack();
             attackDelay = 1 / _attackSpeed;
         }
     }
-    
+
     private void Attack()
     {
-        Collider[] enemies =  Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+
+        Collider[] enemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
         for (int i = 0; i < enemies.Length; i++)
         {
             if (enemies[i].TryGetComponent(out TakeDamage takeDamage))
@@ -69,6 +76,10 @@ public class Attacker : MonoBehaviour
     {
         _damage = stats.GetAttributeValue(Attribute.Damage);
         _attackSpeed = stats.GetAttributeValue(Attribute.AttackSpeed);
+        if (1 / _attackSpeed < animator.AttackLength)
+        {
+            animator.SetFloat(animator.attackSpeed, animator.AttackLength * _attackSpeed);
+        }
     }
 
 }

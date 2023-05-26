@@ -7,7 +7,7 @@ using System;
 
 public class SetBonusDescription : MonoBehaviour
 {
-    public EquipmentInventory inv;
+    public OrbInventory inv;
     public TextMeshProUGUI setName;
     public TextMeshProUGUI[] bonusTexts;
 
@@ -27,15 +27,15 @@ public class SetBonusDescription : MonoBehaviour
 
     public void UpdatePanel()
     {
-        string tag = inv.stacksInInventory[0].itemUI.GetComponent<Equipment>().equipmentItem.tag.setName;
+        string tag = inv.stacksInInventory[0].itemUI.GetComponent<Orb>().orbBlueprint.tag.setName;
 
         setName.text = tag;
 
-        EquipmentItem[] equipmentItems = SetBonusProvider.GetEquipmentItems(inv.stacksInInventory);
+        OrbBlueprint[] orbBlueprints = SetBonusProvider.GetEquipmentItems(inv.stacksInInventory);
 
-        int level = equipmentItems.Sum(x => x.tier);
+        int level = orbBlueprints.Sum(x => x.tier);
 
-        Amplifier[] amps = inv.setBonusProvider.GetAllSetBonus(equipmentItems);
+        Amplifier[] amps = inv.setBonusProvider.GetAllSetBonus(orbBlueprints);
         int ratio = amps.Length / bonusTexts.Length;
         string[] descriptions = new string[amps.Length];
 

@@ -28,7 +28,7 @@ public struct PlayerData
 public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory { get; private set; }
-    public EquipmentInventory equipmentInventory;
+    public OrbInventory orbInventory;
     public Stats playerStats { get; private set; }
     public StatMenu statMenu;
     public TextMeshProUGUI healthText;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Potion", menuName = "ItemBlueprint/Consumable/Potion")]
-public class Potion : ConsumableItem
+public class Potion : ConsumableBlueprint
 {
     public override void ConsumeItem(HealthSystem healthSystem)
     {

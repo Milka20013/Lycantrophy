@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 #endif
@@ -119,15 +118,13 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
-        private Animator _animator;
         private CharacterController _controller;
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
         private const float _threshold = 0.01f;
-
         private bool _hasAnimator;
-
+        EntityAnimator animator;
         private bool IsCurrentDeviceMouse
         {
             get
@@ -154,8 +151,7 @@ namespace StarterAssets
         {
             playerStats.OnStatChange += OnStatChange;
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-
-            _hasAnimator = TryGetComponent(out _animator);
+            _hasAnimator = TryGetComponent(out animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -173,7 +169,6 @@ namespace StarterAssets
 
         private void Update()
         {
-            _hasAnimator = TryGetComponent(out _animator);
             if (Cursor.lockState != CursorLockMode.Locked)
             {
                 LockCameraPosition = true;
@@ -210,10 +205,10 @@ namespace StarterAssets
                 QueryTriggerInteraction.Ignore);
 
             // update animator if using character
-            if (_hasAnimator)
+            /*if (_hasAnimator)
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
-            }
+            }*/
         }
 
         private void CameraRotation()
@@ -303,10 +298,13 @@ namespace StarterAssets
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
             // update animator if using character
-            if (_hasAnimator)
+            if (_hasAnimator && _speed >= 0.1f)
             {
-                _animator.SetFloat(_animIDSpeed, _animationBlend);
-                _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+                animator.ChangeAnimationState(animator.walk);
+            }
+            else
+            {
+                animator.SignalIdle(animator.walk);
             }
         }
 
@@ -320,8 +318,7 @@ namespace StarterAssets
                 // update animator if using character
                 if (_hasAnimator)
                 {
-                    _animator.SetBool(_animIDJump, false);
-                    _animator.SetBool(_animIDFreeFall, false);
+
                 }
 
                 // stop our velocity dropping infinitely when grounded
@@ -339,7 +336,6 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
-                        _animator.SetBool(_animIDJump, true);
                     }
                 }
 
@@ -364,7 +360,6 @@ namespace StarterAssets
                     // update animator if using character
                     if (_hasAnimator)
                     {
-                        _animator.SetBool(_animIDFreeFall, true);
                     }
                 }
 

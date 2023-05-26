@@ -22,8 +22,8 @@ public class ItemBlueprintEditor : Editor
     }
 }
 
-[CustomEditor(typeof(EquipmentItem))]
-public class EquipmentItemEditor : ItemBlueprintEditor
+[CustomEditor(typeof(OrbBlueprint))]
+public class OrbItemEditor : ItemBlueprintEditor
 {
 
 }

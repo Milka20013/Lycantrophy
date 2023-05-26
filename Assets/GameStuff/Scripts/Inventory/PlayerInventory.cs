@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerInventory : Inventory
 {
-    public EquipmentInventory equipmentInventory;
+    public OrbInventory orbInventory;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class PlayerInventory : Inventory
     }
     public void EquipItem(ItemStack itemStack)
     {
-        equipmentInventory.EquipItem(itemStack);
+        orbInventory.EquipItem(itemStack);
         stacksInInventory.Remove(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
     }

@@ -1,16 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(BoxCollider))]
-[RequireComponent(typeof(MeshFilter))]
 public class HitboxResizer : MonoBehaviour
 {
     private void Start()
     {
         BoxCollider coll = GetComponent<BoxCollider>();
-        Mesh mesh = GetComponent<MeshFilter>().mesh;
+        SkinnedMeshRenderer mesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        bool hasAgent = TryGetComponent(out NavMeshAgent agent);
+        float offsetY = 0f;
+        if (hasAgent)
+        {
+            offsetY = agent.height / 2;
+            coll.center = new Vector3(coll.center.x, coll.center.y + offsetY, coll.center.z);
+        }
         coll.size = mesh.bounds.size;
-        coll.center = mesh.bounds.center;
     }
 }

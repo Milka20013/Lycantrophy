@@ -7,8 +7,8 @@ using UnityEngine;
 public class ItemManager : ScriptableObject
 {
     private ItemBlueprint[] itemBlueprints;
-    [SerializeField] private EquipmentItem[] equipmentItems;
-    [SerializeField] private ConsumableItem[] consumableItems;
+    [SerializeField] private OrbBlueprint[] orbBlueprints;
+    [SerializeField] private ConsumableBlueprint[] consumableItems;
     private Item[] items;
 
     private void Awake()
@@ -19,11 +19,11 @@ public class ItemManager : ScriptableObject
     {
         FindItems();
 
-        itemBlueprints = new ItemBlueprint[equipmentItems.Length + consumableItems.Length];
+        itemBlueprints = new ItemBlueprint[orbBlueprints.Length + consumableItems.Length];
         int j = 0;
-        for (int i = 0; i < equipmentItems.Length; i++)
+        for (int i = 0; i < orbBlueprints.Length; i++)
         {
-            itemBlueprints[i] = equipmentItems[i];
+            itemBlueprints[i] = orbBlueprints[i];
             j++;
         }
         for (int i = 0; i < consumableItems.Length; i++)
@@ -38,8 +38,8 @@ public class ItemManager : ScriptableObject
     }
     private void FindItems()
     {
-        equipmentItems = Resources.LoadAll<EquipmentItem>("ItemBlueprints/Equipment");
-        consumableItems = Resources.LoadAll<ConsumableItem>("ItemBlueprints/Consumable");
+        orbBlueprints = Resources.LoadAll<OrbBlueprint>("ItemBlueprints/Equipment");
+        consumableItems = Resources.LoadAll<ConsumableBlueprint>("ItemBlueprints/Consumable");
     }
 
     
@@ -72,19 +72,19 @@ public class ItemManager : ScriptableObject
         Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
         return null;
     }
-    public EquipmentItem GetEquipmentItemBlueprint(ItemStack item)
+    public OrbBlueprint GetEquipmentItemBlueprint(ItemStack item)
     {
-        for (int i = 0; i < equipmentItems.Length; i++)
+        for (int i = 0; i < orbBlueprints.Length; i++)
         {
-            if (item.item.id == equipmentItems[i].id)
+            if (item.item.id == orbBlueprints[i].id)
             {
-                return equipmentItems[i];
+                return orbBlueprints[i];
             }
         }
         Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
         return null;
     }
-    public ConsumableItem GetConsumableItemBlueprint(ItemStack item)
+    public ConsumableBlueprint GetConsumableItemBlueprint(ItemStack item)
     {
         for (int i = 0; i < consumableItems.Length; i++)
         {

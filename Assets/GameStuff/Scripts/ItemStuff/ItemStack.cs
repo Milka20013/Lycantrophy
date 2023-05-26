@@ -27,7 +27,7 @@ public class ItemStack
         if (quantity <= 0)
         {
             state = StackState.Dead;
-            itemUI.inventory.DeleteDeadItems();
+            itemUI.inventory.DeleteItem(this);
         }
         else if (quantity >= item.stackSize)
         {
