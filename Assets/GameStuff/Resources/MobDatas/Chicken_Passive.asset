@@ -17,7 +17,8 @@ MonoBehaviour:
     value: 10
   - attribute: 3
     value: 5
-  rawExp: 1
+  rawExp: 2
+  rawCurrency: 2.5
   droppableItems:
   - item: {fileID: 11400000, guid: 937cea476cd230e42aa464f4b44d3706, type: 2}
     percentage: 70

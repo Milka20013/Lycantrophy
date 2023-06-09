@@ -5,6 +5,7 @@ using UnityEngine;
 public class MobData : EntityData
 {
     public float rawExp;
+    public float rawCurrency;
     public List<DroppableItem> droppableItems;
     public List<DroppableItem> generalDrops;
     [Tooltip("Agressive / Passive mob...")]

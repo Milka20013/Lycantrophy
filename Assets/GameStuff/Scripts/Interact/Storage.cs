@@ -3,15 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class Storage : Interactable
 {
-    private Inventory inventory;
+    [HideInInspector] public Inventory inventory;
     public override void Awake()
     {
         base.Awake();
         inventory = GetComponent<Inventory>();
     }
-    public override void Interact()
+    public override void Interact(Player player)
     {
-        base.Interact();
+        base.Interact(player);
         inventory.OnOpenInventory();
     }
     public override void HideIndicator()

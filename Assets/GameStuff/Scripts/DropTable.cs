@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,8 +23,14 @@ public class DropTable : MonoBehaviour
 
     private void Start()
     {
-        healthSystem.onDeath += DropExp;
-        healthSystem.onDeath += DropItems;
+        healthSystem.onDeath += OnDeath;
+    }
+
+    public void OnDeath(GameObject killer)
+    {
+        DropItems(killer);
+        DropExp(killer);
+        DropCurrency(killer);
     }
     public void DropItems(GameObject killer)
     {
@@ -57,11 +62,30 @@ public class DropTable : MonoBehaviour
         else
         {
             return;
-        } 
+        }
     }
 
     public void DropExp(GameObject killer)
     {
-        killer.GetComponent<Levelling>()?.AddExp(mobData.rawExp);
+        if (killer == null)
+        {
+            return;
+        }
+        if (killer.TryGetComponent(out Levelling scr))
+        {
+            scr.AddExp(mobData.rawExp);
+        }
+    }
+
+    public void DropCurrency(GameObject killer)
+    {
+        if (killer == null)
+        {
+            return;
+        }
+        if (killer.TryGetComponent(out PlayerInventory inventory))
+        {
+            inventory.AddCurrency(mobData.rawCurrency);
+        }
     }
 }

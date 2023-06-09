@@ -35,24 +35,25 @@ public class ItemSpawner : MonoBehaviour
         }
         ItemSlot itemSlot = slots[itemSlotId];
 
-        RectTransform rectTransform = itemSlot.gameObject.GetComponent<RectTransform>();
-
         //position of the itemstack
-        rectTransform = itemSlot.gameObject.GetComponent<RectTransform>();
+        RectTransform rectTransform = itemSlot.gameObject.GetComponent<RectTransform>();
 
         //spawning
         GameObject objectToSpawn = GetItemToSpawn(itemStack);
         GameObject item = Instantiate(objectToSpawn, rectTransform.anchoredPosition, rectTransform.rotation);
         item.transform.SetParent(gameObject.transform, false);
 
-        //setting the infos to itemUI, so it can dynamically change later
+        //setting the infos to itemUI
         ItemUI itemUI = item.GetComponent<ItemUI>();
         itemUI.SetItemInfos(rectTransform.anchoredPosition, itemStack, itemSlotId);
 
         itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack), inventory.player);
 
         //assigning the item to the slot, so it will drag and drop properly
-        item.GetComponent<DragAndDropItem>().Init(canvas, itemSlot);
+        if (item.TryGetComponent(out DragAndDropItem dragAndDrop))
+        {
+            dragAndDrop.Init(canvas, itemSlot);
+        }
         itemSlot.attachedObject = item;
 
         //add to the list, so we can remove later

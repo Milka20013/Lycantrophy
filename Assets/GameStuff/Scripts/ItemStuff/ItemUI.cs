@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public RectTransform rectTransform;
 
@@ -28,6 +27,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
 
 
     [HideInInspector] public List<string> effectsDescription { get; private set; } = new List<string>();
+    [HideInInspector] public string basicDescription { get; set; }
 
     private ItemDescriptionPanel itemDescriptionPanel;
     public void SetReferences(Inventory inventory, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP, Player player)
@@ -35,6 +35,7 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         this.inventory = inventory;
         this.itemDescriptionPanel = itemDescriptionPanel;
         this.itemBlueprint = itemBP;
+        basicDescription = itemBP.basicDescription;
         this.player = player;
         this.image.sprite = itemBP.sprites[0];
         PlaceRemainingSprites(itemBP);
@@ -99,13 +100,6 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     {
         effectsDescription.AddRange(desc);
     }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Middle)
-        {
-            inventory.DeleteItem(itemStack);
-        }
-    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -123,6 +117,16 @@ public class ItemUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
         slotId = slot.id;
         inventory.ChangeInventories(itemStack, slot.inventory);
         inventory = slot.inventory;
+    }
+
+    public void SellItem()
+    {
+        player.playerInventory.AddCurrency(itemBlueprint.value * itemStack.quantity);
+        DestroyItem();
+    }
+    public void DestroyItem()
+    {
+        inventory.DeleteItem(itemStack);
     }
 
     private void OnDestroy()

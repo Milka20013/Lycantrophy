@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem.Controls;
 
 //this class is for each individual itemslot in the inventory
 
@@ -17,7 +13,7 @@ public class ItemSlot : MonoBehaviour
     public Vector2 positionOffset;
 
     public GameObject attachedObject { get; set; }
-    
+
 
     private void Awake()
     {
@@ -30,6 +26,13 @@ public class ItemSlot : MonoBehaviour
             return false;
         }
         ItemUI itemUI = item.GetComponent<ItemUI>();
+
+        //selling the item. This should not be here i guess
+        if (acceptedItemType == ItemType.None)
+        {
+            SellItem(itemUI);
+            return false;
+        }
 
         //if the slot can't accept the item
         if (!CanAcceptItem(itemUI.itemStack.item))
@@ -63,5 +66,10 @@ public class ItemSlot : MonoBehaviour
             return true;
         }
         return item.itemType == acceptedItemType;
+    }
+
+    private void SellItem(ItemUI itemUI)
+    {
+        itemUI.SellItem();
     }
 }

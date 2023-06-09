@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 
 public class PlayerInventory : Inventory
 {
+    private float soulFragments;
     public OrbInventory orbInventory;
+
+
+    //UI
+    [SerializeField] private TextMeshProUGUI currencyText;
 
     private void Awake()
     {
         player = GetComponent<Player>();
+        UpdateText();
     }
 
     private void Update()
@@ -24,6 +29,22 @@ public class PlayerInventory : Inventory
         orbInventory.EquipItem(itemStack);
         stacksInInventory.Remove(itemStack);
         itemSpawner.itemStacks = stacksInInventory;
+    }
+
+    public void AddCurrency(float amount)
+    {
+        soulFragments += amount;
+        UpdateText();
+    }
+
+    public float GetCurrency()
+    {
+        return soulFragments;
+    }
+
+    private void UpdateText()
+    {
+        currencyText.text = Mathf.Floor(soulFragments).ToString();
     }
 
 }

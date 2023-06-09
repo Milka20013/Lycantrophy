@@ -41,7 +41,7 @@ public class ItemDescriptionPanel : MonoBehaviour
 
     public void UpdatePanel()
     {
-        string output = currentItemUI.itemBlueprint.basicDescription.Replace("<br>", "\n");
+        string output = currentItemUI.basicDescription.Replace("<br>", "\n");
         basicDescription.text = output;
         for (int i = 0; i < effectTexts.Length; i++)
         {

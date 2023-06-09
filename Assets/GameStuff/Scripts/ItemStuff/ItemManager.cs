@@ -7,6 +7,7 @@ public class ItemManager : ScriptableObject
     private List<ItemBlueprint> itemBlueprints = new();
     [SerializeField] private OrbBlueprint[] orbBlueprints;
     [SerializeField] private ConsumableBlueprint[] consumableItems;
+    [SerializeField] private ProductBlueprint[] productItems;
     [SerializeField] private ItemBlueprint[] miscItems;
     private Item[] items;
 
@@ -20,6 +21,7 @@ public class ItemManager : ScriptableObject
         itemBlueprints.AddRange(orbBlueprints);
         itemBlueprints.AddRange(consumableItems);
         itemBlueprints.AddRange(miscItems);
+        itemBlueprints.AddRange(productItems);
         items = new Item[itemBlueprints.Count];
         for (int i = 0; i < items.Length; i++)
         {
@@ -30,6 +32,7 @@ public class ItemManager : ScriptableObject
     {
         orbBlueprints = Resources.LoadAll<OrbBlueprint>("ItemBlueprints/Equipment");
         consumableItems = Resources.LoadAll<ConsumableBlueprint>("ItemBlueprints/Consumable");
+        productItems = Resources.LoadAll<ProductBlueprint>("ItemBlueprints/Product");
         miscItems = Resources.LoadAll<ItemBlueprint>("ItemBlueprints/Misc");
     }
 
@@ -82,6 +85,19 @@ public class ItemManager : ScriptableObject
             if (item.item.id == consumableItems[i].id)
             {
                 return consumableItems[i];
+            }
+        }
+        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
+        return null;
+    }
+
+    public ProductBlueprint GetProductItemBlueprint(ItemStack item)
+    {
+        for (int i = 0; i < productItems.Length; i++)
+        {
+            if (item.item.id == productItems[i].id)
+            {
+                return productItems[i];
             }
         }
         Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");

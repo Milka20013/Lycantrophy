@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 //this class stores data related to one specific item
@@ -20,7 +18,7 @@ public struct ItemData
 
 public enum ItemType
 {
-    General, Consumable, Useable, Orb, Essence
+    General, Consumable, Useable, Orb, Essence, None
 }
 [System.Serializable]
 public class Item

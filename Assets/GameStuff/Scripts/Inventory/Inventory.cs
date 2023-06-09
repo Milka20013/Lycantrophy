@@ -72,9 +72,26 @@ public class Inventory : MonoBehaviour, ISaveable
             SpawnItems();
         }
     }
+    /// <summary>
+    /// Add an item with quantity to the inventory
+    /// </summary>
     public void AddItem(ItemBlueprint item, int quantity = 1)
     {
         AddItem(itemManager.GetItem(item), quantity);
+    }
+
+    /// <summary>
+    /// Adding items to the inventory. It doesn't check anything, overflowing can be a problem
+    /// </summary>
+    public void AddItemNonDistributed(ItemBlueprint itemBP, int quantity)
+    {
+        Item item = itemManager.GetItem(itemBP);
+        ItemStack[] createdStacks = ItemStack.CreateItemStacks(item, quantity);
+        stacksInInventory.AddRange(createdStacks);
+        if (itemSpawner.slots[0].isActiveAndEnabled)
+        {
+            SpawnItems();
+        }
     }
 
 
@@ -83,6 +100,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public void DeleteItem(ItemStack itemStack)
     {
         itemStack.state = ItemStack.StackState.Dead;
+        stacksInInventory.Remove(itemStack);
         itemSpawner.DeleteDeadItems();
 
     }
@@ -114,11 +132,17 @@ public class Inventory : MonoBehaviour, ISaveable
         UnRegisterItemStack(item);
     }
 
+    /// <summary>
+    /// This method is used only in case of changing inventories of the item. Do not use elsewhere
+    /// </summary>
     public virtual void RegisterItemStack(ItemStack itemStack)
     {
         stacksInInventory.Add(itemStack);
         itemSpawner.RegisterItem(itemStack);
     }
+    /// <summary>
+    /// This method is used only in case of changing inventories of the item. Do not use elsewhere
+    /// </summary>
     public virtual void UnRegisterItemStack(ItemStack item)
     {
         stacksInInventory.Remove(item);

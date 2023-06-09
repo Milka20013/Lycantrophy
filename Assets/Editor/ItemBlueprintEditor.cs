@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEditor;
-using UnityEngine;
+
 
 [CustomEditor(typeof(ItemBlueprint))]
 
@@ -32,5 +31,19 @@ public class OrbItemEditor : ItemBlueprintEditor
 public class PotionEditor : ItemBlueprintEditor
 {
 
+}
+
+[CustomEditor(typeof(ProductBlueprint))]
+public class ProductEditor : ItemBlueprintEditor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        ProductBlueprint bp = (ProductBlueprint)target;
+        if (bp.quantity > bp.stackSize)
+        {
+            EditorGUILayout.HelpBox("Quantity should be lower than stacksize", MessageType.Warning);
+        }
+    }
 }
 

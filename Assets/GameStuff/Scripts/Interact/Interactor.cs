@@ -18,7 +18,9 @@ public class Interactor : MonoBehaviour
         {
             return;
         }
-        interactableScr.Interact();
+        //ASSUMING IT IS A PLAYER
+        var player = GetComponent<Player>();
+        interactableScr.Interact(player);
     }
     IEnumerator FindInteractables()
     {
@@ -44,7 +46,10 @@ public class Interactor : MonoBehaviour
             }
             else
             {
-                previousInteractScr.HideIndicator();
+                if (previousInteractScr != null)
+                {
+                    previousInteractScr.HideIndicator();
+                }
             }
             yield return new WaitForSeconds(0.5f);
         }

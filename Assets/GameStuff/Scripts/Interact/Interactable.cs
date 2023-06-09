@@ -7,15 +7,21 @@ public class Interactable : MonoBehaviour
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject indicatorPosition;
     private bool isIndicatorShown;
+    [HideInInspector] public Player player;
     IEnumerator levitate;
 
     public virtual void Awake()
     {
         levitate = LevitateIndicator();
     }
+    public virtual void Interact(Player player)
+    {
+        this.player = player;
+    }
+
     public virtual void Interact()
     {
-        Debug.Log("hello from " + name);
+        Debug.Log("Empty interact ");
     }
 
     public void ShowIndicator()
