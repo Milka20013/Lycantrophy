@@ -177,6 +177,10 @@ namespace StarterAssets
             {
                 LockCameraPosition = false;
             }
+            if (animator.lockState)
+            {
+                return;
+            }
             JumpAndGravity();
             GroundedCheck();
             Move();

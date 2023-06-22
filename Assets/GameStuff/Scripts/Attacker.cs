@@ -40,16 +40,17 @@ public class Attacker : MonoBehaviour
 
         if (attackIfAbleTo && canAttack && attackDelay <= 0f)
         {
-            OnAttack();
+            TryAttack();
         }
     }
-    public void OnAttack() //playerinput also invokes this
+    public void TryAttack()
     {
         if (attackDelay <= 0f)
         {
             if (hasAnimator)
             {
                 animator.ChangeAnimationState(animator.attack);
+                animator.SetLock(animator.AttackLength / _attackSpeed);
             }
             Attack();
             attackDelay = 1 / _attackSpeed;
@@ -58,7 +59,6 @@ public class Attacker : MonoBehaviour
 
     private void Attack()
     {
-
         Collider[] enemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
         for (int i = 0; i < enemies.Length; i++)
         {
@@ -76,6 +76,10 @@ public class Attacker : MonoBehaviour
     {
         _damage = stats.GetAttributeValue(Attribute.Damage);
         _attackSpeed = stats.GetAttributeValue(Attribute.AttackSpeed);
+        if (!hasAnimator)
+        {
+            return;
+        }
         if (1 / _attackSpeed < animator.AttackLength)
         {
             animator.SetFloat(animator.attackSpeed, animator.AttackLength * _attackSpeed);

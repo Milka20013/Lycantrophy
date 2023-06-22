@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class OrbInventory : Inventory
@@ -6,6 +5,7 @@ public class OrbInventory : Inventory
     [SerializeField] private SetBonusManager setBonusManager;
     [HideInInspector] public SetBonusProvider setBonusProvider;
     [HideInInspector] public Amplifier[] setbonus;
+    private Player player;
 
     private void Awake()
     {
@@ -74,5 +74,14 @@ public class OrbInventory : Inventory
     public bool ItemIsEquippedByRef(ItemStack itemStack)
     {
         return stacksInInventory.Contains(itemStack);
+    }
+
+    public override T GetOwner<T>() where T : class
+    {
+        if (typeof(T) == typeof(Player))
+        {
+            return player as T;
+        }
+        return null;
     }
 }

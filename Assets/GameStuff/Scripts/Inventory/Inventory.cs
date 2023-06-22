@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour, ISaveable
     public ItemSpawner itemSpawner;
     public ItemManager itemManager;
 
-    public Player player { get; set; }
+    //public Player player { get; set; }
 
     public List<ItemStack> stacksInInventory = new List<ItemStack>();
     public void AddItem(Item item, int quantity = 1)
@@ -185,4 +185,8 @@ public class Inventory : MonoBehaviour, ISaveable
         }
     }
 
+    public virtual T GetOwner<T>() where T : class
+    {
+        return null;
+    }
 }

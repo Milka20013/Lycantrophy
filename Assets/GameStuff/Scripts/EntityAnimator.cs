@@ -15,6 +15,7 @@ public class EntityAnimator : MonoBehaviour
 
 
     private string currentState;
+    public bool lockState { get; private set; }
 
     private void Awake()
     {
@@ -58,6 +59,10 @@ public class EntityAnimator : MonoBehaviour
 
     public void ChangeAnimationState(string newState, bool forceIdle = false)
     {
+        if (lockState)
+        {
+            return;
+        }
         if (currentState == newState)
         {
             return;
@@ -73,6 +78,10 @@ public class EntityAnimator : MonoBehaviour
 
     public void SignalIdle(string state)
     {
+        if (lockState)
+        {
+            return;
+        }
         if (currentState == state)
         {
             ChangeAnimationState(idle, true);
@@ -82,5 +91,21 @@ public class EntityAnimator : MonoBehaviour
     public void SetFloat(string valueName, float value)
     {
         animator.SetFloat(valueName, value);
+    }
+
+    public void SetLock(float time)
+    {
+        if (lockState)
+        {
+            return;
+        }
+        lockState = true;
+        StartCoroutine(FreeLock(time));
+    }
+
+    IEnumerator FreeLock(float time)
+    {
+        yield return new WaitForSeconds(time);
+        lockState = false;
     }
 }

@@ -6,7 +6,7 @@ public class PlayerInventory : Inventory
 {
     private float soulFragments;
     public OrbInventory orbInventory;
-
+    private Player player;
 
     //UI
     [SerializeField] private TextMeshProUGUI currencyText;
@@ -45,6 +45,15 @@ public class PlayerInventory : Inventory
     private void UpdateText()
     {
         currencyText.text = Mathf.Floor(soulFragments).ToString();
+    }
+
+    override public T GetOwner<T>() where T : class
+    {
+        if (typeof(T) == typeof(Player))
+        {
+            return player as T;
+        }
+        return null;
     }
 
 }

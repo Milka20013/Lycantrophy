@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f538130b267414b97741f62898bb41, type: 3}
+  m_Name: Goat_Boss
+  m_EditorClassIdentifier: 
+  attributeDatas:
+  - attribute: 2
+    value: 300
+  - attribute: 1
+    value: 50
+  - attribute: 4
+    value: 0.3
+  - attribute: 3
+    value: 3
+  rawExp: 100
+  rawCurrency: 500
+  droppableItems:
+  - item: {fileID: 11400000, guid: 766ec2fa170a95f4ba36404241fdd17c, type: 2}
+    percentage: 100
+    itemRange: 0100000001000000
+  generalDrops: []
+  prefab: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
+  meshPrefab: {fileID: 2770290637669856482, guid: 976ec91afaca41d4180ad4dc1bf4e14c, type: 3}
+  size: {x: 1, y: 1, z: 1}
