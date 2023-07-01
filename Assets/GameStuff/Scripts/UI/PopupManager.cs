@@ -23,6 +23,7 @@ public class PopupManager : MonoBehaviour
             instance = this;
         }
         hideAfterAnswear = true;
+        Hide();
     }
     public bool Show(string text)
     {

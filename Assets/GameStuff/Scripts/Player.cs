@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
 using StarterAssets;
 using System;
+using TMPro;
+using UnityEngine;
 
 //this class has all the references to the other classes attached to the player
 //and the methods with the player
@@ -38,7 +36,7 @@ public class Player : MonoBehaviour, ISaveable
 
     private ThirdPersonController moveController;
 
-    public bool isDead {  get; private set; }
+    public bool isDead { get; private set; }
     public float respawnCooldown = 10f;
     [HideInInspector] public float respawnTimer = 10f;
     private void Awake()
@@ -63,7 +61,7 @@ public class Player : MonoBehaviour, ISaveable
         deathCanvas.SetActive(true);
         moveController.enabled = false;
         isDead = true;
-        transform.rotation = Quaternion.Euler(0,transform.rotation.y, 80);
+        transform.rotation = Quaternion.Euler(0, transform.rotation.y, 80);
     }
 
     public void Respawn()

@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 public enum AmplifierType { Plus, Percentage, TruePercentage }
 public enum AmplifierKey { None, Stacking, Overriding, Extending }
@@ -58,6 +56,7 @@ public class Amplifier
     public static bool IsAmplifierInCollectionPartially(List<Amplifier> amplifiers, Amplifier amplifier, out int index)
     {
         //it does pseude check, stacking objects return false although it is in the collection
+        // to-do clean this up
         if (amplifier.key == AmplifierKey.Stacking)
         {
             index = -1;

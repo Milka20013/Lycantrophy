@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using static UnityEditor.Progress;
+using UnityEngine;
 
 public class SetBonusProvider
 {
@@ -48,7 +46,7 @@ public class SetBonusProvider
         {
             return null;
         }
-       
+
         int level = items.Sum(x => x.tier);
         return CalculateBonuses(setBonusManager.GetBlueprint(tag), level);
     }

@@ -22,8 +22,12 @@ MonoBehaviour:
   - attribute: 3
     value: 4
   rawExp: 1
-  droppableItems: []
+  rawCurrency: 0
+  droppableItems:
+  - item: {fileID: 11400000, guid: 890bded7b3797444c864d0f7cbc57342, type: 2}
+    percentage: 60
+    itemRange: 
   generalDrops: []
   prefab: {fileID: 5407015723440895298, guid: 247e78981b76ccd4aaceeed668717ba5, type: 3}
-  mesh: {fileID: 1248039166958328286, guid: 154085fe088ae0040a2a828287146a0c, type: 3}
+  meshPrefab: {fileID: 0}
   size: {x: 1, y: 1, z: 1}

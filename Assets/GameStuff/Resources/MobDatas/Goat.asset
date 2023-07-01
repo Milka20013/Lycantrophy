@@ -27,6 +27,15 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 937cea476cd230e42aa464f4b44d3706, type: 2}
     percentage: 70
     itemRange: 0100000003000000
+  - item: {fileID: 11400000, guid: 766ec2fa170a95f4ba36404241fdd17c, type: 2}
+    percentage: 70
+    itemRange: 0100000003000000
+  - item: {fileID: 11400000, guid: f904d2127db460f4c840a1f49e466d52, type: 2}
+    percentage: 70
+    itemRange: 0100000003000000
+  - item: {fileID: 11400000, guid: 514f0684091f4ab4090a36630ce2b605, type: 2}
+    percentage: 70
+    itemRange: 0100000003000000
   generalDrops: []
   prefab: {fileID: 5407015723440895298, guid: 247e78981b76ccd4aaceeed668717ba5, type: 3}
   meshPrefab: {fileID: 2770290637669856482, guid: d5e25b6b9a847604f8bdf46ba27823bc, type: 3}

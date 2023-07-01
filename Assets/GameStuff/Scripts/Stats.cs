@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-using TMPro;
+using UnityEngine;
 
-public enum Attribute { 
+public enum Attribute
+{
     None,
-    Damage, 
-    MaxHealth, 
-    MoveSpeed, 
+    Damage,
+    MaxHealth,
+    MoveSpeed,
     AttackSpeed,
     Type1,
     Type2,
@@ -56,7 +54,7 @@ public class Stats : MonoBehaviour, ISaveable
     }
     public void RegisterAmplifiers(Amplifier[] amplifiers)
     {
-        if (amplifierSystem.RegisterAmplifiers(amplifiers)) //if change happened to the amps, this returns true
+        if (amplifierSystem.RegisterAmplifiers(amplifiers))
         {
             //invoke all the methods registered
             OnStatChange?.Invoke();
@@ -65,12 +63,9 @@ public class Stats : MonoBehaviour, ISaveable
 
     public void UnRegisterAmplifiers(Amplifier[] amplifiers)
     {
-        if (amplifierSystem.UnregisterAmplifiers(amplifiers)) //if change happened to the amps, this returns true
+        if (amplifierSystem.UnregisterAmplifiers(amplifiers))
         {
-            if (OnStatChange != null) //so we call the methods that listens to this event
-            {
-                OnStatChange();
-            }
+            OnStatChange?.Invoke();
         }
     }
 

@@ -13,13 +13,13 @@ public class OrbInventory : Inventory
         setBonusProvider = new SetBonusProvider(setBonusManager);
     }
 
-    public override void RegisterItemStack(ItemStack itemStack)
+    protected override void RegisterItemStack(ItemStack itemStack)
     {
         base.RegisterItemStack(itemStack);
         EquipItem(itemStack);
     }
 
-    public override void UnRegisterItemStack(ItemStack itemStack)
+    protected override void UnRegisterItemStack(ItemStack itemStack)
     {
         base.UnRegisterItemStack(itemStack);
         UnequipItem(itemStack);

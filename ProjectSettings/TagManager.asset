@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Mob
   - DescriptionPanel
+  - RemoveArea
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Enemy
   - Player
   - Interactable
-  - 
+  - EditorIgnore
   - 
   - 
   - 

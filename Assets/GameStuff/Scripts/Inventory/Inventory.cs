@@ -132,18 +132,12 @@ public class Inventory : MonoBehaviour, ISaveable
         UnRegisterItemStack(item);
     }
 
-    /// <summary>
-    /// This method is used only in case of changing inventories of the item. Do not use elsewhere
-    /// </summary>
-    public virtual void RegisterItemStack(ItemStack itemStack)
+    protected virtual void RegisterItemStack(ItemStack itemStack)
     {
         stacksInInventory.Add(itemStack);
         itemSpawner.RegisterItem(itemStack);
     }
-    /// <summary>
-    /// This method is used only in case of changing inventories of the item. Do not use elsewhere
-    /// </summary>
-    public virtual void UnRegisterItemStack(ItemStack item)
+    protected virtual void UnRegisterItemStack(ItemStack item)
     {
         stacksInInventory.Remove(item);
     }

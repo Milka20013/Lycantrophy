@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,6 +25,15 @@ public class DragAndDropItem : DragAndDrop
             //find a slot
             for (int i = objects.Count - 1; i >= 0; i--)
             {
+                if (objects[i].CompareTag("RemoveArea"))
+                {
+                    if (PopupManager.instance.Show("Do you want to remove this item PERMANENTLY?"))
+                    {
+                        PopupManager.instance.OnAgree += itemUI.DestroyItem;
+                        DropBack();
+                        break;
+                    }
+                }
                 if (objects[i].TryGetComponent(out ItemSlot itemSlot))
                 {
                     if (!itemSlot.OnItemDrop(this.gameObject))

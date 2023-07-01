@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -18,11 +16,11 @@ public struct AmplifierSystemData
 public class AmplifierSystem
 {
     public AttributeData[] attributeDatas;
-    public Dictionary<Attribute, float> attributesDict = new Dictionary<Attribute, float>();
+    public Dictionary<Attribute, float> attributesDict = new();
 
-    public Dictionary<Attribute, Dictionary<AmplifierType, float>> amplifiersDict = new Dictionary<Attribute, Dictionary<AmplifierType, float>>();
+    public Dictionary<Attribute, Dictionary<AmplifierType, float>> amplifiersDict = new();
 
-    public List<Amplifier> everyAmplifier = new List<Amplifier>();
+    public List<Amplifier> everyAmplifier = new();
     public AmplifierSystem(AttributeData[] attributeDatas)
     {
         this.attributeDatas = attributeDatas;
@@ -32,12 +30,12 @@ public class AmplifierSystem
 
     public void InstantiateSystem()
     {
-        attributesDict = FillAttributeDict();
+        attributesDict = FillAttributeDict(attributeDatas);
     }
 
-    public Dictionary<Attribute, float> FillAttributeDict() //fill attributes dict with base values
+    public static Dictionary<Attribute, float> FillAttributeDict(AttributeData[] attributeDatas) //fill attributes dict with base values
     {
-        Dictionary<Attribute, float> dict = new Dictionary<Attribute, float>();
+        Dictionary<Attribute, float> dict = new();
         for (int i = 0; i < attributeDatas.Length; i++)
         {
             dict.Add(attributeDatas[i].attribute, attributeDatas[i].value);
@@ -47,10 +45,10 @@ public class AmplifierSystem
 
     private Dictionary<Attribute, Dictionary<AmplifierType, float>> FillAmplifiersDict() //fill amps dict with base values (0(6) 1(3))
     {
-        Dictionary<Attribute, Dictionary<AmplifierType, float>> dict1 = new Dictionary<Attribute, Dictionary<AmplifierType, float>>();
+        Dictionary<Attribute, Dictionary<AmplifierType, float>> dict1 = new();
         for (int i = 0; i < attributeDatas.Length; i++)
         {
-            Dictionary<AmplifierType, float> dict2 = new Dictionary<AmplifierType, float>();
+            Dictionary<AmplifierType, float> dict2 = new();
             foreach (AmplifierType e2 in Enum.GetValues(typeof(AmplifierType)))
             {
                 switch (e2)
@@ -67,9 +65,9 @@ public class AmplifierSystem
         }
         return dict1;
     }
-    public void CalculateAttributeValues() //calculates the raw values for the attributes from the SUMMED UP amplifiers
+    private void CalculateAttributeValues() //calculates the raw values for the attributes from the SUMMED UP amplifiers
     {
-        attributesDict = FillAttributeDict();
+        attributesDict = FillAttributeDict(attributeDatas);
         foreach (KeyValuePair<Attribute, Dictionary<AmplifierType, float>> amps in amplifiersDict)
         {
             foreach (KeyValuePair<AmplifierType, float> core in amps.Value)
@@ -87,10 +85,10 @@ public class AmplifierSystem
                     }
                 }
             }
-            Debug.Log(amps.Key.ToString() + ": " + attributesDict[amps.Key]);
         }
+        LogAttributes();
     }
-    public void CalculateAmplifierValues() //calculates the raw values for the amplifiersDict from the amplifiers
+    private void CalculateAmplifierValues() //calculates the raw values for the amplifiersDict from the amplifiers
     {
         amplifiersDict = FillAmplifiersDict();
         float value;
@@ -129,12 +127,18 @@ public class AmplifierSystem
                     return false;
             }
         }
-        switch (ampType)
+        if (ampType == AmplifierType.Plus)
         {
-            case AmplifierType.Plus:
-                return true;
-            default:
-                return false;
+            return true;
+        }
+        return false;
+    }
+
+    private void LogAttributes()
+    {
+        foreach (KeyValuePair<Attribute, Dictionary<AmplifierType, float>> amps in amplifiersDict)
+        {
+            Debug.Log(amps.Key.ToString() + ": " + attributesDict[amps.Key]);
         }
     }
     public bool RegisterAmplifiers(Amplifier[] amplifiers)
@@ -152,7 +156,9 @@ public class AmplifierSystem
             }
             if (Amplifier.IsAmplifierInCollectionPartially(everyAmplifier, amplifiers[i], out int index)) //if the amplifier is already registered, decide what to do
             {
-                if (amplifiers[i].key == AmplifierKey.Overriding && amplifiers[i].value > everyAmplifier[index].value)
+                if (amplifiers[i].key == AmplifierKey.Overriding
+                    //&&amplifiers[i].value > everyAmplifier[index].value
+                    )
                 {
                     everyAmplifier[index] = amplifiers[i];
                     changeHappened = true;
@@ -170,6 +176,7 @@ public class AmplifierSystem
         }
         return changeHappened;
     }
+
     public bool UnregisterAmplifiers(Amplifier[] amplifiers)
     {
         bool changeHappened = false;
