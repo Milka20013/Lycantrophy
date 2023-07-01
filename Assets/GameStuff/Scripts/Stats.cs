@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum Attribute
+/*public enum Attribute
 {
     None,
     Damage,
@@ -14,7 +14,7 @@ public enum Attribute
     Type4,
     Type5,
     Type6
-}
+}*/
 
 [Serializable]
 public struct AttributeData

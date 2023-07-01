@@ -6,9 +6,11 @@ public class Attacker : MonoBehaviour
     private Stats stats;
 
     private float _damage;
+    [SerializeField] private Attribute damageAttribute;
     public float attackRange = 4;
 
     private float _attackSpeed;
+    [SerializeField] private Attribute attackSpeedAttribute;
     private float attackDelay = 0f;
 
 
@@ -74,8 +76,8 @@ public class Attacker : MonoBehaviour
     }
     public void UpdateStats()
     {
-        _damage = stats.GetAttributeValue(Attribute.Damage);
-        _attackSpeed = stats.GetAttributeValue(Attribute.AttackSpeed);
+        _damage = stats.GetAttributeValue(damageAttribute);
+        _attackSpeed = stats.GetAttributeValue(attackSpeedAttribute);
         if (!hasAnimator)
         {
             return;

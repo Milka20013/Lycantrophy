@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.Events;
+using UnityEngine;
 
 [RequireComponent(typeof(Stats))]
 public class HealthSystem : MonoBehaviour
@@ -10,6 +7,7 @@ public class HealthSystem : MonoBehaviour
     public TextMeshProUGUI[] healthTexts;
     private Stats stats;
     public float maxHealth { get; set; }
+    [SerializeField] private Attribute maxHealthAttribute;
     private float currentHealth;
 
     public bool isDead { get; private set; }
@@ -25,7 +23,7 @@ public class HealthSystem : MonoBehaviour
     private void Start()
     {
         stats.OnStatChange += OnStatChange;
-        maxHealth = stats.GetAttributeValue(Attribute.MaxHealth);
+        maxHealth = stats.GetAttributeValue(maxHealthAttribute);
         currentHealth = maxHealth;
     }
     public void InstantHeal(float amount)
@@ -61,6 +59,6 @@ public class HealthSystem : MonoBehaviour
 
     public void OnStatChange()
     {
-        maxHealth = stats.GetAttributeValue(Attribute.MaxHealth);
+        maxHealth = stats.GetAttributeValue(maxHealthAttribute);
     }
 }

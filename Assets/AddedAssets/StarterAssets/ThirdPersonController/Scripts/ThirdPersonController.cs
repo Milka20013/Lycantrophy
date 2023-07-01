@@ -22,10 +22,11 @@ namespace StarterAssets
 
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
+        public Attribute moveSpeedAttribute;
 
         public void OnStatChange()
         {
-            MoveSpeed = playerStats.GetAttributeValue(Attribute.MoveSpeed);
+            MoveSpeed = playerStats.GetAttributeValue(moveSpeedAttribute);
         }
 
         [Tooltip("Sprint speed of the character in m/s")]

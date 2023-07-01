@@ -33,6 +33,7 @@ public class Player : MonoBehaviour, ISaveable
     public GameObject deathCanvas;
 
     public HealthSystem healthSystem { get; private set; }
+    [SerializeField] Attribute maxHealthAttribute;
 
     private ThirdPersonController moveController;
 
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour, ISaveable
 
     public void Respawn()
     {
-        healthSystem.InstantHeal(playerStats.GetAttributeValue(Attribute.MaxHealth) * 0.25f);
+        healthSystem.InstantHeal(playerStats.GetAttributeValue(maxHealthAttribute) * 0.25f);
         moveController.enabled = true;
         isDead = false;
         respawnTimer = respawnCooldown;

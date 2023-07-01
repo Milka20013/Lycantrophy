@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthTexts: []
+  maxHealthAttribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
 --- !u!114 &3218986931409213856
 MonoBehaviour:
   m_ObjectHideFlags: 0
