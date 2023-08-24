@@ -12,11 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2273fe5585f963846bc1974b0178faaa, type: 3}
   m_Name: ItemManager
   m_EditorClassIdentifier: 
-  equipmentItems:
+  orbBlueprints:
   - {fileID: 11400000, guid: 766ec2fa170a95f4ba36404241fdd17c, type: 2}
-  - {fileID: 11400000, guid: 94267fde32afb064b910f761e2426ff2, type: 2}
-  - {fileID: 11400000, guid: 407734da7a84cea4fb8e75fb9a2e3dfb, type: 2}
-  - {fileID: 11400000, guid: 8a09c06f0b7ac9342b1709096f48eba4, type: 2}
-  consumableItems:
+  - {fileID: 11400000, guid: f904d2127db460f4c840a1f49e466d52, type: 2}
+  - {fileID: 11400000, guid: 514f0684091f4ab4090a36630ce2b605, type: 2}
+  consumableBlueprints:
   - {fileID: 11400000, guid: 15cc51aa363b69a4389608af7c2c7f52, type: 2}
   - {fileID: 11400000, guid: a51e8a01396aa154888a240ce6760c2d, type: 2}
+  productBlueprints:
+  - {fileID: 11400000, guid: cbd673f3c8689f1458050f2c675811d2, type: 2}
+  miscBlueprints:
+  - {fileID: 11400000, guid: 4936edd9bf3a10e4497e1af8cc37fdc2, type: 2}
+  - {fileID: 11400000, guid: aa0c7fe8d134b9e4c9a8111cbc771341, type: 2}
+  - {fileID: 11400000, guid: 8eb5f9132bc3fc840b689d16854f4d55, type: 2}
+  - {fileID: 11400000, guid: 937cea476cd230e42aa464f4b44d3706, type: 2}
+  essenceBlueprints:
+  - {fileID: 11400000, guid: 480cf64037bc5104798a4f69fd002d23, type: 2}
+  - {fileID: 11400000, guid: bf220e073dd17b24f8982ea7e37a1785, type: 2}
+  corePowerModifierBlueprints:
+  - {fileID: 11400000, guid: 4936edd9bf3a10e4497e1af8cc37fdc2, type: 2}
+  - {fileID: 11400000, guid: aa0c7fe8d134b9e4c9a8111cbc771341, type: 2}
+  - {fileID: 11400000, guid: 8eb5f9132bc3fc840b689d16854f4d55, type: 2}

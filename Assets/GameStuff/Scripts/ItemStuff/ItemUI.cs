@@ -1,3 +1,4 @@
+using Lycanthropy.Inventory;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -21,13 +22,16 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     [HideInInspector] public ItemStack itemStack { get; private set; }
 
-    [HideInInspector] public int slotId { get; private set; }
+    [HideInInspector] public ItemSlot itemSlot { get; private set; }
 
     [HideInInspector] public ItemBlueprint itemBlueprint { get; private set; }
 
 
     [HideInInspector] public List<string> effectsDescription { get; private set; } = new List<string>();
     [HideInInspector] public string basicDescription { get; set; }
+
+    public delegate void OnDropHandler(ItemUI itemUI);
+    public OnDropHandler OnDropLogic;
 
     private ItemDescriptionPanel itemDescriptionPanel;
     public void SetReferences(Inventory inventory, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP, Player player)
@@ -40,13 +44,13 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         this.image.sprite = itemBP.sprites[0];
         PlaceRemainingSprites(itemBP);
     }
-    public void SetItemInfos(Vector2 position, ItemStack itemStack, int itemSlotId)
+    public void SetItemInfos(Vector2 position, ItemStack itemStack, ItemSlot itemSlot)
     {
         rectTransform.anchoredPosition = position;
         this.itemStack = itemStack;
         itemStack.itemUI = this;
         itemStack.ChangeQuantity(itemStack.quantity);
-        slotId = itemSlotId;
+        this.itemSlot = itemSlot;
     }
 
     private void PlaceRemainingSprites(ItemBlueprint itemBP)
@@ -85,6 +89,11 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         }
     }
 
+    public void ResetEffects()
+    {
+        effectsDescription = new();
+    }
+
     public void RegisterEffects(Amplifier[] amplifiers)
     {
         for (int i = 0; i < amplifiers.Length; i++)
@@ -106,15 +115,21 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         itemDescriptionPanel.ShowPanel(this);
     }
 
+    public void RefreshItemDescriptionPanel()
+    {
+        itemDescriptionPanel.HidePanel(this);
+        itemDescriptionPanel.ShowPanel(this);
+    }
+
     public void OnPointerExit(PointerEventData eventData)
     {
-        itemDescriptionPanel.HidePanel();
+        itemDescriptionPanel.HidePanel(this);
     }
 
     //the item has been placed on an other itemSlot
     public void OnPlace(ItemSlot slot)
     {
-        slotId = slot.id;
+        itemSlot = slot;
         inventory.ChangeInventories(itemStack, slot.inventory);
         inventory = slot.inventory;
     }
@@ -123,6 +138,11 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         player.playerInventory.AddCurrency(itemBlueprint.value * itemStack.quantity);
         DestroyItem();
+    }
+
+    public void OnDrop(ItemUI droppedItem)
+    {
+        droppedItem.OnDropLogic?.Invoke(this);
     }
     public void DestroyItem()
     {
@@ -135,6 +155,6 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         {
             return;
         }
-        itemDescriptionPanel.HidePanel();
+        itemDescriptionPanel.HidePanel(this);
     }
 }

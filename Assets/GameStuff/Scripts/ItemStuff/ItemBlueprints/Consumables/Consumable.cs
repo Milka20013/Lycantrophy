@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -12,7 +10,7 @@ public class Consumable : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        consumableItem = itemUI.inventory.itemManager.GetConsumableItemBlueprint(itemUI.itemStack);
+        consumableItem = itemUI.inventory.itemManager.GetItemBlueprint<ConsumableBlueprint>(itemUI.itemStack);
         itemUI.SetItemType(ItemType.Consumable);
         itemUI.RegisterEffects(Description());
     }

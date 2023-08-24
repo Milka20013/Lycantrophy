@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8ae866224f0ff80418da32ded97d743c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - healthSystem: {instanceID: 0}
+  - mobData: {instanceID: 0}
+  - luckAttribute: {fileID: 11400000, guid: 3fbb037b945e11d4083da0bd8cc4e463, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

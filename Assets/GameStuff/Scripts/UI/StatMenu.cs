@@ -1,3 +1,4 @@
+using Lycanthropy.Helper;
 using System;
 using TMPro;
 using UnityEngine;

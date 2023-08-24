@@ -81,7 +81,7 @@ public class MobSpawner : MonoBehaviour
         GameObject[] spawnedMobs;
 
         //which mob to spawn
-        MobData mobData = GameManager.GetRandomElementFromFairTable(mobPile.mobs);
+        MobData mobData = Randomizer.GetRandomElementFromFairTable(mobPile.mobs);
         GameObject prefab = mobData.prefab;
 
         //how much
@@ -110,7 +110,7 @@ public class MobSpawner : MonoBehaviour
         float yPos = terrain.SampleHeight(new Vector3(xPos, 0, zPos));
         Vector3 position = new Vector3(xPos, yPos, zPos);
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(position, out hit, 2f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(position, out hit, 3f, NavMesh.AllAreas))
         {
             position = hit.position;
         }

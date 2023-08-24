@@ -33,7 +33,13 @@ public class ItemDescriptionPanel : MonoBehaviour
         x = itemUI.rectTransform.position.x <= canvasRectTransform.rect.width * 0.85f ? 0 : 1;
         rectTransform.pivot = new Vector2(x, y);
     }
-
+    public void HidePanel(ItemUI itemUI)
+    {
+        if (itemUI == currentItemUI)
+        {
+            HidePanel();
+        }
+    }
     public void HidePanel()
     {
         itemDescriptionPanel.SetActive(false);

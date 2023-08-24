@@ -12,6 +12,9 @@ public class Mob : MonoBehaviour
     public Stats stats;
     public TakeDamage takeDamage;
     public DropTable dropTable;
+    [SerializeField] protected Attribute moveSpeedAttribute;
+    protected EntityAnimator animator;
+    protected bool hasAnimator;
 
     [Tooltip("How far can the mob wander from its start position")]
     public float wanderDistance;
@@ -45,6 +48,16 @@ public class Mob : MonoBehaviour
         takeDamage.OnHit += OnHit;
     }
 
+    protected virtual void Start()
+    {
+        agent.speed = stats.GetAttributeValue(moveSpeedAttribute);
+        animator = GetComponentInChildren<EntityAnimator>();
+        if (animator != null)
+        {
+            hasAnimator = true;
+        }
+    }
+
     public void RegisterMobData(MobData mobdata)
     {
         stats.CreateAmplifierSystem(mobdata);
@@ -60,6 +73,10 @@ public class Mob : MonoBehaviour
         }
         agent.stoppingDistance = stoppingDistance;
         agent.SetDestination(position);
+        if (hasAnimator)
+        {
+            animator.ChangeAnimationState(animator.walk);
+        }
     }
 
     public void ReturnToStartPosition()
@@ -94,7 +111,7 @@ public class Mob : MonoBehaviour
         {
             finalPosition = hit.position;
         }
-        agent.SetDestination(finalPosition);
+        SetDestination(finalPosition, 0);
     }
 
     public void Die(GameObject killer)

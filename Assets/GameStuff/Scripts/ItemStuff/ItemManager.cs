@@ -4,12 +4,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemManager", menuName = "Manager/ItemManager")]
 public class ItemManager : ScriptableObject
 {
-    private List<ItemBlueprint> itemBlueprints = new();
+    private Dictionary<string, ItemBlueprint> itemBlueprintsDict = new();
     [SerializeField] private OrbBlueprint[] orbBlueprints;
-    [SerializeField] private ConsumableBlueprint[] consumableItems;
-    [SerializeField] private ProductBlueprint[] productItems;
-    [SerializeField] private ItemBlueprint[] miscItems;
-    private Item[] items;
+    [SerializeField] private ConsumableBlueprint[] consumableBlueprints;
+    [SerializeField] private ProductBlueprint[] productBlueprints;
+    [SerializeField] private ItemBlueprint[] miscBlueprints;
+    [SerializeField] private EssenceBlueprint[] essenceBlueprints;
+    [SerializeField] private CorePowerModifierBlueprint[] corePowerModifierBlueprints;
+
+    private List<Item> items = new();
+
 
     private void Awake()
     {
@@ -18,89 +22,88 @@ public class ItemManager : ScriptableObject
     public void RefreshData()
     {
         FindItems();
-        itemBlueprints.AddRange(orbBlueprints);
-        itemBlueprints.AddRange(consumableItems);
-        itemBlueprints.AddRange(miscItems);
-        itemBlueprints.AddRange(productItems);
-        items = new Item[itemBlueprints.Count];
-        for (int i = 0; i < items.Length; i++)
+        AddRangeToDict(orbBlueprints);
+        AddRangeToDict(consumableBlueprints);
+        AddRangeToDict(miscBlueprints);
+        AddRangeToDict(productBlueprints);
+        AddRangeToDict(essenceBlueprints);
+        AddRangeToDict(corePowerModifierBlueprints);
+        items.Clear();
+        foreach (KeyValuePair<string, ItemBlueprint> keyValue in itemBlueprintsDict)
         {
-            items[i] = new Item(itemBlueprints[i]);
+            items.Add(new Item(keyValue.Value));
+        }
+    }
+
+    public void ClearData()
+    {
+        itemBlueprintsDict.Clear();
+    }
+
+    private void AddRangeToDict(IEnumerable<ItemBlueprint> items)
+    {
+        foreach (var item in items)
+        {
+            if (!itemBlueprintsDict.TryAdd(item.id, item) && itemBlueprintsDict[item.id] != item)
+            {
+                Debug.LogError($"{item} Could not be added to ItemBlueprint dict with id {item.id}");
+            }
         }
     }
     private void FindItems()
     {
-        orbBlueprints = Resources.LoadAll<OrbBlueprint>("ItemBlueprints/Equipment");
-        consumableItems = Resources.LoadAll<ConsumableBlueprint>("ItemBlueprints/Consumable");
-        productItems = Resources.LoadAll<ProductBlueprint>("ItemBlueprints/Product");
-        miscItems = Resources.LoadAll<ItemBlueprint>("ItemBlueprints/Misc");
+        orbBlueprints = Resources.LoadAll<OrbBlueprint>("ItemBlueprints/Equipment/Orb");
+        essenceBlueprints = Resources.LoadAll<EssenceBlueprint>("ItemBlueprints/Equipment/Essence");
+        corePowerModifierBlueprints = Resources.LoadAll<CorePowerModifierBlueprint>("ItemBlueprints/Misc/CorePowerModifier");
+        consumableBlueprints = Resources.LoadAll<ConsumableBlueprint>("ItemBlueprints/Consumable");
+        productBlueprints = Resources.LoadAll<ProductBlueprint>("ItemBlueprints/Product");
+        miscBlueprints = Resources.LoadAll<ItemBlueprint>("ItemBlueprints/Misc");
     }
 
 
     public Item GetItem(string id)
     {
-        Item item = null;
-        for (int i = 0; i < items.Length; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             if (items[i].id == id)
             {
-                item = new Item(items[i]);
+                return new Item(items[i]);
             }
         }
-        return item;
+        Debug.LogError("Item was not registered.");
+        return null;
     }
     public Item GetItem(ItemBlueprint item)
     {
         return new Item(item);
     }
-
-    public ItemBlueprint GetItemBlueprint(ItemStack item)
+    public Item GetItemByName(string name)
     {
-        for (int i = 0; i < itemBlueprints.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            if (item.item.id == itemBlueprints[i].id)
+            if (items[i].itemName == name)
             {
-                return itemBlueprints[i];
+                return new Item(items[i]);
             }
         }
-        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
-        return null;
-    }
-    public OrbBlueprint GetEquipmentItemBlueprint(ItemStack item)
-    {
-        for (int i = 0; i < orbBlueprints.Length; i++)
-        {
-            if (item.item.id == orbBlueprints[i].id)
-            {
-                return orbBlueprints[i];
-            }
-        }
-        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
-        return null;
-    }
-    public ConsumableBlueprint GetConsumableItemBlueprint(ItemStack item)
-    {
-        for (int i = 0; i < consumableItems.Length; i++)
-        {
-            if (item.item.id == consumableItems[i].id)
-            {
-                return consumableItems[i];
-            }
-        }
-        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
+        Debug.LogError("Item was not registered.");
         return null;
     }
 
-    public ProductBlueprint GetProductItemBlueprint(ItemStack item)
+
+    public T GetItemBlueprint<T>(ItemStack item, bool recursive = true) where T : class
     {
-        for (int i = 0; i < productItems.Length; i++)
+        if (itemBlueprintsDict.ContainsKey(item.item.id))
         {
-            if (item.item.id == productItems[i].id)
-            {
-                return productItems[i];
-            }
+            return itemBlueprintsDict[item.item.id] as T;
         }
-        Debug.LogError("ItemBP was not registered. Try finding BPs in ItemManagerSO");
+        if (recursive)
+        {
+            RefreshData();
+            Debug.Log($"Attempting to find the item {item.item.itemName} (this message should only appear once !)");
+            return GetItemBlueprint<T>(item, false);
+        }
+        Debug.LogError($"{item.item.itemName} ItemBP was not registered. Try finding BPs in ItemManagerSO");
         return null;
     }
 }

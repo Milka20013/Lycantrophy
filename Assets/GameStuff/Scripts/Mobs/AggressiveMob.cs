@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Attacker))]
@@ -9,8 +7,9 @@ public class AggressiveMob : Mob
     public Attacker attacker;
     public Detector detector;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         agent.stoppingDistance = attacker.attackRange - 0.1f;
         detector.onDetection += HandleDetection;
     }
@@ -37,5 +36,5 @@ public class AggressiveMob : Mob
 
     }
 
-    
+
 }

@@ -18,7 +18,7 @@ public struct ItemData
 
 public enum ItemType
 {
-    General, Consumable, Useable, Orb, Essence, None
+    General, Consumable, Useable, Orb, Essence, None, Droppable
 }
 [System.Serializable]
 public class Item

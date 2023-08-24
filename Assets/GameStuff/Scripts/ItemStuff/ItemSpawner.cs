@@ -1,3 +1,4 @@
+using Lycanthropy.Inventory;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,9 +46,9 @@ public class ItemSpawner : MonoBehaviour
 
         //setting the infos to itemUI
         ItemUI itemUI = item.GetComponent<ItemUI>();
-        itemUI.SetItemInfos(rectTransform.anchoredPosition, itemStack, itemSlotId);
+        itemUI.SetItemInfos(rectTransform.anchoredPosition, itemStack, itemSlot);
 
-        itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint(itemStack), inventory.GetOwner<Player>());
+        itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint<ItemBlueprint>(itemStack), inventory.GetOwner<Player>());
 
         //assigning the item to the slot, so it will drag and drop properly
         if (item.TryGetComponent(out DragAndDropItem dragAndDrop))

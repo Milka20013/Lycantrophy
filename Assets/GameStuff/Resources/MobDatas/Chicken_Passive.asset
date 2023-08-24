@@ -13,16 +13,28 @@ MonoBehaviour:
   m_Name: Chicken_Passive
   m_EditorClassIdentifier: 
   attributeDatas:
-  - attribute: 2
+  - attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 10
-  - attribute: 3
+  - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
     value: 5
   rawExp: 2
   rawCurrency: 2.5
   droppableItems:
-  - item: {fileID: 11400000, guid: 937cea476cd230e42aa464f4b44d3706, type: 2}
-    percentage: 70
-    itemRange: 0100000003000000
+  - item: {fileID: 11400000, guid: 480cf64037bc5104798a4f69fd002d23, type: 2}
+    percentage: 100
+    itemRange: 0100000001000000
+  - item: {fileID: 11400000, guid: 4936edd9bf3a10e4497e1af8cc37fdc2, type: 2}
+    percentage: 100
+    itemRange: 0100000001000000
+  - item: {fileID: 11400000, guid: aa0c7fe8d134b9e4c9a8111cbc771341, type: 2}
+    percentage: 100
+    itemRange: 0100000001000000
+  - item: {fileID: 11400000, guid: 8eb5f9132bc3fc840b689d16854f4d55, type: 2}
+    percentage: 100
+    itemRange: 0100000001000000
+  - item: {fileID: 11400000, guid: bf220e073dd17b24f8982ea7e37a1785, type: 2}
+    percentage: 100
+    itemRange: 0100000001000000
   generalDrops: []
   prefab: {fileID: 5407015723440895298, guid: 395173bbd24a8034e806f7599c507b09, type: 3}
   meshPrefab: {fileID: 5391712877567691691, guid: 785ba5db1258ea347a498293dc5a7c6e, type: 3}

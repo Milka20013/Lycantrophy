@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f538130b267414b97741f62898bb41, type: 3}
+  m_Name: Sheep_Agg
+  m_EditorClassIdentifier: 
+  attributeDatas:
+  - attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
+    value: 10
+  - attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+    value: 5
+  - attribute: {fileID: 11400000, guid: 12bc5e62251e6d54fa6918230c23397c, type: 2}
+    value: 1
+  - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
+    value: 1.5
+  rawExp: 1
+  rawCurrency: 1
+  droppableItems: []
+  generalDrops: []
+  prefab: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
+  meshPrefab: {fileID: 7954529173620817125, guid: df194e3ccf0a0224586d66157fdbed9b, type: 3}
+  size: {x: 1, y: 1, z: 1}

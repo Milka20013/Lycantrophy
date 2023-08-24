@@ -1,3 +1,4 @@
+using Lycanthropy.Inventory;
 using UnityEngine;
 
 //this class is for each individual itemslot in the inventory
@@ -25,29 +26,31 @@ public class ItemSlot : MonoBehaviour
         {
             return false;
         }
-        ItemUI itemUI = item.GetComponent<ItemUI>();
+        ItemUI droppedItemUI = item.GetComponent<ItemUI>();
 
         //selling the item. This should not be here i guess
         if (acceptedItemType == ItemType.None)
         {
-            SellItem(itemUI);
+            SellItem(droppedItemUI);
             return false;
         }
 
         //if the slot can't accept the item
-        if (!CanAcceptItem(itemUI.itemStack.item))
+        if (!CanAcceptItem(droppedItemUI.itemStack.item))
         {
             return false;
         }
 
         if (attachedObject != null)
         {
-            //something is in the slot, so return. Swap items maybe?
+            //something is in the slot, so return false. Swap items maybe?
+            ItemUI thisItemUI = attachedObject.GetComponent<ItemUI>();
+            thisItemUI.OnDrop(droppedItemUI);
             return false;
         }
 
         //invoke the placing procedure in code before placing the actual ui representation below
-        itemUI.OnPlace(this);
+        droppedItemUI.OnPlace(this);
 
         item.transform.SetParent(this.transform.parent);
         item.GetComponent<RectTransform>().anchoredPosition = rectTransform.anchoredPosition + positionOffset;

@@ -2,7 +2,7 @@
 using UnityEditor;
 
 
-[CustomEditor(typeof(ItemBlueprint))]
+[CustomEditor(typeof(ItemBlueprint), true)]
 
 public class ItemBlueprintEditor : Editor
 {
@@ -19,18 +19,6 @@ public class ItemBlueprintEditor : Editor
             GenerateId(ref item);
         }
     }
-}
-
-[CustomEditor(typeof(OrbBlueprint))]
-public class OrbItemEditor : ItemBlueprintEditor
-{
-
-}
-
-[CustomEditor(typeof(Potion))]
-public class PotionEditor : ItemBlueprintEditor
-{
-
 }
 
 [CustomEditor(typeof(ProductBlueprint))]

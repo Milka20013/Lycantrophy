@@ -1,3 +1,4 @@
+using Lycanthropy.Inventory;
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]

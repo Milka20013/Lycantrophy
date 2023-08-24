@@ -3,7 +3,13 @@ guid: d8c36e9e6ae63244eb741dd23c495ed9
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - agent: {instanceID: 0}
+  - healthSystem: {instanceID: 0}
+  - stats: {instanceID: 0}
+  - takeDamage: {instanceID: 0}
+  - dropTable: {instanceID: 0}
+  - moveSpeedAttribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

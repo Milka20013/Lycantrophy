@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NeutralMob : Mob
@@ -7,8 +5,9 @@ public class NeutralMob : Mob
     public Attacker attackerScr;
     public Detector detector;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         agent.stoppingDistance = attackerScr.attackRange - 0.1f;
         detector.onDetection += HandleDetection;
     }

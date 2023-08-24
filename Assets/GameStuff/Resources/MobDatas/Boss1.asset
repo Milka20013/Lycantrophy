@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: Boss1
   m_EditorClassIdentifier: 
   attributeDatas:
-  - attribute: 2
+  - attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 100
-  - attribute: 1
+  - attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
     value: 18
-  - attribute: 4
+  - attribute: {fileID: 11400000, guid: 12bc5e62251e6d54fa6918230c23397c, type: 2}
     value: 0.4
+  - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
+    value: 2
   rawExp: 10
+  rawCurrency: 0
   droppableItems: []
   generalDrops: []
   prefab: {fileID: 5407015723440895298, guid: 247e78981b76ccd4aaceeed668717ba5, type: 3}
-  mesh: {fileID: 1248039166958328286, guid: 05b457a2970581e47b2ecd0abf1b0312, type: 3}
+  meshPrefab: {fileID: 0}
   size: {x: 2, y: 1.5, z: 2}

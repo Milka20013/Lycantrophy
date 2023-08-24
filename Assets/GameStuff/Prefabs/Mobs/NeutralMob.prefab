@@ -110,7 +110,8 @@ MonoBehaviour:
   stats: {fileID: 3660390260460412025}
   takeDamage: {fileID: 1681796945360049764}
   dropTable: {fileID: 3218986931409213856}
-  wanderDistance: 10
+  moveSpeedAttribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
+  wanderDistance: 73.55
   wanderCooldown: 7
   occupied: 0
   attackerScr: {fileID: -7746679684123153918}
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 7592710114300449778}
   mobData: {fileID: 0}
+  luckAttribute: {fileID: 11400000, guid: 3fbb037b945e11d4083da0bd8cc4e463, type: 2}
 --- !u!114 &1681796945360049764
 MonoBehaviour:
   m_ObjectHideFlags: 0

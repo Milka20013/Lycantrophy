@@ -1,14 +1,11 @@
+using Lycanthropy.Inventory;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEngine;
 
 [Serializable]
-public class GameData 
+public class GameData
 {
-    
+
     public PlayerData playerData;
     public AmplifierSystemData amplifierSystemData;
     public List<InventoryData> inventoryDatas;

@@ -14,6 +14,7 @@ namespace StarterAssets
         public bool sprint;
         public bool attacked;
         public Attacker attackerScr;
+        public TestingTool testingTool;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -88,6 +89,20 @@ namespace StarterAssets
             }
         }
 
+        public void OnShowCommandLine()
+        {
+            if (testingTool != null)
+            {
+                testingTool.OnShowCommandLine();
+            }
+        }
+        public void OnExit()
+        {
+            if (testingTool != null)
+            {
+                testingTool.OnExit();
+            }
+        }
 
 #endif
 

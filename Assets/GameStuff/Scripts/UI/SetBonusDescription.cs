@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Lycanthropy.Inventory;
+using System.Linq;
 using TMPro;
 using UnityEngine;
-using System.Linq;
-using System;
 
 public class SetBonusDescription : MonoBehaviour
 {
@@ -16,6 +14,10 @@ public class SetBonusDescription : MonoBehaviour
 
     public void ShowPanel()
     {
+        if (inv.stacksInInventory.Count == 0)
+        {
+            return;
+        }
         UpdatePanel();
         gameObject.SetActive(true);
     }

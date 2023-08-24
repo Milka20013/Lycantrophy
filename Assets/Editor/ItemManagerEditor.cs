@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,6 +11,10 @@ public class ItemManagerEditor : Editor
         if (GUILayout.Button("Refresh Items"))
         {
             itemManager.RefreshData();
+        }
+        if (GUILayout.Button("Clear Items"))
+        {
+            itemManager.ClearData();
         }
     }
 }

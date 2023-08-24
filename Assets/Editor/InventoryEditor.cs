@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
+using Lycanthropy.Inventory;
 using UnityEditor;
-using UnityEngine;
 
-[CustomEditor(typeof(Inventory))]
+[CustomEditor(typeof(Inventory), true)]
 public class InventoryEditor : Editor
 {
     public void GenerateGUID(ref Inventory inv)

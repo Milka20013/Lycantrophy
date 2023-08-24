@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ItemUI))]
@@ -7,11 +5,11 @@ using UnityEngine;
 public class Orb : MonoBehaviour
 {
     public ItemUI itemUI;
-    public DragAndDropItem dragAndDrop;
+    //public DragAndDropItem dragAndDrop;
     public OrbBlueprint orbBlueprint { get; private set; }
     void Start()
     {
-        orbBlueprint = itemUI.inventory.itemManager.GetEquipmentItemBlueprint(itemUI.itemStack);
+        orbBlueprint = itemUI.inventory.itemManager.GetItemBlueprint<OrbBlueprint>(itemUI.itemStack);
         itemUI.SetItemType(ItemType.Orb);
         RegisterEffects();
     }
