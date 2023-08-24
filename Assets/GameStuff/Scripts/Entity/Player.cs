@@ -4,13 +4,6 @@ using System;
 using TMPro;
 using UnityEngine;
 
-//this class has all the references to the other classes attached to the player
-//and the methods with the player
-//plus other things on the player
-//player
-
-
-//What to save
 [Serializable]
 public struct PlayerData
 {
@@ -21,15 +14,10 @@ public struct PlayerData
     public Vector3 position;
 }
 
-[RequireComponent(typeof(PlayerInventory))]
-[RequireComponent(typeof(HealthSystem))]
-[RequireComponent(typeof(Stats))]
-[RequireComponent(typeof(ThirdPersonController))]
 public class Player : MonoBehaviour, ISaveable
 {
     public PlayerInventory playerInventory { get; private set; }
     public Stats playerStats { get; private set; }
-    public StatMenu statMenu;
     public TextMeshProUGUI healthText;
     public GameObject deathCanvas;
 
