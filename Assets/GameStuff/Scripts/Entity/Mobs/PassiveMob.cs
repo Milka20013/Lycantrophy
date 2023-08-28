@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PassiveMob : Mob
 {
-    [SerializeField] private float fleeDistance;
+    [SerializeField] private float fleeDistance = 7f;
     [Tooltip("When should the mob wander back after a hit")]
-    [SerializeField] private float wanderBackCooldown;
+    [SerializeField] private float wanderBackCooldown = 7f;
 
     protected override void Update()
     {
@@ -24,7 +22,7 @@ public class PassiveMob : Mob
         Flee(attacker, 0, 0);
     }
 
-    public void Flee(GameObject attacker, float angle , int tries)
+    public void Flee(GameObject attacker, float angle, int tries)
     {
         Vector3 direction = transform.position - attacker.transform.position;
         direction.y = 0;
@@ -37,8 +35,8 @@ public class PassiveMob : Mob
         }
         else if (tries <= 12)
         {
-            Flee(attacker, angle + Random.Range(15,45), tries + 1);
+            Flee(attacker, angle + Random.Range(15, 45), tries + 1);
         }
-        
+
     }
 }

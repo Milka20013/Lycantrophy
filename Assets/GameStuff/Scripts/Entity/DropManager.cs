@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Manager/DropManager")]
+[CreateAssetMenu(menuName = "Manager/DropManager")]
 public class DropManager : ScriptableObject
 {
     public MobData[] mobDatas;
@@ -34,7 +32,7 @@ public class DropManager : ScriptableObject
                 {
                     mobDatas[i].generalDrops.Add(generalDrops[j]);
                 }
-               
+
             }
         }
     }

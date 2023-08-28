@@ -3,25 +3,33 @@ using UnityEngine;
 [RequireComponent(typeof(Stats))]
 public class Attacker : MonoBehaviour
 {
-    private Stats stats;
+    protected Stats stats;
 
-    private float _damage;
+    protected float _damage;
     [SerializeField] private Attribute damageAttribute;
     public float attackRange = 4;
+    [Tooltip("Where the attack origins from. If not specified, the center point is used")]
 
-    private float _attackSpeed;
-    [SerializeField] private Attribute attackSpeedAttribute;
-    private float attackDelay = 0f;
+
+    [field: SerializeField]
+    protected Transform _attackOrigin;
+    public Transform AttackOrigin
+    {
+        get => _attackOrigin == null ? transform : _attackOrigin;
+        set => _attackOrigin = value;
+    }
+
+    protected float _attackSpeed;
+    [SerializeField] protected Attribute attackSpeedAttribute;
+    protected float attackDelay = 0f;
 
 
     public LayerMask enemyLayer = 1 << 8;
 
-    [Tooltip("Automatically attacks if its attackDelay is <= 0, and if canAttack is true")]
-    public bool attackIfAbleTo = false;
     [HideInInspector] public bool canAttack = false;
 
     EntityAnimator animator;
-    private bool hasAnimator;
+    protected bool hasAnimator;
 
     private void Awake()
     {
@@ -37,17 +45,14 @@ public class Attacker : MonoBehaviour
         stats.OnStatChange += UpdateStats;
         UpdateStats();
     }
-    private void Update()
+    protected virtual void Update()
     {
         if (attackDelay > 0f)
         {
             attackDelay -= Time.deltaTime;
         }
 
-        if (attackIfAbleTo && canAttack && attackDelay <= 0f)
-        {
-            TryAttack();
-        }
+
     }
     public void TryAttack()
     {
@@ -65,9 +70,9 @@ public class Attacker : MonoBehaviour
         }
     }
 
-    private void Attack()
+    protected void Attack()
     {
-        Collider[] enemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+        Collider[] enemies = Physics.OverlapSphere(AttackOrigin.position, attackRange, enemyLayer);
         for (int i = 0; i < enemies.Length; i++)
         {
             if (enemies[i].TryGetComponent(out IDamageable damageable))

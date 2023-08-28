@@ -1,14 +1,15 @@
 using System.Collections;
 using UnityEngine;
-
 public class EntityAnimator : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    private Animator animator;
 
-    public string attack;
-    public string walk;
-    public string sprint;
-    public string idle;
+    public string attack = "Armature_Attack";
+    public string walk = "Armature_Walk";
+    public string sprint = "Armature_Sprint";
+    public string idle = "Armature_Idle";
+    [Tooltip("Prevents stuck animations, but lowers performance")]
+    public bool doIdleChecks = false;
 
     public float AttackLength { get; set; }
     public readonly string attackSpeed = "attackSpeed";
@@ -19,6 +20,7 @@ public class EntityAnimator : MonoBehaviour
 
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         UpdateAnimClipTimes();
     }
 
@@ -102,13 +104,34 @@ public class EntityAnimator : MonoBehaviour
         return result;
     }
 
-    public void SignalIdle(string state)
+    /// <summary>
+    /// Changes the state then after animationTime seconds changes to idle
+    /// if the current animation is still the same as newState
+    /// </summary>
+    /// <returns>True if the animation state changed</returns>
+    public bool ChangeAnimationStateThenIdle(string newState, float animationTime)
+    {
+        bool result = ChangeAnimationState(newState);
+        if (result)
+        {
+            IEnumerator coroutine = PlayIdleAfterDelay(animationTime);
+            StartCoroutine(coroutine);
+        }
+        return result;
+    }
+
+    IEnumerator PlayIdleAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ChangeAnimationState(idle, true);
+    }
+    public void SignalIdle(string stateToChangeFrom)
     {
         if (lockState)
         {
             return;
         }
-        if (currentState == state)
+        if (currentState == stateToChangeFrom)
         {
             ChangeAnimationState(idle, true);
         }

@@ -25,6 +25,5 @@ MonoBehaviour:
   rawCurrency: 1
   droppableItems: []
   generalDrops: []
-  prefab: {fileID: 5407015723440895298, guid: 247e78981b76ccd4aaceeed668717ba5, type: 3}
-  meshPrefab: {fileID: 7954529173620817125, guid: f1b5f5180e4acb04e9b1cde1b014bcc1, type: 3}
+  prefab: {fileID: 7954529173620817125, guid: f1b5f5180e4acb04e9b1cde1b014bcc1, type: 3}
   size: {x: 1, y: 1, z: 1}

@@ -36,6 +36,8 @@ public class Player : MonoBehaviour, ISaveable
         playerStats = GetComponent<Stats>();
         moveController = GetComponent<ThirdPersonController>();
 
+
+
         healthSystem.onDeath += Die;
     }
     private void Update()

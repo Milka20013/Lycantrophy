@@ -1,9 +1,8 @@
 using UnityEngine;
 
-[RequireComponent(typeof(HealthSystem))]
 public class TakeDamage : MonoBehaviour, IDamageable
 {
-    private HealthSystem healthSystem;
+    [SerializeField] private HealthSystem healthSystem;
 
     public delegate void HitHandler(float amount, GameObject attacker);
     public HitHandler OnHit;
@@ -13,7 +12,10 @@ public class TakeDamage : MonoBehaviour, IDamageable
 
     private void Awake()
     {
-        healthSystem = GetComponent<HealthSystem>();
+        if (healthSystem == null)
+        {
+            healthSystem = GetComponent<HealthSystem>();
+        }
     }
 
     private void Start()

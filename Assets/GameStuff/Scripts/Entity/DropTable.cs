@@ -13,14 +13,19 @@ public class DroppableItem
 }
 public class DropTable : MonoBehaviour
 {
-    public HealthSystem healthSystem;
-    [HideInInspector] public MobData mobData;
+    private HealthSystem healthSystem;
+    private MobData mobData;
 
     [SerializeField] private Attribute luckAttribute;
     public class DroppedItem
     {
         public ItemBlueprint item;
         public int quantity;
+    }
+    private void Awake()
+    {
+        healthSystem = GetComponent<HealthSystem>();
+        mobData = GetComponent<Stats>().entityData as MobData;
     }
 
     private void Start()
@@ -36,6 +41,14 @@ public class DropTable : MonoBehaviour
     }
     public void DropItems(GameObject killer)
     {
+        if (mobData.droppableItems == null)
+        {
+            return;
+        }
+        if (mobData.droppableItems.Count == 0)
+        {
+            return;
+        }
         if (killer.TryGetComponent(out Inventory killerInv))
         {
             List<DroppableItem> droppableItems = mobData.droppableItems;

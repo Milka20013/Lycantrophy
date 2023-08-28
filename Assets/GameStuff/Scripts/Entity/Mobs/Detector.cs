@@ -1,27 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Detector : MonoBehaviour
 {
+    public LayerMask targetLayer;
+
     public float detectionRange = 20f;
 
     public float sleepInterval = 2f;
     private double previousTime;
     public bool autoDetect = false;
 
-    public LayerMask targetLayer;
 
-    [HideInInspector] public GameObject[] targets;
     public int maxTargets = 10;
 
-    public delegate void DetectionHandler(bool hasTarget);
+    public delegate void DetectionHandler(Collider collider);
     public DetectionHandler onDetection;
 
-    private void Awake()
-    {
-        targets = new GameObject[maxTargets];
-    }
 
     void Update()
     {
@@ -32,14 +26,14 @@ public class Detector : MonoBehaviour
         }
     }
 
-    public bool TryDetectTargets(out GameObject[] targets, float detectionRange = 0f)
+    public bool TryDetectTargets(Transform detectOrigin, out GameObject[] targets, float detectionRange = 0f)
     {
         targets = null;
         if (detectionRange == 0)
         {
             detectionRange = this.detectionRange;
         }
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, targetLayer);
+        Collider[] colliders = Physics.OverlapSphere(detectOrigin.position, detectionRange, targetLayer);
         if (colliders.Length > 0)
         {
             targets = new GameObject[colliders.Length];
@@ -53,21 +47,11 @@ public class Detector : MonoBehaviour
     }
     public void DetectTargets()
     {
-        targets = new GameObject[maxTargets];
-        int j = 0;
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, targetLayer);
-        if (colliders.Length > 0)
+        if (colliders == null || colliders.Length == 0)
         {
-            for (int i = 0; i < colliders.Length; i++)
-            {
-                targets[i] = colliders[i].gameObject;
-                j++;
-                if (j >= maxTargets)
-                {
-                    break;
-                }
-            }
+            return;
         }
-        onDetection?.Invoke(colliders.Length > 0);
+        onDetection?.Invoke(colliders[0]);
     }
 }

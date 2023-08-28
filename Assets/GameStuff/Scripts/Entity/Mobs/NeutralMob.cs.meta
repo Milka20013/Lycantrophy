@@ -3,7 +3,10 @@ guid: 4f5645ef9e2b10e48945c370d15978e2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - moveSpeedAttribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
+  - attackerScr: {instanceID: 0}
+  - detector: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

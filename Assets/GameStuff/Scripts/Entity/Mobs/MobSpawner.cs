@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,15 +16,18 @@ public class MobSpawner : MonoBehaviour
 
     [Header("Pile spawning")]
     public GameObject pileContainer;
-    private MobPile[] mobPiles;
+    private List<MobPile> mobPiles = new();
 
     private double previousTime = 0;
     private void Start()
     {
-        mobPiles = new MobPile[pileContainer.transform.childCount];
         for (int i = 0; i < pileContainer.transform.childCount; i++)
         {
-            mobPiles[i] = pileContainer.transform.GetChild(i).GetComponent<MobPile>(); //get all of the mobPiles on the scene
+            if (!pileContainer.transform.GetChild(i).gameObject.activeSelf)
+            {
+                continue;
+            }
+            mobPiles.Add(pileContainer.transform.GetChild(i).GetComponent<MobPile>()); //get all of the mobPiles on the scene
         }
         SpawnMobsInPiles();
     }
@@ -32,7 +36,7 @@ public class MobSpawner : MonoBehaviour
         if (Time.timeAsDouble - previousTime >= 1)
         {
             previousTime = Time.timeAsDouble;
-            for (int i = 0; i < mobPiles.Length; i++)
+            for (int i = 0; i < mobPiles.Count; i++)
             {
                 if (mobPiles[i].respawnDelay <= 0f)
                 {
@@ -68,7 +72,7 @@ public class MobSpawner : MonoBehaviour
 
     public void SpawnMobsInPiles()
     {
-        for (int i = 0; i < mobPiles.Length; i++)
+        for (int i = 0; i < mobPiles.Count; i++)
         {
             SpawnMobsInPile(mobPiles[i]);
         }
@@ -89,14 +93,13 @@ public class MobSpawner : MonoBehaviour
         count = Mathf.Clamp(count, 0, mobPile.maxMobCount - mobPile.mobCount); //stay inside the boundaries of the pile
         spawnedMobs = new GameObject[count];
 
-        Mob mobScr;
         for (int j = 0; j < count; j++)
         {
             spawnedMobs[j] = Instantiate(prefab, GetRandomPositionInPile(mobPile), Quaternion.identity);
-            mobScr = spawnedMobs[j].GetComponent<Mob>();
-            mobScr.RegisterMobData(mobData);
-            var mesh = Instantiate(mobData.meshPrefab, spawnedMobs[j].transform.position, Quaternion.identity);
-            mesh.transform.SetParent(spawnedMobs[j].transform);
+            //Mob mobScr = spawnedMobs[j].GetComponent<Mob>();
+            //mobScr.RegisterMobData(mobData);
+            //var mesh = Instantiate(mobData.meshPrefab, spawnedMobs[j].transform.position, Quaternion.identity);
+            //mesh.transform.SetParent(spawnedMobs[j].transform);
         }
         mobPile.RegisterMobs(spawnedMobs); //give information to the the pile that mobs were spawned
         mobPile.respawnDelay = mobPile.spawnTimer;

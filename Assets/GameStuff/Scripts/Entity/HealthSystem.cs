@@ -34,6 +34,10 @@ public class HealthSystem : MonoBehaviour
     }
     public void TakeDamage(float amount, GameObject attacker)
     {
+        if (isDead)
+        {
+            return;
+        }
         currentHealth -= amount;
         UpdateHealthTexts();
         if (currentHealth <= 0)
