@@ -9,7 +9,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(HitboxResizer))]
 
-public class Mob : MonoBehaviour
+public class Mob : MonoBehaviour, IProvokable
 {
     protected NavMeshAgent agent;
     protected HealthSystem healthSystem;
@@ -78,6 +78,11 @@ public class Mob : MonoBehaviour
         stats.CreateAmplifierSystem(mobdata);
         dropTable.mobData = mobdata;
     }*/
+
+    public virtual void Provoke(Collider provoker)
+    {
+        SetDestination(provoker.transform.position);
+    }
 
 
     public void SetDestination(Vector3 position, float stoppingDistance = 0.1f)
@@ -164,4 +169,6 @@ public class Mob : MonoBehaviour
         takeDamage.Die(killer);
         Destroy(gameObject);
     }
+
+
 }

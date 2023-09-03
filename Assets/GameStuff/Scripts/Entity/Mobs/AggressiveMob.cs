@@ -19,6 +19,11 @@ public class AggressiveMob : Mob
         stoppingDistance = CalculateStoppingDistance();
     }
 
+    public override void Provoke(Collider provoker)
+    {
+        HandleDetection(provoker);
+    }
+
     protected override void FindReferences()
     {
         base.FindReferences();

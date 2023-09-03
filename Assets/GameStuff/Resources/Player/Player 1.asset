@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeDatas:
   - attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
-    value: 500000
+    value: 150
   - attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
-    value: 0.5
+    value: 1
   - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
-    value: 4
+    value: 2.5
   - attribute: {fileID: 11400000, guid: 12bc5e62251e6d54fa6918230c23397c, type: 2}
-    value: 2
+    value: 1
   - attribute: {fileID: 11400000, guid: 3fbb037b945e11d4083da0bd8cc4e463, type: 2}
-    value: 2
+    value: 1
+  - attribute: {fileID: 11400000, guid: 88dea78547a242d40befac85215c3581, type: 2}
+    value: 10

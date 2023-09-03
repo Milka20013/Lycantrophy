@@ -136,7 +136,7 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void SellItem()
     {
-        player.playerInventory.AddCurrency(itemBlueprint.value * itemStack.quantity);
+        player.playerInventory.AddCurrency(itemBlueprint.sellValue * itemStack.quantity);
         DestroyItem();
     }
 

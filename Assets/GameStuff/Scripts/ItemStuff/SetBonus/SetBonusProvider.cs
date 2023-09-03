@@ -33,6 +33,16 @@ public class SetBonusProvider
         }
         return amps.ToArray();
     }
+
+    public Amplifier[] GetAllSetBonusEditorInspect(SetBonusBlueprint setBonusBlueprint)
+    {
+        List<Amplifier> amps = new();
+        for (int i = 0; i < 7; i++)
+        {
+            amps.AddRange(CalculateBonuses(setBonusBlueprint, i + 3));
+        }
+        return amps.ToArray();
+    }
     public Amplifier[] GetSetBonus(OrbBlueprint[] items)
     {
 

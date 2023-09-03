@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, ISaveable
     public Stats playerStats { get; private set; }
     public TextMeshProUGUI healthText;
     public GameObject deathCanvas;
+    public BoxCollider playerHitbox;
 
     public HealthSystem healthSystem { get; private set; }
     [SerializeField] Attribute maxHealthAttribute;

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SetBonusManager", menuName = "Manager/SetBonusManager")]
@@ -16,6 +13,7 @@ public class SetBonusManager : ScriptableObject
     public void FindBonuses()
     {
         setBonuses = Resources.LoadAll<SetBonusBlueprint>("SetBonuses");
+        Debug.Log("Refreshed the set bonuses");
     }
 
     public SetBonusBlueprint GetBlueprint(SetTag tag)

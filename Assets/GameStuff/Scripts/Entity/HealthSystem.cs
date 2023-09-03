@@ -5,10 +5,10 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     public TextMeshProUGUI[] healthTexts;
-    private Stats stats;
+    protected Stats stats;
     public float maxHealth { get; set; }
     [SerializeField] private Attribute maxHealthAttribute;
-    private float currentHealth;
+    protected float currentHealth;
 
     public bool isDead { get; private set; }
 
@@ -20,11 +20,12 @@ public class HealthSystem : MonoBehaviour
         stats = GetComponent<Stats>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         stats.OnStatChange += OnStatChange;
         maxHealth = stats.GetAttributeValue(maxHealthAttribute);
         currentHealth = maxHealth;
+        UpdateHealthTexts();
     }
     public void InstantHeal(float amount)
     {
@@ -32,7 +33,7 @@ public class HealthSystem : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         UpdateHealthTexts();
     }
-    public void TakeDamage(float amount, GameObject attacker)
+    public virtual void TakeDamage(float amount, GameObject attacker)
     {
         if (isDead)
         {
@@ -61,8 +62,9 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
-    public void OnStatChange()
+    public virtual void OnStatChange()
     {
         maxHealth = stats.GetAttributeValue(maxHealthAttribute);
+        UpdateHealthTexts();
     }
 }

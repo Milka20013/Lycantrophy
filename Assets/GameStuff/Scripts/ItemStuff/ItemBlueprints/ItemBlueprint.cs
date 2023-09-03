@@ -10,5 +10,5 @@ public class ItemBlueprint : ScriptableObject
     public string basicDescription;
     public GameObject prefab;
     public Sprite[] sprites;
-    public float value;
+    public float sellValue;
 }

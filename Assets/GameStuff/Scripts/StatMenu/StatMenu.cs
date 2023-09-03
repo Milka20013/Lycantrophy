@@ -23,6 +23,7 @@ public class StatMenu : MonoBehaviour
     }
     public void IncreaseStat(StatSelector statSelector)
     {
+        Debug.Log(statSelector.attributeType);
         if (statPoints <= 0)
         {
             return;

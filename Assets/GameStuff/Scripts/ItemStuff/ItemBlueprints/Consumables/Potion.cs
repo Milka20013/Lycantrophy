@@ -1,12 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Potion", menuName = "ItemBlueprint/Consumable/Potion")]
 public class Potion : ConsumableBlueprint
 {
-    public override void ConsumeItem(HealthSystem healthSystem)
+    public float consumeValue;
+    public override void ConsumeItem(Player player)
     {
+        var healthSystem = player.GetComponent<HealthSystem>();
         healthSystem.InstantHeal(consumeValue);
+    }
+
+    public override string FullDescription()
+    {
+        return base.FullDescription() + " " + consumeValue + " health";
     }
 }

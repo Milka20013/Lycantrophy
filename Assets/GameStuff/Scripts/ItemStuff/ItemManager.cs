@@ -38,6 +38,7 @@ public class ItemManager : ScriptableObject
     public void ClearData()
     {
         itemBlueprintsDict.Clear();
+        Debug.Log("Items cleared from dict");
     }
 
     private void AddRangeToDict(IEnumerable<ItemBlueprint> items)

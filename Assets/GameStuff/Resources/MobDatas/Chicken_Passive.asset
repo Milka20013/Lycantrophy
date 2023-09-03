@@ -14,27 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attributeDatas:
   - attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
-    value: 10
+    value: 3
   - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
     value: 1
   rawExp: 2
   rawCurrency: 2.5
   droppableItems:
-  - item: {fileID: 11400000, guid: 480cf64037bc5104798a4f69fd002d23, type: 2}
-    percentage: 100
-    itemRange: 0100000001000000
+  - item: {fileID: 11400000, guid: 30f38a33fea7a45479ecb6c2338a9006, type: 2}
+    percentage: 10
+    itemRange: 
+  - item: {fileID: 11400000, guid: f7ee36a8327a0b74eab1902532cee3f4, type: 2}
+    percentage: 0.05
+    itemRange: 
   - item: {fileID: 11400000, guid: 4936edd9bf3a10e4497e1af8cc37fdc2, type: 2}
+    percentage: 20
+    itemRange: 0100000002000000
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
     percentage: 100
-    itemRange: 0100000001000000
-  - item: {fileID: 11400000, guid: aa0c7fe8d134b9e4c9a8111cbc771341, type: 2}
-    percentage: 100
-    itemRange: 0100000001000000
-  - item: {fileID: 11400000, guid: 8eb5f9132bc3fc840b689d16854f4d55, type: 2}
-    percentage: 100
-    itemRange: 0100000001000000
-  - item: {fileID: 11400000, guid: bf220e073dd17b24f8982ea7e37a1785, type: 2}
-    percentage: 100
-    itemRange: 0100000001000000
+    itemRange: 0100000002000000
   generalDrops: []
   prefab: {fileID: 2494769370203536732, guid: e1f65df3d5e3d9540bbbf34dcc910b2a, type: 3}
   size: {x: 1, y: 1, z: 1}

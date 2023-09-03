@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class Detector : MonoBehaviour
 {
-    public LayerMask targetLayer;
+    public LayerMask targetLayer = 1 << 12;
 
     public float detectionRange = 20f;
 
-    public float sleepInterval = 2f;
+    public float sleepInterval = 0.5f;
     private double previousTime;
     public bool autoDetect = false;
 

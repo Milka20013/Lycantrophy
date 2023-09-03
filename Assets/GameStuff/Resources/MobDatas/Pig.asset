@@ -20,11 +20,10 @@ MonoBehaviour:
   - attribute: {fileID: 11400000, guid: 12bc5e62251e6d54fa6918230c23397c, type: 2}
     value: 1
   - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
-    value: 3
+    value: 1
   rawExp: 1
   rawCurrency: 1
   droppableItems: []
   generalDrops: []
-  prefab: {fileID: 5407015723440895298, guid: 247e78981b76ccd4aaceeed668717ba5, type: 3}
-  meshPrefab: {fileID: 6275346461197453644, guid: 993362481eda3c2488d569a7a6e3c3e2, type: 3}
+  prefab: {fileID: 6192782170730088698, guid: 636a5229041388343b2b94ac59784b67, type: 3}
   size: {x: 1, y: 1, z: 1}

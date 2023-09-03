@@ -24,7 +24,7 @@ public class Attacker : MonoBehaviour
     protected float attackDelay = 0f;
 
 
-    public LayerMask enemyLayer = 1 << 8;
+    public LayerMask enemyLayer = 1 << 12;
 
     [HideInInspector] public bool canAttack = false;
 

@@ -28,7 +28,7 @@ public class Consumable : MonoBehaviour, IPointerClickHandler
     }
     public void ExecuteEffect()
     {
-        consumableItem.ConsumeItem(itemUI.player.GetComponent<HealthSystem>());
+        consumableItem.ConsumeItem(itemUI.player);
     }
 
     public string Description()
