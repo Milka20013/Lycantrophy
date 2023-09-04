@@ -1,4 +1,3 @@
-using Lycanthropy.Inventory;
 using UnityEditor;
 
 [CustomEditor(typeof(Inventory), true)]

@@ -19,8 +19,9 @@ public class AggressiveMob : Mob
         stoppingDistance = CalculateStoppingDistance();
     }
 
-    public override void Provoke(Collider provoker)
+    public override void Provoke(Collider provoker, float occupationTime)
     {
+        previousWanderTime = Time.timeAsDouble + Random.Range(occupationTime, wanderCooldown);
         HandleDetection(provoker);
     }
 

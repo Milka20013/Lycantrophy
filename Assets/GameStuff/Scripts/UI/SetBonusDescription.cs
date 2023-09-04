@@ -1,4 +1,3 @@
-using Lycanthropy.Inventory;
 using System.Linq;
 using TMPro;
 using UnityEngine;

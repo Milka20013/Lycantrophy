@@ -1,4 +1,3 @@
-using Lycanthropy.Inventory;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;

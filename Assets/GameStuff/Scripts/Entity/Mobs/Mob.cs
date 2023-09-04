@@ -35,19 +35,19 @@ public class Mob : MonoBehaviour, IProvokable
     public delegate void DeathHandler(GameObject killer);
     public event DeathHandler OnDeath;
 
-    protected double previousTime;
+    protected double previousWanderTime;
     protected virtual void Update()
     {
-        if (!occupied && Time.timeAsDouble - previousTime > wanderCooldown)
+        if (!occupied && Time.timeAsDouble - previousWanderTime > wanderCooldown)
         {
-            previousTime = Time.timeAsDouble + Random.Range(0, wanderCooldown);
+            previousWanderTime = Time.timeAsDouble + Random.Range(0, wanderCooldown);
             Wander();
         }
     }
     protected virtual void Awake()
     {
         FindReferences();
-        previousTime = Random.Range(0, wanderCooldown);
+        previousWanderTime = Random.Range(0, wanderCooldown);
         startPosition = transform.position;
         healthSystem.onDeath += Die;
         takeDamage.OnHit += OnHit;
@@ -79,8 +79,10 @@ public class Mob : MonoBehaviour, IProvokable
         dropTable.mobData = mobdata;
     }*/
 
-    public virtual void Provoke(Collider provoker)
+    public virtual void Provoke(Collider provoker, float occupationTime)
     {
+        previousWanderTime = Time.timeAsDouble + Random.Range(occupationTime, wanderCooldown);
+
         SetDestination(provoker.transform.position);
     }
 

@@ -1,4 +1,3 @@
-using Lycanthropy.Inventory;
 using StarterAssets;
 using System;
 using TMPro;

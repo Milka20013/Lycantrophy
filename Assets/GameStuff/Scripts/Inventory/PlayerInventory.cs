@@ -1,46 +1,43 @@
 using TMPro;
 using UnityEngine;
 
-namespace Lycanthropy.Inventory
+public class PlayerInventory : Inventory
 {
-    public class PlayerInventory : Inventory
+
+    private float soulFragments;
+    private Player player;
+
+    //UI
+    [SerializeField] private TextMeshProUGUI currencyText;
+
+    private void Awake()
     {
-        private float soulFragments;
-        private Player player;
+        player = GetComponent<Player>();
+        UpdateText();
+    }
 
-        //UI
-        [SerializeField] private TextMeshProUGUI currencyText;
+    public void AddCurrency(float amount)
+    {
+        soulFragments += amount;
+        UpdateText();
+    }
 
-        private void Awake()
+    public float GetCurrency()
+    {
+        return soulFragments;
+    }
+
+    private void UpdateText()
+    {
+        currencyText.text = Mathf.Floor(soulFragments).ToString();
+    }
+
+    override public T GetOwner<T>() where T : class
+    {
+        if (typeof(T) == typeof(Player))
         {
-            player = GetComponent<Player>();
-            UpdateText();
+            return player as T;
         }
-
-        public void AddCurrency(float amount)
-        {
-            soulFragments += amount;
-            UpdateText();
-        }
-
-        public float GetCurrency()
-        {
-            return soulFragments;
-        }
-
-        private void UpdateText()
-        {
-            currencyText.text = Mathf.Floor(soulFragments).ToString();
-        }
-
-        override public T GetOwner<T>() where T : class
-        {
-            if (typeof(T) == typeof(Player))
-            {
-                return player as T;
-            }
-            return null;
-        }
-
+        return null;
     }
 }

@@ -1,4 +1,3 @@
-using Lycanthropy.Inventory;
 using UnityEngine;
 
 //this class is for each individual itemslot in the inventory
