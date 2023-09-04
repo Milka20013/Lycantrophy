@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 [Serializable]
-public struct PlayerData
+public record PlayerData : SaveProfileData
 {
     public PlayerData(Vector3 position)
     {
@@ -13,7 +13,7 @@ public struct PlayerData
     public Vector3 position;
 }
 
-public class Player : MonoBehaviour, ISaveable
+public class Player : MonoBehaviour
 {
     public PlayerInventory playerInventory { get; private set; }
     public Stats playerStats { get; private set; }
@@ -35,11 +35,9 @@ public class Player : MonoBehaviour, ISaveable
         healthSystem = GetComponent<HealthSystem>();
         playerStats = GetComponent<Stats>();
         moveController = GetComponent<ThirdPersonController>();
-
-
-
         healthSystem.onDeath += Die;
     }
+
     private void Update()
     {
         if (isDead && respawnTimer > 0f)
@@ -64,15 +62,5 @@ public class Player : MonoBehaviour, ISaveable
         respawnTimer = respawnCooldown;
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
         deathCanvas.SetActive(false);
-    }
-
-    public void Save(ref GameData data)
-    {
-        data.playerData = new PlayerData(transform.position);
-    }
-
-    public void Load(GameData data)
-    {
-        transform.position = data.playerData.position;
     }
 }

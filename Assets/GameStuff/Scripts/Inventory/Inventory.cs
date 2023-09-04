@@ -25,7 +25,7 @@ public struct InventoryData
     }
 }
 
-public class Inventory : MonoBehaviour, ISaveable
+public class Inventory : MonoBehaviour
 {
 
     public string id;
@@ -136,7 +136,7 @@ public class Inventory : MonoBehaviour, ISaveable
         stacksInInventory.Remove(item);
     }
 
-    public virtual void Save(ref GameData data)
+    /*public virtual void Save(ref GameData data)
     {
         int index = data.GetIndex(id);
         var invData = new InventoryData(InventoryData.CreateItemDatas(stacksInInventory), id);
@@ -163,7 +163,7 @@ public class Inventory : MonoBehaviour, ISaveable
             AddItem(itemManager.GetItem(invItems[i].itemId), invItems[i].quantity);
         }
         InstantiateItems(invItems);
-    }
+    }*/
 
     private void InstantiateItems(ItemData[] inventoryItems)
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerStarterItemProvider : MonoBehaviour, ISaveable
+public class PlayerStarterItemProvider : MonoBehaviour
 {
     [Serializable]
     public struct ItemSelector
@@ -35,16 +35,5 @@ public class PlayerStarterItemProvider : MonoBehaviour, ISaveable
         }
         inventory.AddCurrency(money);
         starterItemsAdded = true;
-        GameDataManager.instance.SaveGame();
-    }
-
-    public void Save(ref GameData data)
-    {
-        data.starterItemsAdded = starterItemsAdded;
-    }
-
-    public void Load(GameData data)
-    {
-        starterItemsAdded = data.starterItemsAdded;
     }
 }

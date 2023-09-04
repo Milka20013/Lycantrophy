@@ -22,7 +22,7 @@ public struct AttributeData
     public Attribute attribute;
     public float value;
 }
-public class Stats : MonoBehaviour, ISaveable
+public class Stats : MonoBehaviour
 {
     public EntityData entityData;
 
@@ -75,7 +75,7 @@ public class Stats : MonoBehaviour, ISaveable
         return amplifierSystem.GetAttributeValue(attribute);
     }
 
-    public void Save(ref GameData data)
+    /*public void Save(ref GameData data)
     {
         if (!save)
         {
@@ -92,5 +92,5 @@ public class Stats : MonoBehaviour, ISaveable
         }
         CreateAmplifierSystem(entityData);
         amplifierSystem.RegisterAmplifiers(data.amplifierSystemData.amplifiers);
-    }
+    }*/
 }
