@@ -68,7 +68,9 @@ public class Mob : MonoBehaviour, IProvokable
 
     protected virtual void Start()
     {
-        agent.speed = stats.GetAttributeValue(moveSpeedAttribute);
+        float speed = 1;
+        stats.GetAttributeValue(moveSpeedAttribute, out speed);
+        agent.speed = speed;
         //makes the agent move at an almost constant speed
         agent.acceleration = 1000;
     }

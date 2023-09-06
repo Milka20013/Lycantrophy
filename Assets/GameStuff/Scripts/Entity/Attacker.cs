@@ -81,14 +81,14 @@ public class Attacker : MonoBehaviour
                 {
                     return;
                 }
-                damageable.RegisterDamage(_damage, gameObject);
+                damageable.RegisterDamage(_damage, gameObject, stats);
             }
         }
     }
     public void UpdateStats()
     {
-        _damage = stats.GetAttributeValue(damageAttribute);
-        _attackSpeed = stats.GetAttributeValue(attackSpeedAttribute);
+        stats.GetAttributeValue(damageAttribute, out _damage);
+        stats.GetAttributeValue(attackSpeedAttribute, out _attackSpeed);
         if (!hasAnimator)
         {
             return;

@@ -21,6 +21,8 @@ public class AmplifierSystem
     public Dictionary<Attribute, Dictionary<AmplifierType, float>> amplifiersDict = new();
 
     public List<Amplifier> everyAmplifier = new();
+
+    private AmplifierValueCalculator calculator;
     public AmplifierSystem(AttributeData[] attributeDatas)
     {
         this.attributeDatas = attributeDatas;
@@ -31,6 +33,7 @@ public class AmplifierSystem
     public void InstantiateSystem()
     {
         attributesDict = FillAttributeDict(attributeDatas);
+        calculator = new AmplifierValueCalculator();
     }
 
     public static Dictionary<Attribute, float> FillAttributeDict(AttributeData[] attributeDatas) //fill attributes dict with base values
@@ -54,7 +57,14 @@ public class AmplifierSystem
                 switch (e2)
                 {
                     case AmplifierType.TruePercentage:
-                        dict2.Add(e2, 1);
+                        if (attributeDatas[i].attribute.invertedCalculation)
+                        {
+                            dict2.Add(e2, 0);
+                        }
+                        else
+                        {
+                            dict2.Add(e2, 1);
+                        }
                         break;
                     default:
                         dict2.Add(e2, 0);
@@ -70,68 +80,19 @@ public class AmplifierSystem
         attributesDict = FillAttributeDict(attributeDatas);
         foreach (KeyValuePair<Attribute, Dictionary<AmplifierType, float>> amps in amplifiersDict)
         {
-            foreach (KeyValuePair<AmplifierType, float> core in amps.Value)
-            {
-                if (AddThis(core.Key))
-                {
-                    attributesDict[amps.Key] += core.Value;
-                }
-                else
-                {
-                    if (core.Value != 0)
-                    {
-                        attributesDict[amps.Key] *= core.Value;
-
-                    }
-                }
-            }
+            attributesDict[amps.Key] = calculator.FinalAttributeValue(amplifiersDict[amps.Key],
+                                                                      attributesDict[amps.Key], amps.Key.invertedCalculation);
         }
         LogAttributes();
     }
     private void CalculateAmplifierValues() //calculates the raw values for the amplifiersDict from the amplifiers
     {
         amplifiersDict = FillAmplifiersDict();
-        float value;
         for (int i = 0; i < everyAmplifier.Count; i++)
         {
-            if (AddThis(everyAmplifier[i].amplifierType, true))
-            {
-                if (everyAmplifier[i].amplifierType == AmplifierType.Percentage)
-                {
-                    value = 1 + everyAmplifier[i].value / 100;
-                }
-                else
-                {
-                    value = everyAmplifier[i].value;
-                }
-                amplifiersDict[everyAmplifier[i].attribute][everyAmplifier[i].amplifierType] += value;
-            }
-            else
-            {
-                amplifiersDict[everyAmplifier[i].attribute][everyAmplifier[i].amplifierType] *= 1 + everyAmplifier[i].value / 100;
-            }
+            calculator.SummarizeAmplifierValues(ref amplifiersDict, everyAmplifier[i]);
         }
         CalculateAttributeValues();
-    }
-    private bool AddThis(AmplifierType ampType, bool inside = false) //determines if the calculation is adding or multiplying
-    {
-        if (inside)
-        {
-            switch (ampType)
-            {
-                case AmplifierType.Plus:
-                    return true;
-                case AmplifierType.Percentage:
-                    return true;
-                case AmplifierType.TruePercentage:
-                    return false;
-            }
-        }
-        if (ampType == AmplifierType.Plus)
-        {
-            return true;
-        }
-        return false;
     }
 
     private void LogAttributes()
@@ -207,8 +168,12 @@ public class AmplifierSystem
         }
         return changeHappened;
     }
-    public float GetAttributeValue(Attribute attribute)
+    public bool GetAttributeValue(Attribute attribute, out float value)
     {
-        return attributesDict[attribute];
+        if (attributesDict.TryGetValue(attribute, out value))
+        {
+            return true;
+        }
+        return false;
     }
 }

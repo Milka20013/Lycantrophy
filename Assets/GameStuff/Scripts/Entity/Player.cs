@@ -56,7 +56,8 @@ public class Player : MonoBehaviour
 
     public void Respawn()
     {
-        healthSystem.InstantHeal(playerStats.GetAttributeValue(maxHealthAttribute) * 0.25f);
+        playerStats.GetAttributeValue(maxHealthAttribute, out float healthToHeal);
+        healthSystem.InstantHeal(healthToHeal * 0.25f);
         moveController.enabled = true;
         isDead = false;
         respawnTimer = respawnCooldown;

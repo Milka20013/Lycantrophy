@@ -12,7 +12,7 @@ public class AdvancedHealthSystem : HealthSystem
     protected override void Start()
     {
         base.Start();
-        healthRegen = stats.GetAttributeValue(healthRegenAttribute);
+        stats.GetAttributeValue(healthRegenAttribute, out healthRegen);
         StartRegen();
     }
     public override void TakeDamage(float amount, GameObject attacker)
@@ -24,7 +24,7 @@ public class AdvancedHealthSystem : HealthSystem
     public override void OnStatChange()
     {
         base.OnStatChange();
-        healthRegen = stats.GetAttributeValue(healthRegenAttribute);
+        stats.GetAttributeValue(healthRegenAttribute, out healthRegen);
         StartRegen();
     }
 

@@ -21,6 +21,8 @@ MonoBehaviour:
     value: 1
   - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
     value: 1.5
+  offensiveAtributeDatas: []
+  defensiveAtributeDatas: []
   rawExp: 1
   rawCurrency: 1
   droppableItems: []

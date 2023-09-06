@@ -55,6 +55,10 @@ public class ItemDescriptionPanel : MonoBehaviour
         }
         for (int i = 0; i < currentItemUI.effectsDescription.Count; i++)
         {
+            if (i >= effectTexts.Length)
+            {
+                break;
+            }
             effectTexts[i].text = currentItemUI.effectsDescription[i];
             effectTexts[i].gameObject.SetActive(true);
         }

@@ -6,7 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     public TextMeshProUGUI[] healthTexts;
     protected Stats stats;
-    public float maxHealth { get; set; }
+    public float maxHealth;
     [SerializeField] private Attribute maxHealthAttribute;
     protected float currentHealth;
 
@@ -23,7 +23,7 @@ public class HealthSystem : MonoBehaviour
     protected virtual void Start()
     {
         stats.OnStatChange += OnStatChange;
-        maxHealth = stats.GetAttributeValue(maxHealthAttribute);
+        stats.GetAttributeValue(maxHealthAttribute, out maxHealth);
         currentHealth = maxHealth;
         UpdateHealthTexts();
     }
@@ -64,7 +64,7 @@ public class HealthSystem : MonoBehaviour
 
     public virtual void OnStatChange()
     {
-        maxHealth = stats.GetAttributeValue(maxHealthAttribute);
+        stats.GetAttributeValue(maxHealthAttribute, out maxHealth);
         UpdateHealthTexts();
     }
 }

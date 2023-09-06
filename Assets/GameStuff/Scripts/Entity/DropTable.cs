@@ -57,7 +57,7 @@ public class DropTable : MonoBehaviour
             float luck = 1;
             if (killer.TryGetComponent(out Stats stats))
             {
-                luck = stats.GetAttributeValue(luckAttribute);
+                stats.GetAttributeValue(luckAttribute, out luck);
             }
             for (int i = 0; i < droppableItems.Count; i++)
             {

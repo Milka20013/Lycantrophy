@@ -26,7 +26,7 @@ namespace StarterAssets
 
         public void OnStatChange()
         {
-            MoveSpeed = playerStats.GetAttributeValue(moveSpeedAttribute);
+            playerStats.GetAttributeValue(moveSpeedAttribute, out MoveSpeed);
         }
 
         [Tooltip("Sprint speed of the character in m/s")]
