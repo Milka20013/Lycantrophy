@@ -23,8 +23,8 @@ MonoBehaviour:
     value: 1.5
   offensiveAtributeDatas: []
   defensiveAtributeDatas: []
-  rawExp: 1
-  rawCurrency: 1
+  rawExp: 5
+  rawCurrency: 8
   droppableItems: []
   generalDrops: []
   prefab: {fileID: 7954529173620817125, guid: f1b5f5180e4acb04e9b1cde1b014bcc1, type: 3}

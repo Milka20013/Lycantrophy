@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -24,19 +25,6 @@ public struct AttributeData
     public float value;
 }
 
-[Serializable]
-public struct OffensiveAtributeData
-{
-    public OffensiveAttribute attribute;
-    public float value;
-}
-
-[Serializable]
-public struct DefensiveAtributeData
-{
-    public DefensiveAttribute attribute;
-    public float value;
-}
 public class Stats : MonoBehaviour
 {
     public EntityData entityData;
@@ -65,7 +53,11 @@ public class Stats : MonoBehaviour
         {
             return;
         }
-        amplifierSystem = new AmplifierSystem(entityData.attributeDatas);
+        List<AttributeData> attributeDatas = new();
+        attributeDatas.AddRange(entityData.attributeDatas);
+        attributeDatas.AddRange(entityData.defensiveAtributeDatas);
+        attributeDatas.AddRange(entityData.offensiveAtributeDatas);
+        amplifierSystem = new AmplifierSystem(attributeDatas.ToArray());
     }
     public void RegisterAmplifiers(Amplifier[] amplifiers)
     {
@@ -91,12 +83,12 @@ public class Stats : MonoBehaviour
 
     public OffensiveAttribute[] GetOffensiveAttributes()
     {
-        return entityData.offensiveAtributeDatas.Select(x => x.attribute).ToArray();
+        return entityData.offensiveAtributeDatas.Select(x => x.attribute as OffensiveAttribute).ToArray();
     }
 
     public DefensiveAttribute[] GetDefensiveAttributes()
     {
-        return entityData.defensiveAtributeDatas.Select(x => x.attribute).ToArray();
+        return entityData.defensiveAtributeDatas.Select(x => x.attribute as DefensiveAttribute).ToArray();
     }
 
     /*public void Save(ref GameData data)

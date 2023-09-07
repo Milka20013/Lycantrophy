@@ -10,28 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71973026c8e746a48a944f67912b628b, type: 3}
-  m_Name: Chicken_Boss_Orb
+  m_Name: Goat_Rare_Orb
   m_EditorClassIdentifier: 
-  id: 3289a71b-50c8-4d93-87e5-951bf76ea36d
-  itemName: Boss Chicken Orb
+  id: b17bc9a9-d83a-4c08-8eec-d8f110fb9cb5
+  itemName: Boss Goat Orb
   stackSize: 1
-  basicDescription: Orb of a Boss Chicken
+  basicDescription: Orb of a Boss Goat
   prefab: {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}
   sprites:
   - {fileID: 21300000, guid: b5bf518b3cd517446a5929bf0f36a172, type: 3}
-  - {fileID: 21300000, guid: 0e7d6033ffb9bda47929a04ca23465e1, type: 3}
-  sellValue: 0
+  - {fileID: 21300000, guid: c92df022971223f4b9f1978f3ebf7e49, type: 3}
+  sellValue: 1500
   amplifiers:
-  - tag: Chicken_Orb
+  - tag: Goat_Orb
     amplifierType: 0
     attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 125
     key: 2
-  - tag: Chicken_Orb
-    amplifierType: 1
-    attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
-    value: 20
+  - tag: Goat_Orb
+    amplifierType: 0
+    attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+    value: 18
     key: 2
-  tag: {fileID: 11400000, guid: 8868dbaa18282fe4abd1a561bf4162ab, type: 2}
+  - tag: Goat_Orb
+    amplifierType: 2
+    attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+    value: 30
+    key: 2
+  - tag: Goat_Orb
+    amplifierType: 2
+    attribute: {fileID: 11400000, guid: ff30909998e4c594eabc957bc5fc9429, type: 2}
+    value: 5
+    key: 2
+  tag: {fileID: 11400000, guid: 200c441ed01f39744b0dd2c4d5ba8de2, type: 2}
   tier: 2
   hideDescription: 0

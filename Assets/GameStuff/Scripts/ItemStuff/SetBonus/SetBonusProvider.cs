@@ -116,7 +116,7 @@ public class SetBonusProvider
         return multipliers;
     }
 
-    private float BonusFunction(SetBonusVariable variable, int level)
+    private float BonusFunction(SetBonusVariable variable, float level)
     {
         float asd = level + Mathf.Clamp(Mathf.Floor(level / 3) - 1, 0, 10) * variable.weight - 2;
         return level + Mathf.Clamp(Mathf.Floor(level / 3) - 1, 0, 10) * variable.weight - 2;

@@ -21,21 +21,17 @@ MonoBehaviour:
     value: 1
   - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
     value: 3
-  rawExp: 2
-  rawCurrency: 2.5
+  offensiveAtributeDatas: []
+  defensiveAtributeDatas: []
+  rawExp: 8
+  rawCurrency: 10
   droppableItems:
-  - item: {fileID: 11400000, guid: 937cea476cd230e42aa464f4b44d3706, type: 2}
-    percentage: 70
-    itemRange: 0100000003000000
-  - item: {fileID: 11400000, guid: 766ec2fa170a95f4ba36404241fdd17c, type: 2}
-    percentage: 70
-    itemRange: 0100000003000000
-  - item: {fileID: 11400000, guid: f904d2127db460f4c840a1f49e466d52, type: 2}
-    percentage: 70
-    itemRange: 0100000003000000
-  - item: {fileID: 11400000, guid: 514f0684091f4ab4090a36630ce2b605, type: 2}
-    percentage: 70
-    itemRange: 0100000003000000
+  - item: {fileID: 11400000, guid: ef426cd839fbd984793afbf807d06b70, type: 2}
+    percentage: 10
+    itemRange: 
+  - item: {fileID: 11400000, guid: ee8409ee28ad9354192e818f4f3e6bb6, type: 2}
+    percentage: 0.05
+    itemRange: 
   generalDrops: []
   prefab: {fileID: 2667953661921860862, guid: 4e2a04e78f15418408c75e4f4cc9749d, type: 3}
   size: {x: 1, y: 1, z: 1}

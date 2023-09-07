@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ffffa71438e4c148b8aff9c39ed26b2, type: 3}
+  m_Name: GoatSetBonus
+  m_EditorClassIdentifier: 
+  tag: {fileID: 11400000, guid: 200c441ed01f39744b0dd2c4d5ba8de2, type: 2}
+  setBonusVariables:
+  - amplifier:
+      tag: Goat_Set_Bonus
+      amplifierType: 1
+      attribute: {fileID: 11400000, guid: ff30909998e4c594eabc957bc5fc9429, type: 2}
+      value: 4
+      key: 2
+    start: 3
+    offset: 3
+    weight: 1.5
+  - amplifier:
+      tag: Goat_Set_Bonus
+      amplifierType: 1
+      attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+      value: 16
+      key: 2
+    start: 3
+    offset: 2.5
+    weight: 1.5
+  - amplifier:
+      tag: Goat_Set_Bonus
+      amplifierType: 0
+      attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
+      value: 75
+      key: 2
+    start: 3
+    offset: 2
+    weight: 1.5

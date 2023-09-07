@@ -6,7 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     public TextMeshProUGUI[] healthTexts;
     protected Stats stats;
-    public float maxHealth;
+    [HideInInspector] public float maxHealth;
     [SerializeField] private Attribute maxHealthAttribute;
     protected float currentHealth;
 

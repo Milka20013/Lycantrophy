@@ -16,7 +16,9 @@ MonoBehaviour:
   - attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 3
   - attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
-    value: 1
+    value: 1.4
+  offensiveAtributeDatas: []
+  defensiveAtributeDatas: []
   rawExp: 2
   rawCurrency: 2.5
   droppableItems:
@@ -32,6 +34,78 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
     percentage: 100
     itemRange: 0100000002000000
-  generalDrops: []
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
+  generalDrops:
+  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
+    percentage: 5
+    itemRange: 
   prefab: {fileID: 2494769370203536732, guid: e1f65df3d5e3d9540bbbf34dcc910b2a, type: 3}
   size: {x: 1, y: 1, z: 1}

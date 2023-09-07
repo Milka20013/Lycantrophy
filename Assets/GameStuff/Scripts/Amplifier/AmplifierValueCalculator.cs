@@ -15,6 +15,8 @@ public class AmplifierValueCalculator
                     result += item.Value;
                     break;
                 case AmplifierType.Percentage:
+                    result *= 1 + (item.Value);
+                    break;
                 case AmplifierType.TruePercentage:
                     if (invertedCalculation)
                     {
@@ -42,14 +44,7 @@ public class AmplifierValueCalculator
                 dict[amplifier.attribute][amplifier.amplifierType] += amplifier.value;
                 break;
             case AmplifierType.Percentage:
-                if (amplifier.attribute.invertedCalculation)
-                {
-                    dict[amplifier.attribute][amplifier.amplifierType] += amplifier.value / 100f;
-                }
-                else
-                {
-                    dict[amplifier.attribute][amplifier.amplifierType] += 1 + amplifier.value / 100f;
-                }
+                dict[amplifier.attribute][amplifier.amplifierType] += amplifier.value / 100f;
                 break;
             case AmplifierType.TruePercentage:
                 if (amplifier.attribute.invertedCalculation)

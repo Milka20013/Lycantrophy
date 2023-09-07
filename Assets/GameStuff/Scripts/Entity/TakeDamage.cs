@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TakeDamage : MonoBehaviour, IDamageable
@@ -26,16 +27,8 @@ public class TakeDamage : MonoBehaviour, IDamageable
         {
             stats = GetComponent<Stats>();
         }
-        ConvertConditionArrayToHashSet();
+        conditions = conditionsArray.ToHashSet();
         combatSystem = new CombatSystem(stats, conditions);
-    }
-
-    private void ConvertConditionArrayToHashSet()
-    {
-        for (int i = 0; i < conditionsArray.Length; i++)
-        {
-            conditions.Add(conditionsArray[i]);
-        }
     }
 
     private void Start()
@@ -45,9 +38,7 @@ public class TakeDamage : MonoBehaviour, IDamageable
 
     public void RegisterDamage(float amount, GameObject attacker, Stats attackerStats)
     {
-        Debug.Log(amount);
         float damage = combatSystem.CalculateDamage(attackerStats, amount);
-        Debug.Log(damage);
         healthSystem.TakeDamage(damage, attacker);
         OnHit?.Invoke(damage, attacker);
     }

@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 097af83bcc524a44f805013485c345c4, type: 3}
-  m_Name: Penetration
+  m_Script: {fileID: 11500000, guid: b223303ccc9ad0a448d29e7e33229122, type: 3}
+  m_Name: Goat
   m_EditorClassIdentifier: 
-  description: 
-  invertedCalculation: 1
-  conditions: []
-  efficiency: 0.5
+  setName: 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class EntityData : ScriptableObject
 {
     public AttributeData[] attributeDatas;
-    public OffensiveAtributeData[] offensiveAtributeDatas;
-    public DefensiveAtributeData[] defensiveAtributeDatas;
+    public AttributeData[] offensiveAtributeDatas;
+    public AttributeData[] defensiveAtributeDatas;
 
 }

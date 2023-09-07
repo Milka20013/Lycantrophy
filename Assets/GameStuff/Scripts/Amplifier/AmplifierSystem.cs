@@ -80,8 +80,9 @@ public class AmplifierSystem
         attributesDict = FillAttributeDict(attributeDatas);
         foreach (KeyValuePair<Attribute, Dictionary<AmplifierType, float>> amps in amplifiersDict)
         {
-            attributesDict[amps.Key] = calculator.FinalAttributeValue(amplifiersDict[amps.Key],
+            attributesDict[amps.Key] = calculator.FinalAttributeValue(amps.Value,
                                                                       attributesDict[amps.Key], amps.Key.invertedCalculation);
+
         }
         LogAttributes();
     }
@@ -102,6 +103,14 @@ public class AmplifierSystem
             Debug.Log(amps.Key.ToString() + ": " + attributesDict[amps.Key]);
         }
     }
+
+    private void LogAmplifiers()
+    {
+        foreach (var item in everyAmplifier)
+        {
+            Debug.Log(item);
+        }
+    }
     public bool RegisterAmplifiers(Amplifier[] amplifiers)
     {
         if (amplifiers == null)
@@ -118,7 +127,7 @@ public class AmplifierSystem
             if (Amplifier.IsAmplifierInCollectionPartially(everyAmplifier, amplifiers[i], out int index)) //if the amplifier is already registered, decide what to do
             {
                 if (amplifiers[i].key == AmplifierKey.Overriding
-                    //&&amplifiers[i].value > everyAmplifier[index].value
+                    && amplifiers[i].value > everyAmplifier[index].value
                     )
                 {
                     everyAmplifier[index] = amplifiers[i];
