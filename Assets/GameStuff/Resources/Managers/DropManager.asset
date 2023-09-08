@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mobDatas:
   - {fileID: 11400000, guid: 6f200a1437f37c24aa2b2e40a712d06d, type: 2}
-  - {fileID: 11400000, guid: e23eafa75ad6d124f8431cc754c2da63, type: 2}
   - {fileID: 11400000, guid: e9cd306c80e2d5746ac93185e6ea992f, type: 2}
   - {fileID: 11400000, guid: 21d3d839ebc4e9543801026f97be9485, type: 2}
   - {fileID: 11400000, guid: 5d3ee2ebd3e64dd478932d48cb138aaa, type: 2}
@@ -22,7 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee3ad4853b02bc14682eb901ae521e4a, type: 2}
   - {fileID: 11400000, guid: 33f6753da788d4e4aa47c5111804a002, type: 2}
   - {fileID: 11400000, guid: 6ecbc82e9c4226e49b3770cc94dfda6a, type: 2}
-  generalDrops:
-  - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
-    percentage: 5
-    itemRange: 
+  generalDrops: []

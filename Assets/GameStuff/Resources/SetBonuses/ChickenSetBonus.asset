@@ -16,9 +16,9 @@ MonoBehaviour:
   setBonusVariables:
   - amplifier:
       tag: Chicken_Set_Bonus
-      amplifierType: 1
+      amplifierType: 2
       attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
-      value: 5
+      value: 8
       key: 2
     start: 3
     offset: 1
@@ -27,8 +27,17 @@ MonoBehaviour:
       tag: Chicken_Set_Bonus_2
       amplifierType: 1
       attribute: {fileID: 11400000, guid: 12bc5e62251e6d54fa6918230c23397c, type: 2}
-      value: 5
+      value: 7.5
       key: 2
     start: 3
     offset: 3
+    weight: 2
+  - amplifier:
+      tag: Chicken_Set_Bonus_2
+      amplifierType: 0
+      attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+      value: 3
+      key: 2
+    start: 3
+    offset: 1
     weight: 2

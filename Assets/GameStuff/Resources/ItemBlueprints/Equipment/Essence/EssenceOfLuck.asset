@@ -19,15 +19,16 @@ MonoBehaviour:
   prefab: {fileID: 5146469132438167939, guid: 408dc344fc4e4104f92175101d96cf85, type: 3}
   sprites:
   - {fileID: 21300000, guid: 55ba67a0473788a4cad15fa121790fcc, type: 3}
-  value: 500
+  sellValue: 0
   amplifiers:
   - tag: Essence 1
     amplifierType: 2
     attribute: {fileID: 11400000, guid: 3fbb037b945e11d4083da0bd8cc4e463, type: 2}
-    value: 25
+    value: 50
     key: 2
   possibleCorePowers:
   - {fileID: 11400000, guid: 98a405b8fa5a1474f8dcf2b8d74a1299, type: 2}
-  - {fileID: 11400000, guid: 5017b098a3475bb4082d8144a203f993, type: 2}
-  - {fileID: 11400000, guid: a88b9adafd4f3794d94e779e88589115, type: 2}
-  maxNumberOfCorePowers: 3
+  - {fileID: 11400000, guid: 0ff91600934b0fd4faf0921d0abfdf2a, type: 2}
+  - {fileID: 11400000, guid: ab636be2f9cdd4545992514d91127118, type: 2}
+  - {fileID: 11400000, guid: 7d81e7a3140034d4d916a6062b0c23d6, type: 2}
+  maxNumberOfCorePowers: 4

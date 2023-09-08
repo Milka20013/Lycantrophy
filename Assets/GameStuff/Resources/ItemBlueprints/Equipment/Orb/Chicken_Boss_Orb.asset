@@ -20,7 +20,7 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: b5bf518b3cd517446a5929bf0f36a172, type: 3}
   - {fileID: 21300000, guid: 0e7d6033ffb9bda47929a04ca23465e1, type: 3}
-  sellValue: 0
+  sellValue: 500
   amplifiers:
   - tag: Chicken_Orb
     amplifierType: 0

@@ -748,7 +748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2582293
+      value: 2.178229
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6133,6 +6133,10 @@ PrefabInstance:
       propertyPath: ItemDescriptionPanel
       value: 
       objectReference: {fileID: 1797075640}
+    - target: {fileID: 8196656613637099863, guid: d7f96ebc642c6d2419bbc82f8604c363, type: 3}
+      propertyPath: products.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d1ea1ea96631ea6489b6e7a399721d86, type: 2}
     - target: {fileID: 8196656613637099881, guid: d7f96ebc642c6d2419bbc82f8604c363, type: 3}
       propertyPath: m_Name
       value: Shop
@@ -6428,7 +6432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2582293
+      value: 2.178229
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11296,6 +11300,7 @@ MonoBehaviour:
   terrain: {fileID: 640931587}
   mobPrefab: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
   player: {fileID: 1293029875071086074}
+  debug: 0
   spawnMinDistanceFromPlayer: 32
   spawnMaxDistanceFromPlayer: 64
   layersToSpawnOn:
@@ -11747,7 +11752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925873224841967424}
   m_LocalRotation: {x: 0, y: 0.3647955, z: 0, w: 0.93108773}
-  m_LocalPosition: {x: 90.8, y: 0.08, z: 95.4}
+  m_LocalPosition: {x: 90.8, y: 0, z: 95.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15498,10 +15503,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemSelectors:
   - item: {fileID: 11400000, guid: 94d1a4738a689a34a8b4e8f93fc7fd4a, type: 2}
-    quantity: 10
+    quantity: 20
   - item: {fileID: 11400000, guid: 30f38a33fea7a45479ecb6c2338a9006, type: 2}
     quantity: 1
-  - item: {fileID: 11400000, guid: f7ee36a8327a0b74eab1902532cee3f4, type: 2}
+  - item: {fileID: 11400000, guid: 480cf64037bc5104798a4f69fd002d23, type: 2}
     quantity: 1
   money: 500
 --- !u!1001 &8921832956165096920

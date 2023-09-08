@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CorePower_MoveSpeed
   m_EditorClassIdentifier: 
   amplifier:
-    tag: Core power move speed
+    tag: Core Power move speed
     amplifierType: 1
     attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
     value: 0

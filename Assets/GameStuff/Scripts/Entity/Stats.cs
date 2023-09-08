@@ -46,6 +46,11 @@ public class Stats : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        OnStatChange?.Invoke();
+    }
+
     public void CreateAmplifierSystem(EntityData entityData)
     {
         this.entityData = entityData;

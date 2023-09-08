@@ -47,6 +47,12 @@ public class HealthSystem : MonoBehaviour
             onDeath?.Invoke(attacker);
         }
     }
+
+    public void Respawn(float health)
+    {
+        isDead = false;
+        InstantHeal(health);
+    }
     public void UpdateHealthTexts()
     {
         if (healthTexts.Length == 0)

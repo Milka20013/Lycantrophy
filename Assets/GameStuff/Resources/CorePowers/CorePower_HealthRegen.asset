@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9f14d7e2ac495d48994317f86e40fd8, type: 3}
-  m_Name: CorePower_Atk
+  m_Name: CorePower_HealthRegen
   m_EditorClassIdentifier: 
   amplifier:
-    tag: Core power atk
-    amplifierType: 0
-    attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+    tag: Core Power HealthRegen
+    amplifierType: 1
+    attribute: {fileID: 11400000, guid: 88dea78547a242d40befac85215c3581, type: 2}
     value: 0
     key: 2
   possibleValues:
-  - 2
-  - 3
-  - 5
+  - 15
+  - 20
+  - 30

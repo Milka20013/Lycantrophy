@@ -22,13 +22,11 @@ public class Player : MonoBehaviour
     public BoxCollider playerHitbox;
 
     public HealthSystem healthSystem { get; private set; }
+    public TakeDamage takeDamage;
     [SerializeField] Attribute maxHealthAttribute;
 
     private ThirdPersonController moveController;
 
-    public bool isDead { get; private set; }
-    public float respawnCooldown = 10f;
-    [HideInInspector] public float respawnTimer = 10f;
     private void Awake()
     {
         playerInventory = GetComponent<PlayerInventory>();
@@ -38,29 +36,19 @@ public class Player : MonoBehaviour
         healthSystem.onDeath += Die;
     }
 
-    private void Update()
-    {
-        if (isDead && respawnTimer > 0f)
-        {
-            respawnTimer -= Time.deltaTime;
-        }
-    }
-
     public void Die(GameObject killer)
     {
         deathCanvas.SetActive(true);
         moveController.enabled = false;
-        isDead = true;
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 80);
     }
 
     public void Respawn()
     {
         playerStats.GetAttributeValue(maxHealthAttribute, out float healthToHeal);
-        healthSystem.InstantHeal(healthToHeal * 0.25f);
+        healthSystem.Respawn(healthToHeal * 0.25f);
+        takeDamage.isDead = false;
         moveController.enabled = true;
-        isDead = false;
-        respawnTimer = respawnCooldown;
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
         deathCanvas.SetActive(false);
     }

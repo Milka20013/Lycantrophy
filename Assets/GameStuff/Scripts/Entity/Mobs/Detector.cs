@@ -15,6 +15,7 @@ public class Detector : MonoBehaviour
 
     public delegate void DetectionHandler(Collider collider);
     public DetectionHandler onDetection;
+    public DetectionHandler onLostFocus;
 
 
     void Update()
@@ -50,7 +51,17 @@ public class Detector : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRange, targetLayer);
         if (colliders == null || colliders.Length == 0)
         {
+            onLostFocus?.Invoke(null);
             return;
+        }
+        //Maybe change this to not only the 0. element
+        if (colliders[0].TryGetComponent(out IDetectable detectable))
+        {
+            if (detectable.IsDead())
+            {
+                onLostFocus(null);
+                return;
+            }
         }
         onDetection?.Invoke(colliders[0]);
     }

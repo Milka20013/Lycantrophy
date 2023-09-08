@@ -7,6 +7,7 @@ public class MobSpawner : MonoBehaviour
     public Terrain terrain;
     public GameObject mobPrefab;
     public Transform player;
+    [SerializeField] private bool debug;
 
     public float spawnMinDistanceFromPlayer;
     public float spawnMaxDistanceFromPlayer;
@@ -45,7 +46,7 @@ public class MobSpawner : MonoBehaviour
             }
         }
     }
-    public void SpawnMob()
+    /*public void SpawnMob()
     {
         //not working properly
         //spwans mob in the range of player
@@ -68,7 +69,7 @@ public class MobSpawner : MonoBehaviour
 
 
         }
-    }
+    }*/
 
     public void SpawnMobsInPiles()
     {
@@ -86,6 +87,10 @@ public class MobSpawner : MonoBehaviour
 
         //which mob to spawn
         MobData mobData = Randomizer.GetRandomElementFromFairTable(mobPile.mobs);
+        if (debug)
+        {
+            Debug.Log("Spawning: " + mobData.prefab);
+        }
         GameObject prefab = mobData.prefab;
 
         //how much

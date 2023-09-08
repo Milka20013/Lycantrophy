@@ -151,6 +151,7 @@ namespace StarterAssets
         private void Start()
         {
             playerStats.OnStatChange += OnStatChange;
+            OnStatChange();
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             _hasAnimator = TryGetComponent(out animator);
             _controller = GetComponent<CharacterController>();

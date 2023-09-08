@@ -31,7 +31,7 @@ public class DragAndDropItem : DragAndDrop
                 {
                     if (PopupManager.instance.Show("Do you want to remove this item PERMANENTLY?"))
                     {
-                        PopupManager.instance.OnAgree += itemUI.DestroyItem;
+                        PopupManager.instance.OnAgree += itemUI.SellItem;
                         DropBack();
                         break;
                     }

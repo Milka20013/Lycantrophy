@@ -16,6 +16,7 @@ public class AggressiveMob : Mob
         base.Start();
         agent.stoppingDistance = mobAttack.attackRange - 0.1f;
         detector.onDetection += HandleDetection;
+        detector.onLostFocus += LoseFocus;
         stoppingDistance = CalculateStoppingDistance();
     }
 
@@ -53,6 +54,11 @@ public class AggressiveMob : Mob
             }
             mobAttack.canAttack = false;
         }
+    }
+
+    protected void LoseFocus(Collider _)
+    {
+        CalmDown();
     }
     protected float CalculateStoppingDistance(float offset = 0.2f)
     {

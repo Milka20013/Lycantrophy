@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TakeDamage : MonoBehaviour, IDamageable
+public class TakeDamage : MonoBehaviour, IDamageable, IDetectable
 {
     [SerializeField] private HealthSystem healthSystem;
     [SerializeField] private Stats stats;
