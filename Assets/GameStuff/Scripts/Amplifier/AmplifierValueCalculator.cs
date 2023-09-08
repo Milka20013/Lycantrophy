@@ -15,13 +15,22 @@ public class AmplifierValueCalculator
                     result += item.Value;
                     break;
                 case AmplifierType.Percentage:
-                    result *= 1 + (item.Value);
+                    if (invertedCalculation)
+                    {
+                        float baseValue = 1 - result;
+                        baseValue *= 1 - item.Value;
+                        result = 1 - baseValue;
+                    }
+                    else
+                    {
+                        result *= (1 + item.Value);
+                    }
                     break;
                 case AmplifierType.TruePercentage:
                     if (invertedCalculation)
                     {
                         float baseValue = 1 - result;
-                        baseValue *= 1 - item.Value;
+                        baseValue *= (1 - item.Value);
                         result = 1 - baseValue;
                     }
                     else if (item.Value != 0)

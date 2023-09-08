@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Levelling : MonoBehaviour
 {
@@ -43,7 +41,7 @@ public class Levelling : MonoBehaviour
                 milestones[i] = milestones[i - 1] * 1.414f;
                 if (i == maxLevel - 1)
                 {
-                    milestones[i] = milestones[i-1] * 2 - milestones[i - 2];
+                    milestones[i] = milestones[i - 1] * 2 - milestones[i - 2];
                 }
             }
         }
@@ -59,14 +57,11 @@ public class Levelling : MonoBehaviour
         currentMilestoneIndex++;
         currentLevel++;
         ChangeLevelText();
-        if (OnLevelUp != null) //calling every OnLevelUp that is subscribed to this event
-        {
-            OnLevelUp(currentLevel); //giving the information of the current level to all methods
-        }
+        OnLevelUp?.Invoke(currentLevel);
     }
     public void AddExp(float amount)
     {
-        if (currentMilestoneIndex == maxLevel-1)
+        if (currentMilestoneIndex == maxLevel - 1)
         {
             return;
         }
@@ -91,10 +86,10 @@ public class Levelling : MonoBehaviour
     }
     private void ChangeExpText()
     {
-        float expOffset = currentMilestoneIndex == 0? 0 : milestones[currentMilestoneIndex - 1];
-        string expToDisplay = System.Math.Round(experience - expOffset,1).ToString();
+        float expOffset = currentMilestoneIndex == 0 ? 0 : milestones[currentMilestoneIndex - 1];
+        string expToDisplay = System.Math.Round(experience - expOffset, 1).ToString();
         string milestoneToDisplay = System.Math.Round(milestones[currentMilestoneIndex] - expOffset, 1).ToString();
-        if (currentMilestoneIndex == maxLevel-1)
+        if (currentMilestoneIndex == maxLevel - 1)
         {
             expToDisplay = milestoneToDisplay;
         }

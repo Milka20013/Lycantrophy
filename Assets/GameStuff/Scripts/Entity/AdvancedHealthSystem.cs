@@ -47,7 +47,7 @@ public class AdvancedHealthSystem : HealthSystem
                 break;
             }
             yield return new WaitForSeconds(regenCooldown);
-            InstantHeal(healthRegen);
+            InstantHeal(healthRegen * maxHealth);
         }
     }
 }

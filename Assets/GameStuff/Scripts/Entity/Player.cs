@@ -24,8 +24,11 @@ public class Player : MonoBehaviour
     public HealthSystem healthSystem { get; private set; }
     public TakeDamage takeDamage;
     [SerializeField] Attribute maxHealthAttribute;
+    [SerializeField] private Amplifier[] levelUpAmplifiers;
 
     private ThirdPersonController moveController;
+
+
 
     private void Awake()
     {
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
         playerStats = GetComponent<Stats>();
         moveController = GetComponent<ThirdPersonController>();
         healthSystem.onDeath += Die;
+        GetComponent<Levelling>().OnLevelUp += LevelUp;
     }
 
     public void Die(GameObject killer)
@@ -51,5 +55,14 @@ public class Player : MonoBehaviour
         moveController.enabled = true;
         transform.rotation = Quaternion.Euler(0, transform.rotation.y, 0);
         deathCanvas.SetActive(false);
+    }
+
+    public void LevelUp(int currentLevel)
+    {
+        for (int i = 0; i < levelUpAmplifiers.Length; i++)
+        {
+            levelUpAmplifiers[i].value = currentLevel - 1;
+        }
+        playerStats.RegisterAmplifiers(levelUpAmplifiers);
     }
 }

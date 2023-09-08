@@ -63,7 +63,7 @@ public class HealthSystem : MonoBehaviour
         {
             if (healthTexts[i] != null)
             {
-                healthTexts[i].text = currentHealth.ToString();
+                healthTexts[i].text = System.Math.Round(currentHealth, 1).ToString();
             }
         }
     }
