@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df191406fa40cc0418aed34f562b9668, type: 3}
   m_Name: HealthRegen
   m_EditorClassIdentifier: 
-  description: How much % of the max health should be healed per tick
+  description: How much  of the max health should be healed per tick
+  invertedCalculation: 1

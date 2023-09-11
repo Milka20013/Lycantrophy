@@ -24,7 +24,7 @@ MonoBehaviour:
   - attribute: {fileID: 11400000, guid: 3fbb037b945e11d4083da0bd8cc4e463, type: 2}
     value: 1
   - attribute: {fileID: 11400000, guid: 88dea78547a242d40befac85215c3581, type: 2}
-    value: 10
+    value: 0.1
   offensiveAtributeDatas:
   - attribute: {fileID: 11400000, guid: ff30909998e4c594eabc957bc5fc9429, type: 2}
     value: 0

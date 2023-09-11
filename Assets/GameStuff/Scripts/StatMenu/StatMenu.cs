@@ -6,6 +6,7 @@ public class StatMenu : MonoBehaviour
 {
     public Stats playerStats;
     public Levelling levelling;
+    [SerializeField] GameObject panel;
     private int statPoints;
 
     public TextMeshProUGUI statPointsText;
@@ -20,6 +21,11 @@ public class StatMenu : MonoBehaviour
     {
         statPoints += 2;
         UpdateStatPoints();
+    }
+
+    public void ShowPanel(bool active)
+    {
+        panel.SetActive(active);
     }
     public void IncreaseStat(StatSelector statSelector)
     {

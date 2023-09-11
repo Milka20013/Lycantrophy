@@ -24,14 +24,14 @@ MonoBehaviour:
   offensiveAtributeDatas: []
   defensiveAtributeDatas: []
   rawExp: 50
-  rawCurrency: 15
+  rawCurrency: 150
   droppableItems:
   - item: {fileID: 11400000, guid: bf220e073dd17b24f8982ea7e37a1785, type: 2}
     percentage: 0.25
     itemRange: 
   - item: {fileID: 11400000, guid: aa0c7fe8d134b9e4c9a8111cbc771341, type: 2}
-    percentage: 25
-    itemRange: 
+    percentage: 40
+    itemRange: 0100000002000000
   generalDrops: []
   prefab: {fileID: 6192782170730088698, guid: 636a5229041388343b2b94ac59784b67, type: 3}
   size: {x: 1, y: 1, z: 1}

@@ -5,8 +5,8 @@ using UnityEngine.AI;
 public class MobSpawner : MonoBehaviour
 {
     public Terrain terrain;
-    public GameObject mobPrefab;
-    public Transform player;
+    //public GameObject mobPrefab;
+    //public Transform player;
     [SerializeField] private bool debug;
 
     public float spawnMinDistanceFromPlayer;

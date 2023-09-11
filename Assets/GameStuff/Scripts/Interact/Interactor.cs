@@ -49,7 +49,10 @@ public class Interactor : MonoBehaviour
                 if (previousInteractScr != null)
                 {
                     previousInteractScr.HideIndicator();
+                    previousInteractScr = null;
                 }
+                interactableScr = null;
+
             }
             yield return new WaitForSeconds(0.5f);
         }

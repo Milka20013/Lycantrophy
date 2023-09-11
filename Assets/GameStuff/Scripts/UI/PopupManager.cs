@@ -25,6 +25,11 @@ public class PopupManager : MonoBehaviour
         hideAfterAnswear = true;
         Hide();
     }
+
+    public bool ActiveSelf()
+    {
+        return popup.activeSelf;
+    }
     public bool Show(string text)
     {
         if (popup.activeSelf)
