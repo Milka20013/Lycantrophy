@@ -50,8 +50,8 @@ public class Tutorial : MonoBehaviour
 
     public void ClosePanels()
     {
-        playerInventory.CloseInventory();
-        statMenu.ShowPanel(false);
+        playerInventory.CloseMenu();
+        statMenu.CloseMenu();
     }
 
     public void ShowPopup(int index)

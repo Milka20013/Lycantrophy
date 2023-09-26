@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-//this class stores data related to one specific item
+//save data
 [Serializable]
 public struct ItemData
 {

@@ -52,9 +52,14 @@ public class ItemSlot : MonoBehaviour
         droppedItemUI.OnPlace(this);
 
         item.transform.SetParent(this.transform.parent);
-        item.GetComponent<RectTransform>().anchoredPosition = rectTransform.anchoredPosition + positionOffset;
+        item.GetComponent<RectTransform>().anchoredPosition = ItemPosition();
         attachedObject = item;
         return true;
+    }
+
+    public Vector2 ItemPosition()
+    {
+        return rectTransform.anchoredPosition + positionOffset;
     }
 
     public bool CanAcceptItem(Item item)

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TakeDamage : MonoBehaviour, IDamageable, IDetectable
 {
+    [Header("Optional")]
     [SerializeField] private HealthSystem healthSystem;
     [SerializeField] private Stats stats;
 

@@ -58,6 +58,10 @@ public class AggressiveMob : Mob
 
     protected void LoseFocus(Collider _)
     {
+        if (!occupied)
+        {
+            return;
+        }
         CalmDown();
     }
     protected float CalculateStoppingDistance(float offset = 0.2f)

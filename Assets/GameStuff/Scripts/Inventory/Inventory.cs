@@ -25,7 +25,7 @@ public struct InventoryData
     }
 }
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, IMenu
 {
 
     public string id;
@@ -101,19 +101,44 @@ public class Inventory : MonoBehaviour
 
     public void OnOpenInventory()
     {
-        inventoryUI.SetActive(!inventoryUI.activeSelf);
+        /*inventoryUI.SetActive(!inventoryUI.activeSelf);
         if (!inventoryUI.activeSelf)
         {
             itemSpawner.itemDescriptionPanelScr.HidePanel();
         }
         Cursor.lockState = inventoryUI.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
+        SpawnItems();*/
+
+        OnTriggerMenu();
+    }
+
+    public void OnTriggerMenu()
+    {
+        if (!inventoryUI.activeSelf)
+        {
+            OpenMenu();
+        }
+        else
+        {
+            CloseMenu();
+        }
+    }
+    public void CloseMenu()
+    {
+        inventoryUI.SetActive(false);
+        ItemDescriptionPanel.instance.HidePanel();
+    }
+
+    public void OpenMenu()
+    {
+        inventoryUI.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
         SpawnItems();
     }
 
-    public void CloseInventory()
+    public bool IsOpen()
     {
-        inventoryUI.SetActive(false);
-        itemSpawner.itemDescriptionPanelScr.HidePanel();
+        return inventoryUI.activeSelf;
     }
     protected void SpawnItems()
     {
@@ -177,4 +202,6 @@ public class Inventory : MonoBehaviour
     {
         return null;
     }
+
+
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Portal : Interactable
 {
@@ -13,7 +14,7 @@ public class Portal : Interactable
             {
                 return;
             }
-            if (!PopupManager.instance.Show("Do you want to teleport to Donger Land?"))
+            if (!PopupManager.instance.Show("Do you want to teleport to Farmland?"))
             {
                 //the popup didn't show
                 return;
@@ -24,7 +25,7 @@ public class Portal : Interactable
 
     public void OnAgree()
     {
-        //SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
         Debug.Log("Teleport to : " + sceneName);
     }
 }

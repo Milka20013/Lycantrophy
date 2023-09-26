@@ -6,7 +6,6 @@ using UnityEngine;
 public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] private Canvas canvas;
-    public ItemDescriptionPanel itemDescriptionPanelScr;
     public Inventory inventory;
     public List<ItemStack> itemStacks { get; set; }
     public ItemSlot[] slots;
@@ -47,7 +46,7 @@ public class ItemSpawner : MonoBehaviour
         ItemUI itemUI = item.GetComponent<ItemUI>();
         itemUI.SetItemInfos(rectTransform.anchoredPosition, itemStack, itemSlot);
 
-        itemUI.SetReferences(inventory, itemDescriptionPanelScr, inventory.itemManager.GetItemBlueprint<ItemBlueprint>(itemStack), inventory.GetOwner<Player>());
+        itemUI.SetReferences(inventory, inventory.itemManager.GetItemBlueprint<ItemBlueprint>(itemStack), inventory.GetOwner<Player>());
 
         //assigning the item to the slot, so it will drag and drop properly
         if (item.TryGetComponent(out DragAndDropItem dragAndDrop))

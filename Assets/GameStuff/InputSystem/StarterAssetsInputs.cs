@@ -24,13 +24,15 @@ namespace StarterAssets
         public bool cursorInputForLook = true;
 
         [Header("Menu Objects")]
-        public GameObject statMenuUI;
-        public GameObject exitMenuUI;
+        public StatMenu statMenu;
+        public ExitMenu exitMenu;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 
+
         private void Update()
         {
+            //What?
             if (attacked)
             {
                 attackerScr.TryAttack();
@@ -65,13 +67,12 @@ namespace StarterAssets
         }
         public void OnOpenStatMenu(InputValue value) //press c
         {
-            statMenuUI.SetActive(!statMenuUI.activeSelf);
+            statMenu.OnTriggerMenu();
             Cursor.lockState = CursorLockMode.None;
         }
         public void OnOpenExitMenu() //press esc
         {
-            exitMenuUI.SetActive(!exitMenuUI.activeSelf);
-            Cursor.lockState = CursorLockMode.None;
+            exitMenu.OnTriggerMenu();
         }
         public void OnUnlockCursor() //press left ctrl
         {

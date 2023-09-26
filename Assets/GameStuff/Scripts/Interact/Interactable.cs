@@ -54,7 +54,7 @@ public class Interactable : MonoBehaviour
         {
             if (up)
             {
-                indicator.transform.Translate(Vector3.up * Time.deltaTime * 0.2f);
+                indicator.transform.Translate(0.2f * Time.deltaTime * Vector3.up);
                 if (indicator.transform.position.y >= indicatorPosition.transform.position.y + 0.1f)
                 {
                     up = false;
@@ -62,7 +62,7 @@ public class Interactable : MonoBehaviour
             }
             else
             {
-                indicator.transform.Translate(Vector3.down * Time.deltaTime * 0.2f);
+                indicator.transform.Translate(0.2f * Time.deltaTime * Vector3.down);
                 if (indicator.transform.position.y <= indicatorPosition.transform.position.y - 0.1f)
                 {
                     up = true;

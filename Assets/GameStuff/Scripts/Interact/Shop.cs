@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Inventory))]
 public class Shop : Storage
 {
-    [SerializeField] private ItemDescriptionPanel ItemDescriptionPanel;
     [SerializeField] private TextMeshProUGUI errorText;
     [SerializeField] private ProductBlueprint[] products;
     private void Start()

@@ -61,8 +61,17 @@ public class DragAndDropItem : DragAndDrop
         }
         base.OnEndDrag(eventData);
     }
-
-
+    private void OnEnable()
+    {
+        if (slotThisAttachedTo == null)
+        {
+            return;
+        }
+        if (slotThisAttachedTo.ItemPosition() != rectTransform.anchoredPosition)
+        {
+            DropBack();
+        }
+    }
     private void OnDestroy()
     {
         slotThisAttachedTo.attachedObject = null;

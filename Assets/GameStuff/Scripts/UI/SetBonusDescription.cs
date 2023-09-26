@@ -11,18 +11,28 @@ public class SetBonusDescription : MonoBehaviour
     [SerializeField] private Color highlightColor;
     [SerializeField] private Color ignoreColor;
 
+    private Canvas canvas;
+    private int initialSortingOrder;
+
     public void ShowPanel()
     {
         if (inv.stacksInInventory.Count == 0)
         {
             return;
         }
+        if (canvas == null)
+        {
+            canvas = GetComponentInParent<Canvas>();
+        }
+        initialSortingOrder = canvas.sortingOrder;
+        canvas.sortingOrder = 10;
         UpdatePanel();
         gameObject.SetActive(true);
     }
 
     public void HidePanel()
     {
+        canvas.sortingOrder = initialSortingOrder;
         gameObject.SetActive(false);
     }
 
@@ -87,5 +97,10 @@ public class SetBonusDescription : MonoBehaviour
             }
         }
         return s;
+    }
+
+    private void OnDisable()
+    {
+        HidePanel();
     }
 }

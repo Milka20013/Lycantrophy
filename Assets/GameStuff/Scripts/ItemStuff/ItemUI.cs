@@ -31,12 +31,9 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public delegate void OnDropHandler(ItemUI itemUI);
     public OnDropHandler OnDropLogic;
-
-    private ItemDescriptionPanel itemDescriptionPanel;
-    public void SetReferences(Inventory inventory, ItemDescriptionPanel itemDescriptionPanel, ItemBlueprint itemBP, Player player)
+    public void SetReferences(Inventory inventory, ItemBlueprint itemBP, Player player)
     {
         this.inventory = inventory;
-        this.itemDescriptionPanel = itemDescriptionPanel;
         this.itemBlueprint = itemBP;
         basicDescription = itemBP.basicDescription;
         this.player = player;
@@ -111,18 +108,18 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        itemDescriptionPanel.ShowPanel(this);
+        ItemDescriptionPanel.instance.ShowPanel(this);
     }
 
     public void RefreshItemDescriptionPanel()
     {
-        itemDescriptionPanel.HidePanel(this);
-        itemDescriptionPanel.ShowPanel(this);
+        ItemDescriptionPanel.instance.HidePanel(this);
+        ItemDescriptionPanel.instance.ShowPanel(this);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        itemDescriptionPanel.HidePanel(this);
+        ItemDescriptionPanel.instance.HidePanel(this);
     }
 
     //the item has been placed on an other itemSlot
@@ -150,10 +147,10 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void OnDestroy()
     {
-        if (itemDescriptionPanel == null)
+        if (ItemDescriptionPanel.instance == null)
         {
             return;
         }
-        itemDescriptionPanel.HidePanel(this);
+        ItemDescriptionPanel.instance.HidePanel(this);
     }
 }

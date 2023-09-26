@@ -9,10 +9,10 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     private int initialSortingOrder;
 
     [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private RectTransform rectTransform;
+    [SerializeField] protected RectTransform rectTransform;
 
 
-    private Vector2 previousPosition;
+    protected Vector2 previousPosition;
     private Transform previousParent;
 
     public void Init(Canvas canvas)
@@ -37,12 +37,15 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = true;
-        canvas.sortingOrder = initialSortingOrder;
+        EndDrag();
     }
 
     public void DropBack()
     {
+        if (!previousParent.gameObject.activeSelf)
+        {
+            return;
+        }
         transform.SetParent(previousParent);
         rectTransform.anchoredPosition = previousPosition;
     }
@@ -50,6 +53,37 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public void OnPointerDown(PointerEventData eventData)
     {
 
+    }
+
+    protected virtual void EndDrag()
+    {
+        canvasGroup.blocksRaycasts = true;
+        canvas.sortingOrder = initialSortingOrder;
+        if (IsOutsideOfView())
+        {
+            if (previousParent == transform.parent)
+            {
+                rectTransform.anchoredPosition = previousPosition;
+            }
+        }
+    }
+
+    protected bool IsOutsideOfView()
+    {
+        if (Mathf.Abs(rectTransform.anchoredPosition.x * 2) > Screen.width)
+        {
+            return true;
+        }
+        if (Mathf.Abs(rectTransform.anchoredPosition.y * 2) > Screen.height)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void OnDisable()
+    {
+        EndDrag();
     }
 
 

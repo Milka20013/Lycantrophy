@@ -2,7 +2,7 @@ using Lycanthropy.Helper;
 using System;
 using TMPro;
 using UnityEngine;
-public class StatMenu : MonoBehaviour
+public class StatMenu : MonoBehaviour, IMenu
 {
     public Stats playerStats;
     public Levelling levelling;
@@ -21,11 +21,6 @@ public class StatMenu : MonoBehaviour
     {
         statPoints += 2;
         UpdateStatPoints();
-    }
-
-    public void ShowPanel(bool active)
-    {
-        panel.SetActive(active);
     }
     public void IncreaseStat(StatSelector statSelector)
     {
@@ -49,5 +44,31 @@ public class StatMenu : MonoBehaviour
     public void UpdateStatPoints()
     {
         statPointsText.text = "Stat Points: " + statPoints;
+    }
+
+    public void OnTriggerMenu()
+    {
+        if (panel.activeSelf)
+        {
+            CloseMenu();
+        }
+        else
+        {
+            OpenMenu();
+        }
+    }
+    public void CloseMenu()
+    {
+        panel.SetActive(false);
+    }
+
+    public void OpenMenu()
+    {
+        panel.SetActive(true);
+    }
+
+    public bool IsOpen()
+    {
+        return panel.activeSelf;
     }
 }

@@ -17,6 +17,6 @@ public class Storage : Interactable
     public override void HideIndicator()
     {
         base.HideIndicator();
-        inventory.CloseInventory();
+        inventory.CloseMenu();
     }
 }
