@@ -463,6 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthTexts: []
+  maxHealth: 0
   maxHealthAttribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
 --- !u!114 &-4240760966677497670
 MonoBehaviour:
@@ -490,6 +491,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSystem: {fileID: 0}
+  stats: {fileID: 0}
+  conditionsArray: []
 --- !u!195 &-2184543497618801285
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -553,6 +556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d83523fba85cb4aa71b1682f9e5055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  indicatorPrefab: {fileID: 2477449151376040534, guid: 1ce834e7981e2334f88abe0f876c37c1, type: 3}
 --- !u!114 &2279927162076474079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,6 +572,7 @@ MonoBehaviour:
   moveSpeedAttribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
   wanderDistance: 5
   wanderCooldown: 5
+  indicatorOriginTransform: {fileID: 0}
   occupied: 0
 --- !u!114 &-920054205417846359
 MonoBehaviour:

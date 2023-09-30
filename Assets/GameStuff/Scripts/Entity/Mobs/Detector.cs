@@ -59,7 +59,7 @@ public class Detector : MonoBehaviour
         {
             if (detectable.IsDead())
             {
-                onLostFocus(null);
+                onLostFocus?.Invoke(null);
                 return;
             }
         }

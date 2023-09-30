@@ -18,7 +18,7 @@ MonoBehaviour:
   basicDescription: Orb of a Rare Goat
   prefab: {fileID: 5146469132438167939, guid: 1cc7a4b073c9a6b49a6999d318525f83, type: 3}
   sprites:
-  - {fileID: 21300000, guid: 1eccac8b72cdf3a48aff51387971c651, type: 3}
+  - {fileID: 21300000, guid: b5bf518b3cd517446a5929bf0f36a172, type: 3}
   - {fileID: 21300000, guid: c92df022971223f4b9f1978f3ebf7e49, type: 3}
   sellValue: 1500
   amplifiers:

@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 6280047152659838763}
   - component: {fileID: 5265248502558535584}
   m_Layer: 5
-  m_Name: ItemDescriptionCanvas 2
+  m_Name: ItemDescriptionCanvas
   m_TagString: DescriptionPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

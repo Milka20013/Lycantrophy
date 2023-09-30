@@ -15,6 +15,9 @@ public class HealthSystem : MonoBehaviour
     public delegate void DeathHandler(GameObject killer);
     public DeathHandler onDeath;
 
+    public delegate void HealthManager(float currentHealth);
+    public HealthManager onHealthChange;
+
     private void Awake()
     {
         stats = GetComponent<Stats>();
@@ -31,6 +34,7 @@ public class HealthSystem : MonoBehaviour
     {
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        onHealthChange?.Invoke(currentHealth);
         UpdateHealthTexts();
     }
     public virtual void TakeDamage(float amount, GameObject attacker)
@@ -40,6 +44,7 @@ public class HealthSystem : MonoBehaviour
             return;
         }
         currentHealth -= amount;
+        onHealthChange?.Invoke(currentHealth);
         UpdateHealthTexts();
         if (currentHealth <= 0)
         {
@@ -66,6 +71,11 @@ public class HealthSystem : MonoBehaviour
                 healthTexts[i].text = System.Math.Round(currentHealth, 1).ToString();
             }
         }
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public virtual void OnStatChange()

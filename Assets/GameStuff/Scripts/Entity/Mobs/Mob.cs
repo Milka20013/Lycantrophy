@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(HealthSystem))]
 [RequireComponent(typeof(DropTable))]
@@ -9,7 +10,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(HitboxResizer))]
 
-public class Mob : MonoBehaviour, IProvokable
+public class Mob : MonoBehaviour, IProvokable, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     protected NavMeshAgent agent;
     protected HealthSystem healthSystem;
@@ -24,6 +25,8 @@ public class Mob : MonoBehaviour, IProvokable
     public float wanderDistance = 5;
     [Tooltip("Interval between wander target getting in seconds")]
     public float wanderCooldown = 5;
+
+    public Transform indicatorOriginTransform;
 
     [HideInInspector] public bool occupied;
 
@@ -50,7 +53,7 @@ public class Mob : MonoBehaviour, IProvokable
         previousWanderTime = Random.Range(0, wanderCooldown);
         startPosition = transform.position;
         healthSystem.onDeath += Die;
-        takeDamage.OnHit += OnHit;
+        takeDamage.onHit += OnHit;
     }
 
     protected virtual void FindReferences()
@@ -97,6 +100,10 @@ public class Mob : MonoBehaviour, IProvokable
         }
         agent.stoppingDistance = stoppingDistance;
         agent.SetDestination(position);
+        if (Vector3.Distance(transform.position, position) <= stoppingDistance + 0.05f)
+        {
+            return;
+        }
         if (hasAnimator)
         {
             //it isn't the perfect timing but good enough
@@ -171,8 +178,22 @@ public class Mob : MonoBehaviour, IProvokable
         isDead = true;
         OnDeath?.Invoke(killer);
         takeDamage.Die(killer);
+        IndicatorManager.instance.HideIndicator(indicatorOriginTransform);
         Destroy(gameObject);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        IndicatorManager.instance.ShowIndicator(indicatorOriginTransform);
+    }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        IndicatorManager.instance.HideIndicator(indicatorOriginTransform);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        MobInformationPanel.instance.OpenMenu(gameObject, name, healthSystem, dropTable);
+    }
 }

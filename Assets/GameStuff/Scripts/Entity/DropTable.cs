@@ -107,4 +107,9 @@ public class DropTable : MonoBehaviour
             inventory.AddCurrency(mobData.rawCurrency);
         }
     }
+
+    public List<DroppableItem> GetDroppableItems()
+    {
+        return mobData.droppableItems;
+    }
 }

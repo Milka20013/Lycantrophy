@@ -13,7 +13,7 @@ public class TakeDamage : MonoBehaviour, IDamageable, IDetectable
     private CombatSystem combatSystem;
 
     public delegate void HitHandler(float amount, GameObject attacker);
-    public HitHandler OnHit;
+    public HitHandler onHit;
 
     public bool isDead { get; set; }
     public double previousHitTime { get; set; }
@@ -37,11 +37,12 @@ public class TakeDamage : MonoBehaviour, IDamageable, IDetectable
         healthSystem.onDeath += Die;
     }
 
-    public void RegisterDamage(float amount, GameObject attacker, Stats attackerStats)
+    public float RegisterDamage(float amount, GameObject attacker, Stats attackerStats)
     {
         float damage = combatSystem.CalculateDamage(attackerStats, amount);
         healthSystem.TakeDamage(damage, attacker);
-        OnHit?.Invoke(damage, attacker);
+        onHit?.Invoke(damage, attacker);
+        return damage;
     }
 
     public bool IsDead()

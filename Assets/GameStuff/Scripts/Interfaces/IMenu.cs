@@ -1,9 +1,7 @@
-public interface IMenu
+public interface IMenu : ICloseableMenu
 {
-    public void CloseMenu();
     public void OpenMenu();
 
     public void OnTriggerMenu();
 
-    public bool IsOpen();
 }

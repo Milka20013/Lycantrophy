@@ -31,6 +31,9 @@ public class Attacker : MonoBehaviour
     EntityAnimator animator;
     protected bool hasAnimator;
 
+    public delegate void AttackHandler(float damage);
+    public AttackHandler onDamage;
+
     private void Awake()
     {
         stats = GetComponent<Stats>();
@@ -58,6 +61,8 @@ public class Attacker : MonoBehaviour
     {
         if (attackDelay <= 0f)
         {
+            Attack();
+            attackDelay = 1 / _attackSpeed;
             if (hasAnimator)
             {
                 if (!animator.ChangeAnimationState(animator.attack, animator.AttackLength / _attackSpeed))
@@ -65,8 +70,6 @@ public class Attacker : MonoBehaviour
                     return;
                 }
             }
-            Attack();
-            attackDelay = 1 / _attackSpeed;
         }
     }
 
@@ -79,9 +82,10 @@ public class Attacker : MonoBehaviour
             {
                 if (damageable.IsDead())
                 {
-                    return;
+                    continue;
                 }
-                damageable.RegisterDamage(_damage, gameObject, stats);
+                float damage = damageable.RegisterDamage(_damage, gameObject, stats);
+                onDamage?.Invoke(damage);
             }
         }
     }

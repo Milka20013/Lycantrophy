@@ -7,12 +7,12 @@ public class ExitMenu : MonoBehaviour, IMenu
 {
     [SerializeField] private GameObject panel;
     [SerializeField] Wiki wiki;
-    private List<IMenu> menus = new();
+    private List<ICloseableMenu> menus = new();
     [SerializeField] private PlayerInput input;
 
     private void Awake()
     {
-        menus = FindObjectsOfType<MonoBehaviour>().OfType<IMenu>().ToList();
+        menus = FindObjectsOfType<MonoBehaviour>().OfType<ICloseableMenu>().ToList();
         menus.Remove(this);
     }
     public void ExitGame()
