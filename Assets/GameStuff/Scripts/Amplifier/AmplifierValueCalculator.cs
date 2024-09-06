@@ -2,9 +2,9 @@
 
 using System.Collections.Generic;
 
-public class AmplifierValueCalculator
+public static class AmplifierValueCalculator
 {
-    public float FinalAttributeValue(Dictionary<AmplifierType, float> ampTypeDict, float coreValue, bool invertedCalculation)
+    public static float FinalAttributeValue(Dictionary<AmplifierType, float> ampTypeDict, float coreValue, bool invertedCalculation)
     {
         float result = coreValue;
         foreach (KeyValuePair<AmplifierType, float> item in ampTypeDict)
@@ -45,7 +45,7 @@ public class AmplifierValueCalculator
         return result;
     }
 
-    public void SummarizeAmplifierValues(ref Dictionary<Attribute, Dictionary<AmplifierType, float>> dict, Amplifier amplifier)
+    public static void SummarizeAmplifierValues(ref Dictionary<Attribute, Dictionary<AmplifierType, float>> dict, Amplifier amplifier)
     {
         switch (amplifier.amplifierType)
         {

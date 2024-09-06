@@ -19,10 +19,23 @@ using UnityEngine;
 }*/
 
 [Serializable]
-public struct AttributeData
+public struct AttributeData<T> where T : Attribute
 {
-    public Attribute attribute;
+    public AttributeData(AttributeData<OffensiveAttribute> data)
+    {
+        this.attribute = data.attribute as T;
+        this.value = data.value;
+    }
+    public AttributeData(AttributeData<DefensiveAttribute> data)
+    {
+        this.attribute = data.attribute as T;
+        this.value = data.value;
+    }
+    public T attribute;
     public float value;
+
+    public static implicit operator AttributeData<T>(AttributeData<OffensiveAttribute> data) => new AttributeData<OffensiveAttribute>(data);
+    public static implicit operator AttributeData<T>(AttributeData<DefensiveAttribute> data) => new AttributeData<DefensiveAttribute>(data);
 }
 
 public class Stats : MonoBehaviour
@@ -35,7 +48,8 @@ public class Stats : MonoBehaviour
     public bool save;
 
     public delegate void ChangeHandler();
-    public event ChangeHandler OnStatChange;
+    public ChangeHandler OnStatChange;
+
 
 
     private void Awake()
@@ -51,35 +65,51 @@ public class Stats : MonoBehaviour
         OnStatChange?.Invoke();
     }
 
-    public void CreateAmplifierSystem(EntityData entityData)
+    private void CreateAmplifierSystem(EntityData entityData)
     {
         this.entityData = entityData;
         if (entityData == null)
         {
             return;
         }
-        List<AttributeData> attributeDatas = new();
+        List<AttributeData<Attribute>> attributeDatas = new();
         attributeDatas.AddRange(entityData.attributeDatas);
-        attributeDatas.AddRange(entityData.defensiveAtributeDatas);
-        attributeDatas.AddRange(entityData.offensiveAtributeDatas);
+        foreach (var item in entityData.defensiveAtributeDatas)
+        {
+            attributeDatas.Add(new AttributeData<Attribute>(item));
+        }
+        foreach (var item in entityData.offensiveAtributeDatas)
+        {
+            attributeDatas.Add(new AttributeData<Attribute>(item));
+        }
         amplifierSystem = new AmplifierSystem(attributeDatas.ToArray());
     }
-    public void RegisterAmplifiers(Amplifier[] amplifiers)
+    public bool RegisterAmplifiers(Amplifier[] amplifiers)
     {
-        if (amplifierSystem.RegisterAmplifiers(amplifiers))
+        bool result = amplifierSystem.RegisterAmplifiers(amplifiers);
+        if (result)
         {
             OnStatChange?.Invoke();
         }
+        return result;
     }
-
-    public void UnRegisterAmplifiers(Amplifier[] amplifiers)
+    public bool RegisterAmplifiers(Amplifier amplifier)
     {
-        if (amplifierSystem.UnregisterAmplifiers(amplifiers))
+        return RegisterAmplifiers(new Amplifier[] { amplifier });
+    }
+    public bool UnRegisterAmplifiers(Amplifier[] amplifiers)
+    {
+        bool result = amplifierSystem.UnregisterAmplifiers(amplifiers);
+        if (result)
         {
             OnStatChange?.Invoke();
         }
+        return result;
     }
-
+    public bool UnRegisterAmplifiers(Amplifier amplifier)
+    {
+        return UnRegisterAmplifiers(new Amplifier[] { amplifier });
+    }
 
     public bool GetAttributeValue(Attribute attribute, out float value)
     {
@@ -88,12 +118,12 @@ public class Stats : MonoBehaviour
 
     public OffensiveAttribute[] GetOffensiveAttributes()
     {
-        return entityData.offensiveAtributeDatas.Select(x => x.attribute as OffensiveAttribute).ToArray();
+        return entityData.offensiveAtributeDatas.Select(x => x.attribute).ToArray();
     }
 
     public DefensiveAttribute[] GetDefensiveAttributes()
     {
-        return entityData.defensiveAtributeDatas.Select(x => x.attribute as DefensiveAttribute).ToArray();
+        return entityData.defensiveAtributeDatas.Select(x => x.attribute).ToArray();
     }
 
     /*public void Save(ref GameData data)

@@ -32,6 +32,10 @@ public class SetBonusDescription : MonoBehaviour
 
     public void HidePanel()
     {
+        if (!gameObject.activeSelf)
+        {
+            return;
+        }
         canvas.sortingOrder = initialSortingOrder;
         gameObject.SetActive(false);
     }

@@ -17,7 +17,7 @@ MonoBehaviour:
     amplifierType: 1
     attribute: {fileID: 11400000, guid: 19fd5b7ea8a752847b85ac852011ecda, type: 2}
     value: 0
-    key: 2
+    key: 0
   possibleValues:
   - 1
   - 2

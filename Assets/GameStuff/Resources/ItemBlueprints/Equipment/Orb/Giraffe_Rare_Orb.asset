@@ -20,18 +20,18 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 1eccac8b72cdf3a48aff51387971c651, type: 3}
   - {fileID: 21300000, guid: 805a438ca2bbdad4cb10d4729d028500, type: 3}
-  value: 0
+  sellValue: 0
   amplifiers:
   - tag: Giraffe_Orb
     amplifierType: 0
     attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
     value: 15
-    key: 2
+    key: 0
   - tag: Giraffe_Orb
     amplifierType: 1
     attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
     value: 12
-    key: 2
+    key: 0
   tag: {fileID: 11400000, guid: 760ed13e0147736499fa3d6021954ad0, type: 2}
   tier: 2
   hideDescription: 0

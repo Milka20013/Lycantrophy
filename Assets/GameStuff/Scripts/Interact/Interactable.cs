@@ -1,8 +1,9 @@
 
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] private GameObject indicator;
     [SerializeField] private GameObject indicatorPosition;
@@ -71,5 +72,20 @@ public class Interactable : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        IndicatorManager.instance.ShowIndicator(indicatorPosition.transform);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        IndicatorManager.instance.HideIndicator(indicatorPosition.transform);
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Interact(eventData.pressEventCamera.GetComponent<CameraInteract>().player);
     }
 }

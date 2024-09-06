@@ -17,6 +17,7 @@ public class MobSpawner : MonoBehaviour
 
     [Header("Pile spawning")]
     public GameObject pileContainer;
+    public GameObject spawningEffect;
     private List<MobPile> mobPiles = new();
 
     private double previousTime = 0;
@@ -30,7 +31,6 @@ public class MobSpawner : MonoBehaviour
             }
             mobPiles.Add(pileContainer.transform.GetChild(i).GetComponent<MobPile>()); //get all of the mobPiles on the scene
         }
-        SpawnMobsInPiles();
     }
     private void Update()
     {
@@ -101,6 +101,11 @@ public class MobSpawner : MonoBehaviour
         for (int j = 0; j < count; j++)
         {
             spawnedMobs[j] = Instantiate(prefab, GetRandomPositionInPile(mobPile), Quaternion.identity);
+            if (spawningEffect != null)
+            {
+                var particle = Instantiate(spawningEffect, spawnedMobs[j].transform.position, Quaternion.identity);
+                Destroy(particle, 1.2f + Random.Range(0, 0.1f));
+            }
             //Mob mobScr = spawnedMobs[j].GetComponent<Mob>();
             //mobScr.RegisterMobData(mobData);
             //var mesh = Instantiate(mobData.meshPrefab, spawnedMobs[j].transform.position, Quaternion.identity);

@@ -24,7 +24,7 @@ public class HitboxResizer : MonoBehaviour
         if (mob.indicatorOriginTransform == null)
         {
             var origin = Instantiate(indicatorPrefab, mob.transform);
-            origin.transform.SetLocalPositionAndRotation(new Vector3(0, coll.bounds.size.y / 2, 0), Quaternion.identity);
+            origin.transform.SetLocalPositionAndRotation(new Vector3(0, coll.bounds.size.y / 2 + 0.15f, 0), Quaternion.identity);
             mob.indicatorOriginTransform = origin.transform;
         }
     }

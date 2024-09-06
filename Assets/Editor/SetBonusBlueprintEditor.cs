@@ -19,7 +19,6 @@ public class SetBonusBlueprintEditor : Editor
             }
         }
     }
-
     public void ClearLog()
     {
         var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));

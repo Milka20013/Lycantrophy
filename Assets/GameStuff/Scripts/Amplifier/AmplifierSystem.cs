@@ -15,15 +15,14 @@ public struct AmplifierSystemData
 
 public class AmplifierSystem
 {
-    public AttributeData[] attributeDatas;
+    public AttributeData<Attribute>[] attributeDatas;
     public Dictionary<Attribute, float> attributesDict = new();
 
     public Dictionary<Attribute, Dictionary<AmplifierType, float>> amplifiersDict = new();
 
     public List<Amplifier> everyAmplifier = new();
 
-    private AmplifierValueCalculator calculator;
-    public AmplifierSystem(AttributeData[] attributeDatas)
+    public AmplifierSystem(AttributeData<Attribute>[] attributeDatas)
     {
         this.attributeDatas = attributeDatas;
         InstantiateSystem();
@@ -33,10 +32,9 @@ public class AmplifierSystem
     public void InstantiateSystem()
     {
         attributesDict = FillAttributeDict(attributeDatas);
-        calculator = new AmplifierValueCalculator();
     }
 
-    public static Dictionary<Attribute, float> FillAttributeDict(AttributeData[] attributeDatas) //fill attributes dict with base values
+    public static Dictionary<Attribute, float> FillAttributeDict(AttributeData<Attribute>[] attributeDatas) //fill attributes dict with base values
     {
         Dictionary<Attribute, float> dict = new();
         for (int i = 0; i < attributeDatas.Length; i++)
@@ -80,7 +78,7 @@ public class AmplifierSystem
         attributesDict = FillAttributeDict(attributeDatas);
         foreach (KeyValuePair<Attribute, Dictionary<AmplifierType, float>> amps in amplifiersDict)
         {
-            attributesDict[amps.Key] = calculator.FinalAttributeValue(amps.Value,
+            attributesDict[amps.Key] = AmplifierValueCalculator.FinalAttributeValue(amps.Value,
                                                                       attributesDict[amps.Key], amps.Key.invertedCalculation);
 
         }
@@ -91,7 +89,7 @@ public class AmplifierSystem
         amplifiersDict = FillAmplifiersDict();
         for (int i = 0; i < everyAmplifier.Count; i++)
         {
-            calculator.SummarizeAmplifierValues(ref amplifiersDict, everyAmplifier[i]);
+            AmplifierValueCalculator.SummarizeAmplifierValues(ref amplifiersDict, everyAmplifier[i]);
         }
         CalculateAttributeValues();
     }
@@ -106,6 +104,7 @@ public class AmplifierSystem
 
     private void LogAmplifiers()
     {
+        Debug.Log("-----");
         foreach (var item in everyAmplifier)
         {
             Debug.Log(item);
@@ -124,14 +123,30 @@ public class AmplifierSystem
             {
                 continue;
             }
-            if (Amplifier.IsAmplifierInCollectionPartially(everyAmplifier, amplifiers[i], out int index)) //if the amplifier is already registered, decide what to do
+            if (Amplifier.IsAmplifierInCollectionExcludingValue(everyAmplifier, amplifiers[i], out int index)) //if the amplifier is already registered, decide what to do
             {
-                if (amplifiers[i].key == AmplifierKey.Overriding
-                    && amplifiers[i].value > everyAmplifier[index].value
-                    )
+                switch (amplifiers[i].key)
                 {
-                    everyAmplifier[index] = amplifiers[i];
-                    changeHappened = true;
+                    case AmplifierKey.Max:
+                        if (everyAmplifier[index].value < amplifiers[i].value)
+                        {
+                            everyAmplifier[index] = amplifiers[i];
+                            changeHappened = true;
+                        }
+                        break;
+                    case AmplifierKey.Min:
+                        if (everyAmplifier[index].value > amplifiers[i].value)
+                        {
+                            everyAmplifier[index] = amplifiers[i];
+                            changeHappened = true;
+                        }
+                        break;
+                    case AmplifierKey.Override:
+                        everyAmplifier[index] = amplifiers[i];
+                        changeHappened = true;
+                        break;
+                    default:
+                        break;
                 }
             }
             else

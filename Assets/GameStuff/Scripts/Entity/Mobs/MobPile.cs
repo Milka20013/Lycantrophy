@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MobPile : MonoBehaviour
@@ -13,7 +11,7 @@ public class MobPile : MonoBehaviour
     [HideInInspector] public int mobCount;
 
     public float spawnTimer = 10f;
-    [HideInInspector] public float respawnDelay = 0f;
+    public float respawnDelay = 0f;
 
 
     private void Update()
@@ -26,7 +24,7 @@ public class MobPile : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position,circleRadius);
+        Gizmos.DrawWireSphere(transform.position, circleRadius);
     }
     public void RegisterMobs(GameObject[] mobs)
     {

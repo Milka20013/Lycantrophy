@@ -31,7 +31,7 @@ public class Consumable : MonoBehaviour, IPointerClickHandler
         consumableItem.ConsumeItem(itemUI.player);
     }
 
-    public string Description()
+    public string[] Description()
     {
         return consumableItem.FullDescription();
     }

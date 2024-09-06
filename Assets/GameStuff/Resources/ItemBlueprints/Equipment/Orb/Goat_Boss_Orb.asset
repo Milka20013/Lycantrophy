@@ -26,22 +26,22 @@ MonoBehaviour:
     amplifierType: 0
     attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 250
-    key: 2
+    key: 0
   - tag: Goat_Orb
     amplifierType: 0
     attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
     value: 30
-    key: 2
+    key: 0
   - tag: Goat_Orb
     amplifierType: 2
     attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
     value: 40
-    key: 2
+    key: 0
   - tag: Goat_Orb
     amplifierType: 2
     attribute: {fileID: 11400000, guid: ff30909998e4c594eabc957bc5fc9429, type: 2}
     value: 10
-    key: 2
+    key: 0
   tag: {fileID: 11400000, guid: 200c441ed01f39744b0dd2c4d5ba8de2, type: 2}
   tier: 2
   hideDescription: 0

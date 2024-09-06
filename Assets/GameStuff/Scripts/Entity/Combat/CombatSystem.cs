@@ -6,17 +6,20 @@ public class CombatSystem
     public HashSet<CombatCondition> conditions = new();
 
     private ResistanceCalculator resCalc;
+    private DamageMultiplierCalculator dmgCalc;
 
     public CombatSystem(Stats ownStats, HashSet<CombatCondition> conditions)
     {
         this.ownStats = ownStats;
         this.conditions = conditions;
-        resCalc = new ResistanceCalculator(this);
+        resCalc = new(this);
+        dmgCalc = new(this);
     }
     public float CalculateDamage(Stats attackerStats, float damage)
     {
         float resistance = resCalc.SummedResistance(attackerStats, ownStats);
-        return damage * (1 - resistance);
+        float damageMultiplier = dmgCalc.CalculateDamageMultiplier(attackerStats, ownStats);
+        return damage * (1 - resistance) * damageMultiplier;
     }
 
     public bool ValidAttributeInContext(CombatAttribute attribute)

@@ -28,6 +28,8 @@ MonoBehaviour:
   offensiveAtributeDatas:
   - attribute: {fileID: 11400000, guid: ff30909998e4c594eabc957bc5fc9429, type: 2}
     value: 1
+  - attribute: {fileID: 11400000, guid: f449fb6d844da444486a89129772feed, type: 2}
+    value: 1.2
   defensiveAtributeDatas:
   - attribute: {fileID: 11400000, guid: 19fd5b7ea8a752847b85ac852011ecda, type: 2}
     value: 0

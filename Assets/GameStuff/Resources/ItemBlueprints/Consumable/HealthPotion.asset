@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5a7fa8ffcf7f64fb0aa3e359625bc2, type: 3}
-  m_Name: Health_Potion1
+  m_Script: {fileID: 11500000, guid: 075d9fdb8e456ef498a29d3629451471, type: 3}
+  m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  id: da939413-4692-4abb-865e-477d460476ee
-  itemName: Health Potion
-  stackSize: 30
-  basicDescription: Heals
+  id: 3fa9a572-c260-4b15-80f8-88135772d7e2
+  itemName: Red potion
+  stackSize: 200
+  basicDescription: You start to feel better immediately
   prefab: {fileID: 5146469132438167939, guid: 44f980038e40e9e40960e202116bdb9f, type: 3}
   sprites:
   - {fileID: 21300000, guid: ac3d13123071f194a852cf54601e08da, type: 3}
-  sellValue: 0
-  effectDescription: Instantly heals
-  consumeValue: 50
+  sellValue: 2
+  effectDescription: []
+  restoreValue: 25

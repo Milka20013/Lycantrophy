@@ -25,15 +25,16 @@ MonoBehaviour:
     amplifierType: 0
     attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 50
-    key: 2
+    key: 0
   - tag: Essence of Life
     amplifierType: 1
     attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 25
-    key: 2
+    key: 0
   possibleCorePowers:
   - {fileID: 11400000, guid: 5017b098a3475bb4082d8144a203f993, type: 2}
   - {fileID: 11400000, guid: a88b9adafd4f3794d94e779e88589115, type: 2}
   - {fileID: 11400000, guid: ab636be2f9cdd4545992514d91127118, type: 2}
   - {fileID: 11400000, guid: 7d81e7a3140034d4d916a6062b0c23d6, type: 2}
+  - {fileID: 11400000, guid: d6ad915f2c0a2de46b4a27977c2cd539, type: 2}
   maxNumberOfCorePowers: 3

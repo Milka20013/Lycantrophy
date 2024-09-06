@@ -1,9 +1,9 @@
 
 public abstract class ConsumableBlueprint : ItemBlueprint
 {
-    public string effectDescription;
+    public string[] effectDescription;
 
-    public virtual string FullDescription()
+    public virtual string[] FullDescription()
     {
         return effectDescription;
     }

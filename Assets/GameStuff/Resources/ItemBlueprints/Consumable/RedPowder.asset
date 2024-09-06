@@ -20,9 +20,13 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 028140dc8654c8b4ea35102ef5b2087d, type: 3}
   sellValue: 5
-  effectDescription: Taunts up to 20 enemies
+  effectDescription:
+  - 'Range: 10'
+  - 'Enemies: 20'
+  - 'Taunt time: 3'
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
   radius: 10
   maxNumberOfEnemies: 20
+  occupationTime: 3

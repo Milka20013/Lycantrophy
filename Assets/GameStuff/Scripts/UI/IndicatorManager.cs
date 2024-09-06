@@ -47,6 +47,10 @@ public class IndicatorManager : MonoBehaviour
             HideIndicator();
         }
     }
+    public Transform GetCurrentParent()
+    {
+        return currentParent;
+    }
     IEnumerator LevitateIndicator()
     {
         bool up = true;

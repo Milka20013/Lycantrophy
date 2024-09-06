@@ -19,7 +19,7 @@ MonoBehaviour:
       amplifierType: 1
       attribute: {fileID: 11400000, guid: ff30909998e4c594eabc957bc5fc9429, type: 2}
       value: 4
-      key: 2
+      key: 0
     start: 3
     offset: 3
     weight: 1.5
@@ -28,7 +28,7 @@ MonoBehaviour:
       amplifierType: 1
       attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
       value: 16
-      key: 2
+      key: 0
     start: 3
     offset: 2.5
     weight: 1.5
@@ -37,7 +37,7 @@ MonoBehaviour:
       amplifierType: 0
       attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
       value: 75
-      key: 2
+      key: 0
     start: 3
     offset: 2
     weight: 1.5

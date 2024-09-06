@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public enum AmplifierType { Plus, Percentage, TruePercentage }
-public enum AmplifierKey { None, Stacking, Overriding, Extending }
+public enum AmplifierKey { Max, Min, Override }
 [Serializable]
 public class Amplifier
 {
@@ -26,7 +27,7 @@ public class Amplifier
         this.amplifierType = amplifierType;
         this.attribute = attribute;
         this.value = value;
-        key = AmplifierKey.None;
+        key = AmplifierKey.Max;
     }
     public Amplifier(Amplifier other)
     {
@@ -53,18 +54,14 @@ public class Amplifier
 
         return desc;
     }
-    public static bool IsAmplifierInCollectionPartially(List<Amplifier> amplifiers, Amplifier amplifier, out int index)
+    public static bool IsAmplifierInCollectionExcludingValue(IEnumerable<Amplifier> amplifiers, Amplifier amplifier, out int index)
     {
         //it does pseude check, stacking objects return false although it is in the collection
         // to-do clean this up
-        if (amplifier.key == AmplifierKey.Stacking)
+        int length = amplifiers.Count();
+        for (int i = 0; i < length; i++)
         {
-            index = -1;
-            return false;
-        }
-        for (int i = 0; i < amplifiers.Count; i++)
-        {
-            if (amplifier.PartiallyEqualsTo(amplifiers[i]))
+            if (amplifiers.ElementAt(i).EqualsToExcludingValue(amplifier))
             {
                 index = i;
                 return true;
@@ -105,13 +102,14 @@ public class Amplifier
         }
         return false;
     }
-    public bool PartiallyEqualsTo(Amplifier other)
+    public bool EqualsToExcludingValue(Amplifier other)
     {
-        //check if the tag, the attribute and the amptype is equal
+        //check if every value is equal
         bool tagB = tag == other.tag;
         bool attributeB = attribute == other.attribute;
         bool ampTypeB = amplifierType == other.amplifierType;
-        bool everyB = tagB && attributeB && ampTypeB;
+        bool keyB = key == other.key;
+        bool everyB = tagB && attributeB && ampTypeB && keyB;
         if (everyB)
         {
             return true;

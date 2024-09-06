@@ -26,17 +26,17 @@ MonoBehaviour:
     amplifierType: 0
     attribute: {fileID: 11400000, guid: d52fb6e0e0ca26046911c3a5da50ea24, type: 2}
     value: 50
-    key: 2
+    key: 0
   - tag: Chicken_Orb
     amplifierType: 1
     attribute: {fileID: 11400000, guid: 8d4d52f64ea282347b483853566f67ff, type: 2}
     value: 15
-    key: 2
+    key: 0
   - tag: Chicken_Orb
     amplifierType: 0
     attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
     value: 2
-    key: 2
+    key: 0
   tag: {fileID: 11400000, guid: 8868dbaa18282fe4abd1a561bf4162ab, type: 2}
   tier: 1
   hideDescription: 0

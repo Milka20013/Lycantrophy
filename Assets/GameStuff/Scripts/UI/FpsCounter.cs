@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class FpsCounter : MonoBehaviour
 {
@@ -13,7 +11,7 @@ public class FpsCounter : MonoBehaviour
     {
         time += Time.deltaTime;
         frames++;
-        
+
         if (time >= timeBetweenSteps)
         {
             int currentFPS = Mathf.RoundToInt(frames / time);

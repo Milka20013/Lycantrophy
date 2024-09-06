@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f427b06f69277cb4fa32eebee611b22e, type: 3}
+  m_Name: DogTreat
+  m_EditorClassIdentifier: 
+  id: 582d2944-136e-4572-918e-346c7e3b1c14
+  itemName: Dog treat
+  stackSize: 20
+  basicDescription: You deserve it!
+  prefab: {fileID: 5146469132438167939, guid: 44f980038e40e9e40960e202116bdb9f, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 64052f1392af6734db7a010b34d0aaf0, type: 3}
+  sellValue: 500
+  effectDescription:
+  - +1 damage permanently
+  - '*10% damage for 180 seconds'
+  treatAmplifier:
+    amplifier:
+      tag: Dog treat perm dmg
+      amplifierType: 0
+      attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+      value: 8
+      key: 2
+    increment: 1
+  tempAmplifier:
+    tag: Dog treat temp dmg
+    amplifierType: 2
+    attribute: {fileID: 11400000, guid: 766c1956afee0cf47ba53bb018a97cb5, type: 2}
+    value: 10
+    key: 0

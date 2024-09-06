@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,7 +9,7 @@ public class SetDescriptionInspector : MonoBehaviour, IPointerEnterHandler, IPoi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (setBonusDescription.inv.setbonus == null)
+        if (setBonusDescription.inv.setbonus == null || setBonusDescription.inv.setbonus.Length == 0)
         {
             tip.gameObject.SetActive(true);
             return;

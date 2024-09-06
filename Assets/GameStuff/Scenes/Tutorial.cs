@@ -3,7 +3,7 @@ using UnityEngine;
 public class Tutorial : MonoBehaviour
 {
     public Levelling levelling;
-    public GameObject arrow;
+    public Transform shopIndicatorTransform;
     public PlayerInventory playerInventory;
     public StatMenu statMenu;
     public GameObject shopMenu;
@@ -33,11 +33,11 @@ public class Tutorial : MonoBehaviour
         {
             ShowPopup(7);
         }
-        if (arrow.activeSelf)
+        if (IndicatorManager.instance.GetCurrentParent() == shopIndicatorTransform)
         {
             ShowPopup(12);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ShowPopup(13);
         }

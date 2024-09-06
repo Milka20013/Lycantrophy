@@ -35,5 +35,5 @@ MonoBehaviour:
     percentage: 2.5
     itemRange: 
   generalDrops: []
-  prefab: {fileID: 5407015723440895298, guid: 2d1a6d1121bf6ac47a09c54a2c901cfd, type: 3}
+  prefab: {fileID: 2667953661921860862, guid: 1085ff198ce745f479663ab8442c02e3, type: 3}
   size: {x: 1, y: 1, z: 1}

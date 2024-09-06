@@ -179,6 +179,7 @@ public class Mob : MonoBehaviour, IProvokable, IPointerEnterHandler, IPointerExi
         OnDeath?.Invoke(killer);
         takeDamage.Die(killer);
         IndicatorManager.instance.HideIndicator(indicatorOriginTransform);
+        MobManager.instance.PlayDeathEffect(transform.position);
         Destroy(gameObject);
     }
 
